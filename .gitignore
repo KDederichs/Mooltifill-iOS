@@ -1,0 +1,7 @@
+Products/*
+.idea/*
+xcuserdata/
+
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout

@@ -16,6 +16,8 @@
 		39023B4B27C10333000A7CD5 /* MooltifillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B4A27C10333000A7CD5 /* MooltifillTests.swift */; };
 		39023B5527C10333000A7CD5 /* MooltifillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5427C10333000A7CD5 /* MooltifillUITests.swift */; };
 		39023B5727C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */; };
+		39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B6427C10430000A7CD5 /* MooltipassCommand.swift */; };
+		39023B6727C10818000A7CD5 /* MooltipassPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B6627C10818000A7CD5 /* MooltipassPeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		39023B5027C10333000A7CD5 /* MooltifillUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooltifillUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B5427C10333000A7CD5 /* MooltifillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITests.swift; sourceTree = "<group>"; };
 		39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39023B6427C10430000A7CD5 /* MooltipassCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassCommand.swift; sourceTree = "<group>"; };
+		39023B6627C10818000A7CD5 /* MooltipassPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassPeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
+				39023B6327C1040A000A7CD5 /* Protocol */,
 				39023B3327C10332000A7CD5 /* AppDelegate.swift */,
 				39023B3527C10332000A7CD5 /* SceneDelegate.swift */,
 				39023B3727C10332000A7CD5 /* ViewController.swift */,
@@ -125,6 +130,15 @@
 				39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */,
 			);
 			path = MooltifillUITests;
+			sourceTree = "<group>";
+		};
+		39023B6327C1040A000A7CD5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				39023B6427C10430000A7CD5 /* MooltipassCommand.swift */,
+				39023B6627C10818000A7CD5 /* MooltipassPeripheral.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +274,8 @@
 			files = (
 				39023B3827C10332000A7CD5 /* ViewController.swift in Sources */,
 				39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */,
+				39023B6727C10818000A7CD5 /* MooltipassPeripheral.swift in Sources */,
+				39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */,
 				39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +458,7 @@
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mooltifill needs to access Bluetooth in order to connect to your Mooltipass";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -470,6 +487,7 @@
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mooltifill needs to access Bluetooth in order to connect to your Mooltipass";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
