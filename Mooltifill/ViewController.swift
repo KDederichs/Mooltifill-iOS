@@ -29,8 +29,9 @@ class ViewController: UIViewController {
 
     @IBAction func onButtonPress(_ sender: Any) {
         print("Button Pressed")
-        mpDevice.communicate(packet: [MooltipassPayload.getCredentials(service: "amazon.de", login: nil)])
-        print(self.searchInput.text)
+        let msg = MooltipassMessage(cmd: MooltipassCommand.GET_CREDENTIAL_BLE, rawData: MooltipassPayload.getCredentials(service: "amazon.de", login: nil))
+        print("Encoded command")
+        mpDevice.communicate(msg: msg)
     }
 }
 

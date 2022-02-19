@@ -29,6 +29,9 @@ class MooltipassMessage: NSObject {
         if (nil == data) {
             return ""
         }
+        for d in data! {
+            print(String(d))
+        }
         return String(bytes: data!.dropLast(1).dropFirst(start), encoding: .utf8) ?? ""
     }
 }

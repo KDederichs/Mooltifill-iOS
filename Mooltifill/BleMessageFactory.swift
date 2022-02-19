@@ -56,14 +56,12 @@ class BleMessageFactory: MessageFactory {
     var flip = false
 
     public static func setShort(bytes: inout Data, index: Int, value: UInt16) {
-        let newBytes = value.toBytes
-        bytes[index] = newBytes[0]
-        bytes[index + 1] = newBytes[1]
+        bytes[index] = UInt8(value & 0xFF)
+        bytes[index + 1] = UInt8((value & 0xFF00) >> 8)
     }
 
     public static func getShort(bytes: Data, index: Int) -> UInt16 {
-        let byteArray = [bytes[index], ((bytes[index + 1]))]
-        return  byteArray.withUnsafeBytes { $0.load(as: UInt16.self) }
+        UInt16(bytes[0] | (bytes[1] << 8))
     }
 
     public static func strLenUtf16(bytes: Data) -> Int? {
@@ -77,29 +75,30 @@ class BleMessageFactory: MessageFactory {
 
     public static func chunks(bytes: Data?, chunkSize: Int) -> [Data] {
         if (nil == bytes) {
+            print("Chunk bytes nil")
             return [Data([0])]
         }
-        return stride(from: 0, to: ((bytes!.count - 1) / chunkSize), by: 1).map {
-            bytes![$0 * chunkSize...min(bytes!.count, ($0 + 1) * chunkSize)]
+        return (0...((bytes!.count - 1) / chunkSize)).map {
+            bytes![$0 * chunkSize...min(bytes!.count - 1, ($0 + 1) * chunkSize)]
         }
     }
 
     func deserialize(data: [Data]) -> MooltipassMessage? {
         let numberOfPackets = (data[0][1] % 16) + 1
-//        if (numberOfPackets != data.count) {
-//            print("Wrong number of reported packages \(numberOfPackets) expected \(data.count)")
-//            print(data)
-//            return nil
-//        }
+        if (numberOfPackets != data.count) {
+            print("Wrong number of reported packages \(numberOfPackets) expected \(data.count)")
+            print(data)
+            return nil
+        }
         let len = BleMessageFactory.getShort(bytes: data[0], index: BleMessageFactory.HID_HEADER_SIZE + BleMessageFactory.PACKET_LEN_OFFSET)
         let cmdInt = BleMessageFactory.getShort(bytes: data[0], index: BleMessageFactory.HID_HEADER_SIZE + BleMessageFactory.PACKET_CMD_OFFSET)
         let hidPayload = data.reduce(Data([0])) {
             $0 + $1[2...63]
         }
-//        if (len > hidPayload.count - BleMessageFactory.PACKET_DATA_OFFSET) {
-//            print("Not enough data for reported length \(len) got \(hidPayload.count - BleMessageFactory.PACKET_DATA_OFFSET)")
-//            return nil
-//        }
+        if (len > hidPayload.count - BleMessageFactory.PACKET_DATA_OFFSET) {
+            print("Not enough data for reported length \(len) got \(hidPayload.count - BleMessageFactory.PACKET_DATA_OFFSET)")
+            return nil
+        }
         print(cmdInt)
         let cmd = MooltipassCommand(rawValue: cmdInt)
         if(cmd != nil) {
@@ -120,16 +119,20 @@ class BleMessageFactory: MessageFactory {
         hidPayload.insert(contentsOf: msg.data!, at: BleMessageFactory.PACKET_DATA_OFFSET)
         let chunks = BleMessageFactory.chunks(bytes: hidPayload, chunkSize: BleMessageFactory.HID_PACKET_DATA_PAYLOAD)
         let numberOfPackets = chunks.count
-        var ret = [Data]()
+        var ret = [Data](repeating: Data([0]), count: chunks.count)
         var i = 0
         for chunk in chunks {
-            var bytes: Data = Data(count: BleMessageFactory.HID_PACKET_SIZE)
+            var bytes: Data = Data(capacity: BleMessageFactory.HID_PACKET_SIZE)
             bytes[0] = UInt8(flipBit + ack + chunk.count)
             bytes[1] = UInt8((i << 4) + (numberOfPackets - 1))
             bytes.insert(contentsOf: chunk, at: BleMessageFactory.HID_HEADER_SIZE)
             ret[i] = bytes
+            print(bytes.count)
             i = i + 1
         }
+        print("Ret length")
+        print(ret.count)
+
         return ret
     }
 }

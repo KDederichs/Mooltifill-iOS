@@ -119,9 +119,30 @@ class MooltipassDevice: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate
         }
     }
 
+    func peripheral(
+            _ peripheral: CBPeripheral,
+            didWriteValueFor characteristic: CBCharacteristic,
+            error: Error?
+    ) {
+        print(characteristic.uuid)
+        if (error != nil) {
+            print(error!.localizedDescription)
+        }
+        guard let data = characteristic.value else {
+            print("Empty write")
+            return
+        }
+        if characteristic.uuid == MooltipassPeripheral.charWriteUUID {
+            self.peripheral!.readValue(for: readChar!)
+            print(data)
+        }
+    }
+
     public func send(packets: [Data]) -> Int? {
+        print("Send packets")
         var returnValue: Int? = nil
         for paket in packets {
+            print("Sending packet")
             returnValue = send(packet: paket)
             if (0 != returnValue) {
                 return returnValue
@@ -132,23 +153,32 @@ class MooltipassDevice: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate
 
     public func send(packet: Data)-> Int?
     {
+        print("sending single packet")
         if (!connected) {
             print("Mooltifill: Tried to call send() when Mooltipass is disconnected")
             return nil
         }
 
-        peripheral?.writeValue(packet, for: writeChar!, type: .withoutResponse)
+        if (peripheral == nil) {
+            print("That should not be")
+        }
+        for p in packet {
+            print(String(p))
+        }
+        peripheral?.writeValue(packet, for: writeChar!, type: .withResponse)
         return 0
     }
 
     public func communicate(packet: [Data])
     {
+        print("Comminucate packet")
         send(packets: packet)
-        peripheral?.readValue(for: readChar!)
+        //peripheral?.readValue(for: readChar!)
     }
 
     public func communicate(msg: MooltipassMessage)
     {
+        print("Comminucate command")
         communicate(packet: factory.serialize(msg: msg))
     }
 }
