@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		175990E0E94948B5D13A15A0 /* MooltipassPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599CB519905AEF89B7F3BC /* MooltipassPayload.swift */; };
+		175995D31DC979ED91ECEC69 /* MessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599A2CC9599D5DC1670D68 /* MessageFactory.swift */; };
+		175996499474C36DAC8759A4 /* MooltipassMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175999C5843D57748A76501E /* MooltipassMessage.swift */; };
+		17599CA0D7CFA46DF7DCCB6A /* BleMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599B4B5A04B30906238D14 /* BleMessageFactory.swift */; };
+		17599CBC4625652D65F07C69 /* MooltipassDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599D6FB68841314AD41392 /* MooltipassDevice.swift */; };
 		39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3327C10332000A7CD5 /* AppDelegate.swift */; };
 		39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3527C10332000A7CD5 /* SceneDelegate.swift */; };
 		39023B3827C10332000A7CD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3727C10332000A7CD5 /* ViewController.swift */; };
@@ -38,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		175999C5843D57748A76501E /* MooltipassMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassMessage.swift; sourceTree = "<group>"; };
+		17599A2CC9599D5DC1670D68 /* MessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFactory.swift; sourceTree = "<group>"; };
+		17599B4B5A04B30906238D14 /* BleMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleMessageFactory.swift; sourceTree = "<group>"; };
+		17599CB519905AEF89B7F3BC /* MooltipassPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
+		17599D6FB68841314AD41392 /* MooltipassDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassDevice.swift; sourceTree = "<group>"; };
 		39023B3027C10332000A7CD5 /* Mooltifill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltifill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B3327C10332000A7CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39023B3527C10332000A7CD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +121,11 @@
 				39023B3C27C10333000A7CD5 /* Assets.xcassets */,
 				39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */,
 				39023B4127C10333000A7CD5 /* Info.plist */,
+				17599D6FB68841314AD41392 /* MooltipassDevice.swift */,
+				17599CB519905AEF89B7F3BC /* MooltipassPayload.swift */,
+				17599B4B5A04B30906238D14 /* BleMessageFactory.swift */,
+				17599A2CC9599D5DC1670D68 /* MessageFactory.swift */,
+				175999C5843D57748A76501E /* MooltipassMessage.swift */,
 			);
 			path = Mooltifill;
 			sourceTree = "<group>";
@@ -277,6 +292,11 @@
 				39023B6727C10818000A7CD5 /* MooltipassPeripheral.swift in Sources */,
 				39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */,
 				39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */,
+				17599CBC4625652D65F07C69 /* MooltipassDevice.swift in Sources */,
+				175990E0E94948B5D13A15A0 /* MooltipassPayload.swift in Sources */,
+				17599CA0D7CFA46DF7DCCB6A /* BleMessageFactory.swift in Sources */,
+				175995D31DC979ED91ECEC69 /* MessageFactory.swift in Sources */,
+				175996499474C36DAC8759A4 /* MooltipassMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
