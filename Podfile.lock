@@ -1,0 +1,16 @@
+PODS:
+  - Bluejay (0.8.9)
+
+DEPENDENCIES:
+  - Bluejay (~> 0.8)
+
+SPEC REPOS:
+  trunk:
+    - Bluejay
+
+SPEC CHECKSUMS:
+  Bluejay: 2dd1e38c0b3bb02c931c0c10d380887230b09a33
+
+PODFILE CHECKSUM: a3885c935a24d8650d464625e4b4c9f0445a011b
+
+COCOAPODS: 1.11.2

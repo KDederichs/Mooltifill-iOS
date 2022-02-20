@@ -67,6 +67,7 @@ class BleMessageFactory: MessageFactory {
             print("Not enough data for reported length \(len) got \(hidPayload.count - PACKET_DATA_OFFSET)")
             return nil
         }
+        print("%%%%%%%")
         print(cmdInt)
         let cmd = MooltipassCommand(rawValue: cmdInt)
         if(cmd != nil) {
@@ -80,6 +81,7 @@ class BleMessageFactory: MessageFactory {
         let len = msg.data?.count ?? 0
         let ack = 0x00
         let flipBit = flip ? 0x80 : 0x00
+        print("Flip Bit: \(flipBit)")
         flip = !flip
         var hidPayload = Data(count: len + PACKET_DATA_OFFSET)
         BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_CMD_OFFSET, value: msg.cmd.rawValue)

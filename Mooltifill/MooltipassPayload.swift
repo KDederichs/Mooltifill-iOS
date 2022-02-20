@@ -4,6 +4,8 @@
 
 import Foundation
 class MooltipassPayload: NSObject {
+    public static let FLIP_BIT_RESET_PACKET = Data([0xFF, 0xFF])
+
     public static func getCredentials(service: Data, login: Data?) -> Data {
         let loginOffset = service.count
         let len = loginOffset + (login?.count ?? 0) + 4
