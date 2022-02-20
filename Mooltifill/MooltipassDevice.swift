@@ -187,9 +187,11 @@ class MooltipassDevice: ConnectionObserver {
             return nil
         }
 
+        debugPrint("%%%%%%Sending%%%%%")
         for p in packet {
             print(String(p))
         }
+        debugPrint("%%%%%%End Sending%%%%%")
         bluejay.write(to: MooltipassPeripheral.charWriteUUID, value: packet) { result in
             switch result {
             case .success:
@@ -217,13 +219,15 @@ class MooltipassDevice: ConnectionObserver {
                 print("First packet should have 0, but was \(id)")
                 return nil
             }
-            print("---------")
+            debugPrint("%%%%%%Reading%%%%%")
             for p in packet {
                 print(p)
             }
+            debugPrint("%%%%%%End Reading%%%%%")
             var returnData = [Data](repeating: Data([0]), count: Int(numberOfPackets))
             returnData[0] = packet
             for i in 1..<numberOfPackets {
+                debugPrint("Fetching more")
                 returnData[Int(i)] = try readInternal(peripheral: peripheral)
             }
             return returnData
@@ -233,8 +237,7 @@ class MooltipassDevice: ConnectionObserver {
                 if (nil != readResult) {
                     debugPrint("Read success")
                     let factory = BleMessageFactory()
-                    let msg = factory.deserialize(data: readResult!)
-                    print(msg?.dataAsString())
+                    //let msg = factory.deserialize(data: readResult!)
                 } else {
                     debugPrint("Read failed")
                 }

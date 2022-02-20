@@ -16,6 +16,11 @@ class MooltipassPayload: NSObject {
         if(login != nil) {
             BleMessageFactory.arrayCopy(bytes: &bytes, data: login!, start: 4 + loginOffset)
         }
+        debugPrint("%%%%%Get Credentials Start")
+        for p in bytes {
+            debugPrint(String(p))
+        }
+        debugPrint("%%%%%Get Credentials end")
         return bytes
     }
 

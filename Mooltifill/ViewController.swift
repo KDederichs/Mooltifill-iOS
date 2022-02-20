@@ -34,8 +34,10 @@ class ViewController: UIViewController {
         let random = Data(repeating: UInt8.random(in: 0...255), count: 4)
         let ping = MooltipassMessage(cmd: MooltipassCommand.PING_BLE, rawData: random)
         let msg = MooltipassMessage(cmd: MooltipassCommand.GET_CREDENTIAL_BLE, rawData: MooltipassPayload.getCredentials(service: "amazon.de", login: nil))
+        let status = MooltipassMessage(cmd: MooltipassCommand.MOOLTIPASS_STATUS_BLE)
+
         print("Encoded command")
-        mpDevice.communicate(msg: ping)
+        mpDevice.communicate(msg: status)
     }
 }
 

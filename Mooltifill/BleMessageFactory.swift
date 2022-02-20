@@ -40,6 +40,7 @@ class BleMessageFactory: MessageFactory {
             print("Chunk bytes nil")
             return [Data([0])]
         }
+        debugPrint("Pre chunk size \(bytes?.count)")
         return (0...((bytes!.count - 1) / chunkSize)).map {
             bytes![$0 * chunkSize...min(bytes!.count - 1, ($0 + 1) * chunkSize)]
         }
@@ -82,17 +83,30 @@ class BleMessageFactory: MessageFactory {
         let ack = 0x00
         let flipBit = flip ? 0x80 : 0x00
         print("Flip Bit: \(flipBit)")
+        print("Len: \(len)")
         flip = !flip
         var hidPayload = Data(count: len + PACKET_DATA_OFFSET)
         BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_CMD_OFFSET, value: msg.cmd.rawValue)
         BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_LEN_OFFSET, value: UInt16(len))
-        BleMessageFactory.arrayCopy(bytes: &hidPayload, data: msg.data!, start: PACKET_DATA_OFFSET)
+        if (msg.data != nil) {
+            BleMessageFactory.arrayCopy(bytes: &hidPayload, data: msg.data!, start: PACKET_DATA_OFFSET)
+        }
+
+
+        debugPrint("%%%%%%%%% HID Payload%%%%%%%%")
+        for p in hidPayload {
+            debugPrint(String(p))
+        }
+        debugPrint("%%%%%%%%% HID Payload end %%%%%%%%%%%%")
+
         let chunks = BleMessageFactory.chunks(bytes: hidPayload, chunkSize: HID_PACKET_DATA_PAYLOAD)
+        print("Chunk count: \(chunks.count)")
         let numberOfPackets = chunks.count
         var ret = [Data](repeating: Data([0]), count: chunks.count)
         var i = 0
         for chunk in chunks {
             var bytes: Data = Data(count: HID_PACKET_SIZE)
+            debugPrint("chunk size \(chunk.count)")
             bytes[0] = UInt8(flipBit + ack + chunk.count)
             bytes[1] = UInt8((i << 4) + (numberOfPackets - 1))
             BleMessageFactory.arrayCopy(bytes: &bytes, data: chunk, start: HID_HEADER_SIZE)
