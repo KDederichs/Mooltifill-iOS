@@ -6,7 +6,7 @@ target 'Mooltifill' do
   use_frameworks!
 
   # Pods for Mooltifill
-  pod 'Bluejay', '~> 0.8'
+  pod 'Bluejay', :git=> 'https://github.com/KDederichs/bluejay.git', :branch => 'expose_manager'
 
   target 'MooltifillTests' do
     inherit! :search_paths
