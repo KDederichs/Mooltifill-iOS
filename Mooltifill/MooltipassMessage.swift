@@ -4,7 +4,7 @@
 
 import Foundation
 import CoreBluetooth
-class MooltipassMessage: NSObject {
+class MooltipassMessage {
     public var cmd: MooltipassCommand
     public var data: Data?
 

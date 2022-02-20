@@ -105,6 +105,11 @@ class MooltipassDevice: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate
             return
         }
         if characteristic.uuid == MooltipassPeripheral.charReadUUID {
+
+            for p in data {
+                print(String(p))
+            }
+
             var numberOfPackets = (data[1] % 16) + 1
             var id = data[1] >> 4
 
@@ -128,14 +133,7 @@ class MooltipassDevice: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate
         if (error != nil) {
             print(error!.localizedDescription)
         }
-        guard let data = characteristic.value else {
-            print("Empty write")
-            return
-        }
-        if characteristic.uuid == MooltipassPeripheral.charWriteUUID {
-            self.peripheral!.readValue(for: readChar!)
-            print(data)
-        }
+        self.peripheral!.readValue(for: readChar!)
     }
 
     public func send(packets: [Data]) -> Int? {
