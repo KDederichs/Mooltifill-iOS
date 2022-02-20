@@ -4,54 +4,16 @@
 
 import CoreBluetooth
 
-protocol UIntToBytesConvertable {
-    var toBytes: [UInt8] { get }
-}
-
-extension UIntToBytesConvertable {
-    func toByteArr<T: BinaryInteger>(endian: T, count: Int) -> [UInt8] {
-        var _endian = endian
-        let bytePtr = withUnsafePointer(to: &_endian) {
-            $0.withMemoryRebound(to: UInt8.self, capacity: count) {
-                UnsafeBufferPointer(start: $0, count: count)
-            }
-        }
-        return [UInt8](bytePtr)
-    }
-}
-
-extension UInt16: UIntToBytesConvertable {
-    var toBytes: [UInt8] {
-        if CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) {
-            return toByteArr(endian: self.littleEndian,
-                    count: MemoryLayout<UInt16>.size)
-        } else {
-            return toByteArr(endian: self.bigEndian,
-                    count: MemoryLayout<UInt16>.size)
-        }
-    }
-}
-
-extension Array{
-
-    func forEachWithIndex(_ callback: (Int, Element) -> ()){
-
-        for (index, element) in self.enumerated(){
-            callback(index, element)
-        }
-    }
-}
-
 class BleMessageFactory: MessageFactory {
 
-    static let HID_HEADER_SIZE = 2
-    static let PACKET_CMD_OFFSET = 0
-    static let PACKET_LEN_OFFSET = 2
-    static let PACKET_DATA_OFFSET = 4
-    static let LAST_MESSAGE_ACK_FLAG = 0x40
-    static let HID_PACKET_SIZE = 64
-    static let HID_PACKET_DATA_PAYLOAD = HID_PACKET_SIZE - HID_HEADER_SIZE
-    static let MP_PACKET_DATA_PAYLOAD = HID_PACKET_DATA_PAYLOAD - PACKET_DATA_OFFSET
+    let HID_HEADER_SIZE = 2
+    let PACKET_CMD_OFFSET = 0
+    let PACKET_LEN_OFFSET = 2
+    let PACKET_DATA_OFFSET = 4
+    let LAST_MESSAGE_ACK_FLAG = 0x40
+    let HID_PACKET_SIZE = 64
+    let HID_PACKET_DATA_PAYLOAD = 62 // HID_PACKET_SIZE - HID_HEADER_SIZE
+    let MP_PACKET_DATA_PAYLOAD = 58 // HID_PACKET_DATA_PAYLOAD - PACKET_DATA_OFFSET
 
     var flip = false
 
@@ -83,6 +45,12 @@ class BleMessageFactory: MessageFactory {
         }
     }
 
+    public static func arrayCopy(bytes: inout Data, data: Data, start: Int) {
+        for i in 0...(data.count - 1) {
+            bytes[i + start] = data[i]
+        }
+    }
+
     func deserialize(data: [Data]) -> MooltipassMessage? {
         let numberOfPackets = (data[0][1] % 16) + 1
         if (numberOfPackets != data.count) {
@@ -90,19 +58,19 @@ class BleMessageFactory: MessageFactory {
             print(data)
             return nil
         }
-        let len = BleMessageFactory.getShort(bytes: data[0], index: BleMessageFactory.HID_HEADER_SIZE + BleMessageFactory.PACKET_LEN_OFFSET)
-        let cmdInt = BleMessageFactory.getShort(bytes: data[0], index: BleMessageFactory.HID_HEADER_SIZE + BleMessageFactory.PACKET_CMD_OFFSET)
+        let len = BleMessageFactory.getShort(bytes: data[0], index: HID_HEADER_SIZE + PACKET_LEN_OFFSET)
+        let cmdInt = BleMessageFactory.getShort(bytes: data[0], index: HID_HEADER_SIZE + PACKET_CMD_OFFSET)
         let hidPayload = data.reduce(Data([0])) {
             $0 + $1[2...63]
         }
-        if (len > hidPayload.count - BleMessageFactory.PACKET_DATA_OFFSET) {
-            print("Not enough data for reported length \(len) got \(hidPayload.count - BleMessageFactory.PACKET_DATA_OFFSET)")
+        if (len > hidPayload.count - PACKET_DATA_OFFSET) {
+            print("Not enough data for reported length \(len) got \(hidPayload.count - PACKET_DATA_OFFSET)")
             return nil
         }
         print(cmdInt)
         let cmd = MooltipassCommand(rawValue: cmdInt)
         if(cmd != nil) {
-            let d = hidPayload[BleMessageFactory.PACKET_DATA_OFFSET...(Int(len) + BleMessageFactory.PACKET_DATA_OFFSET)]
+            let d = hidPayload[PACKET_DATA_OFFSET...(Int(len) + PACKET_DATA_OFFSET)]
             return MooltipassMessage(cmd: cmd!, rawData: d)
         }
         return nil
@@ -113,19 +81,19 @@ class BleMessageFactory: MessageFactory {
         let ack = 0x00
         let flipBit = flip ? 0x80 : 0x00
         flip = !flip
-        var hidPayload = Data(count: len)
-        BleMessageFactory.setShort(bytes: &hidPayload, index: BleMessageFactory.PACKET_CMD_OFFSET, value: msg.cmd.rawValue)
-        BleMessageFactory.setShort(bytes: &hidPayload, index: BleMessageFactory.PACKET_LEN_OFFSET, value: UInt16(len))
-        hidPayload.insert(contentsOf: msg.data!, at: BleMessageFactory.PACKET_DATA_OFFSET)
-        let chunks = BleMessageFactory.chunks(bytes: hidPayload, chunkSize: BleMessageFactory.HID_PACKET_DATA_PAYLOAD)
+        var hidPayload = Data(count: len + PACKET_DATA_OFFSET)
+        BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_CMD_OFFSET, value: msg.cmd.rawValue)
+        BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_LEN_OFFSET, value: UInt16(len))
+        BleMessageFactory.arrayCopy(bytes: &hidPayload, data: msg.data!, start: PACKET_DATA_OFFSET)
+        let chunks = BleMessageFactory.chunks(bytes: hidPayload, chunkSize: HID_PACKET_DATA_PAYLOAD)
         let numberOfPackets = chunks.count
         var ret = [Data](repeating: Data([0]), count: chunks.count)
         var i = 0
         for chunk in chunks {
-            var bytes: Data = Data(capacity: BleMessageFactory.HID_PACKET_SIZE)
+            var bytes: Data = Data(count: HID_PACKET_SIZE)
             bytes[0] = UInt8(flipBit + ack + chunk.count)
             bytes[1] = UInt8((i << 4) + (numberOfPackets - 1))
-            bytes.insert(contentsOf: chunk, at: BleMessageFactory.HID_HEADER_SIZE)
+            BleMessageFactory.arrayCopy(bytes: &bytes, data: chunk, start: HID_HEADER_SIZE)
             ret[i] = bytes
             print(bytes.count)
             i = i + 1
