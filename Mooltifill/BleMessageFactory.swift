@@ -17,18 +17,18 @@ class BleMessageFactory: MessageFactory {
 
     var flip = false
 
-    public static func setShort(bytes: inout Data, index: Int, value: UInt16) {
+    public static func toUInt8LE(bytes: inout Data, index: Int, value: UInt16) {
         bytes[index] = UInt8(value & 0xFF)
         bytes[index + 1] = UInt8((value & 0xFF00) >> 8)
     }
 
-    public static func getShort(bytes: Data, index: Int) -> UInt16 {
+    public static func toUInt16(bytes: Data, index: Int) -> UInt16 {
         UInt16(bytes[0] | (bytes[1] << 8))
     }
 
     public static func strLenUtf16(bytes: Data) -> Int? {
         for index in stride(from: 0, to: bytes.count, by: 2) {
-            if(getShort(bytes: bytes, index: index) == 0) {
+            if(toUInt16(bytes: bytes, index: index) == 0) {
                 return index
             }
         }
@@ -59,8 +59,8 @@ class BleMessageFactory: MessageFactory {
             print(data)
             return nil
         }
-        let len = BleMessageFactory.getShort(bytes: data[0], index: HID_HEADER_SIZE + PACKET_LEN_OFFSET)
-        let cmdInt = BleMessageFactory.getShort(bytes: data[0], index: HID_HEADER_SIZE + PACKET_CMD_OFFSET)
+        let len = BleMessageFactory.toUInt16(bytes: data[0], index: HID_HEADER_SIZE + PACKET_LEN_OFFSET)
+        let cmdInt = BleMessageFactory.toUInt16(bytes: data[0], index: HID_HEADER_SIZE + PACKET_CMD_OFFSET)
         let hidPayload = data.reduce(Data([0])) {
             $0 + $1[2...63]
         }
@@ -86,8 +86,8 @@ class BleMessageFactory: MessageFactory {
         print("Len: \(len)")
         flip = !flip
         var hidPayload = Data(count: len + PACKET_DATA_OFFSET)
-        BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_CMD_OFFSET, value: msg.cmd.rawValue)
-        BleMessageFactory.setShort(bytes: &hidPayload, index: PACKET_LEN_OFFSET, value: UInt16(len))
+        BleMessageFactory.toUInt8LE(bytes: &hidPayload, index: PACKET_CMD_OFFSET, value: msg.cmd.rawValue)
+        BleMessageFactory.toUInt8LE(bytes: &hidPayload, index: PACKET_LEN_OFFSET, value: UInt16(len))
         if (msg.data != nil) {
             BleMessageFactory.arrayCopy(bytes: &hidPayload, data: msg.data!, start: PACKET_DATA_OFFSET)
         }

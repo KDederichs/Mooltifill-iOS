@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         let status = MooltipassMessage(cmd: MooltipassCommand.MOOLTIPASS_STATUS_BLE)
 
         print("Encoded command")
-        mpDevice.communicate(msg: status)
+        mpDevice.communicate(msg: msg)
     }
 }
 

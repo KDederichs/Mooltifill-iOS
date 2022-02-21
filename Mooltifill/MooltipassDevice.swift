@@ -237,7 +237,10 @@ class MooltipassDevice: ConnectionObserver {
                 if (nil != readResult) {
                     debugPrint("Read success")
                     let factory = BleMessageFactory()
-                    //let msg = factory.deserialize(data: readResult!)
+                    let msg = factory.deserialize(data: readResult!)
+                    if (nil != msg) {
+                        print(msg!.cmd)
+                    }
                 } else {
                     debugPrint("Read failed")
                 }
