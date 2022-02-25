@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Bluejay
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
