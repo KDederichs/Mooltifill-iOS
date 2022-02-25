@@ -5,23 +5,13 @@
 import Foundation
 import CoreBluetooth
 
-class PairingFlow {
+class PairingFlow: FlowController {
 
     let timeout = 15.0
     var waitForPeripheralHandler: () -> Void = { }
     var pairingHandler: (Bool) -> Void = { _ in }
     var pairingWorkitem: DispatchWorkItem?
     var pairing = false
-    var currentId = 0
-    var readResult: [Data]?
-    var a: Data?
-
-    weak var bluetoothService: BluetoothService?
-
-    init(bluetoothService: BluetoothService) {
-        self.bluetoothService = bluetoothService
-    }
-
     // MARK: Pairing steps
 
     func waitForPeripheral(completion: @escaping () -> Void) {
@@ -79,61 +69,24 @@ class PairingFlow {
         self.pairingHandler(false)
         self.cancel()
     }
-}
 
-// MARK: 3. State handling
-extension PairingFlow: FlowController {
-    func discoveredPeripheral() {
+    override func discoveredPeripheral() {
         self.bluetoothService?.stopScan()
         self.waitForPeripheralHandler()
     }
 
-    func readyToWrite() {
+    override func readyToWrite() {
         guard self.pairing else { return }
 
         self.bluetoothService?.getStatus() // 4.
         //bluetoothService?.startRead()
     }
 
-    func writeComplete() {
+    override func writeComplete() {
         bluetoothService?.startRead()
     }
 
-    func received(response: Data) {
-        // print("received data: \(String(bytes: response, encoding: String.Encoding.ascii) ?? "")")
-        let numberOfPackets = (response[1] % 16) + 1
-        debugPrint("NOP \(numberOfPackets)")
-
-        let id = Int(response[1]) >> 4
-        readResult = [Data](repeating: Data([0]), count: Int(numberOfPackets))
-
-        if (currentId != id) {
-            debugPrint("Received ID \(id) doesn't match with current ID counter \(currentId)")
-            return
-        }
-        readResult![Int(id)] = response
-        if (currentId == numberOfPackets - 1) {
-            self.pairingHandler(true)
-            self.cancel()
-            readComplete(data: readResult!)
-        } else {
-            currentId += 1
-            bluetoothService?.startRead()
-        }
-
-//        if (a == nil) {
-//            a =  response
-//            bluetoothService?.startRead()
-//        } else {
-//            if (!a!.elementsEqual(response)) {
-//                bluetoothService?.startRead()
-//            } else {
-//                debugPrint("Flush complere")
-//            }
-//        }
-    }
-
-    func readComplete(data: [Data]) {
+    override func readComplete(data: [Data]) {
         let factory = BleMessageFactory()
         let message = factory.deserialize(data: data)
         if (message?.cmd != MooltipassCommand.MOOLTIPASS_STATUS_BLE) {
@@ -145,17 +98,19 @@ extension PairingFlow: FlowController {
             debugPrint(p)
         }
         debugPrint(message?.dataAsString() ?? "Deserialisation failed")
+        self.pairingHandler(true)
+        self.cancel()
     }
 
-    func disconnected(failure: Bool) {
+    override func disconnected(failure: Bool) {
         self.pairingFailed()
     }
 
-    func lockedStatus(locked: Bool?) {
+    override func lockedStatus(locked: Bool?) {
         debugPrint("Locked? \(locked)")
     }
 
-    func bluetoothOn() {
+    override func bluetoothOn() {
         debugPrint("Initialise Pairing connection")
         self.waitForPeripheral {
             debugPrint("Attempting connection")

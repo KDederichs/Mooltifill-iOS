@@ -17,6 +17,9 @@ extension BluetoothService: CBCentralManagerDelegate {
             self.flowController?.bluetoothOff() // 2.
         } else {
             print("bluetooth is ON")
+            if (flowController == nil) {
+                debugPrint("Flow Controller is missing")
+            }
             self.flowController?.bluetoothOn() // 2.
         }
     }
