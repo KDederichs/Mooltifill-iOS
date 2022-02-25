@@ -13,11 +13,9 @@
 		1759964F3D8597434054CA5F /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175993425A909A7F19D47306 /* FlowController.swift */; };
 		175997AE21D5DC00643560E6 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599BD74C6563A506876574 /* BluetoothService.swift */; };
 		17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */; };
-		17599BF6D9428486664E3E58 /* BleCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175997177CED19784C702E05 /* BleCommunication.swift */; };
 		17599C49631C781970742C9D /* MessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175992EB83736051FE6CB017 /* MessageFactory.swift */; };
 		17599C685200507B989306B2 /* PairingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1759925EB558EA3262A1E743 /* PairingFlow.swift */; };
 		17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */; };
-		17599E5F701A5C7CC63E6295 /* BleCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599F893F34DB18CDD9A7C2 /* BleCommands.swift */; };
 		39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3327C10332000A7CD5 /* AppDelegate.swift */; };
 		39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3527C10332000A7CD5 /* SceneDelegate.swift */; };
 		39023B3827C10332000A7CD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3727C10332000A7CD5 /* ViewController.swift */; };
@@ -54,11 +52,9 @@
 		175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleMessageFactory.swift; sourceTree = "<group>"; };
 		175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionHandler.swift; sourceTree = "<group>"; };
 		175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothEventsHandler.swift; sourceTree = "<group>"; };
-		175997177CED19784C702E05 /* BleCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleCommunication.swift; sourceTree = "<group>"; };
 		1759976164CF1FDE3595F789 /* MooltipassMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassMessage.swift; sourceTree = "<group>"; };
 		17599BD74C6563A506876574 /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		17599C993846AE57744EBECC /* MooltipassPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
-		17599F893F34DB18CDD9A7C2 /* BleCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleCommands.swift; sourceTree = "<group>"; };
 		39023B3027C10332000A7CD5 /* Mooltifill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltifill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B3327C10332000A7CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39023B3527C10332000A7CD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,7 +158,6 @@
 				175992EB83736051FE6CB017 /* MessageFactory.swift */,
 				17599C993846AE57744EBECC /* MooltipassPayload.swift */,
 				1759976164CF1FDE3595F789 /* MooltipassMessage.swift */,
-				175997177CED19784C702E05 /* BleCommunication.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -182,7 +177,6 @@
 				17599BD74C6563A506876574 /* BluetoothService.swift */,
 				175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */,
 				175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */,
-				17599F893F34DB18CDD9A7C2 /* BleCommands.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -331,8 +325,6 @@
 				17599C49631C781970742C9D /* MessageFactory.swift in Sources */,
 				1759925362CE7D6189493099 /* MooltipassPayload.swift in Sources */,
 				17599205C4E958DBA1B2E1A7 /* MooltipassMessage.swift in Sources */,
-				17599E5F701A5C7CC63E6295 /* BleCommands.swift in Sources */,
-				17599BF6D9428486664E3E58 /* BleCommunication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
