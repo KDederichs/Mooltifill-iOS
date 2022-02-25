@@ -6,7 +6,7 @@ import Foundation
 import CoreBluetooth
 
 class BluetoothService: NSObject { // 1.
-
+    let FLIP_BIT_RESET_PACKET = Data([0xFF, 0xFF])
     let commServiceUUID     = CBUUID(string: "2566af2c-91bd-49fd-8ebb-020fa873044f")
     let charReadUUID   = CBUUID(string: "4c64e90a-5f9c-4d6b-9c29-bdaa6141f9f7")
     let charWriteUUID = CBUUID(string: "fe8f1a02-6311-475f-a296-553e3566b895")
@@ -21,6 +21,7 @@ class BluetoothService: NSObject { // 1.
         return self.centralManager.state
     }
     var flowController: FlowController? // 3.
+    var flushFlow: FlushFlow?
 
     override init() {
         super.init()

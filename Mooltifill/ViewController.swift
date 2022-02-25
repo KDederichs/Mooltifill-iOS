@@ -32,6 +32,8 @@ class ViewController: UIViewController {
 
     @IBAction func onButtonPress(_ sender: Any) {
         print("Button Pressed")
+        appDelegate.bluetoothService.flowController = appDelegate.credentialsFlow
+        appDelegate.bluetoothService.flowController?.bluetoothService?.getCredentials(service: "amazon.de", login: nil)
 
         print("Encoded command")
         //mpDevice.communicate(msg: msg)x

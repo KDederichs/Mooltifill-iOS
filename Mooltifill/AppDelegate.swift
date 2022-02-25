@@ -12,10 +12,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let bluetoothService = BluetoothService()
     lazy var pairingFlow = PairingFlow(bluetoothService: self.bluetoothService)
+    lazy var credentialsFlow = GetCredentialsFlow(bluetoothService: self.bluetoothService)
+    lazy var flushFlow = FlushFlow(bluetoothService: self.bluetoothService)
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        bluetoothService.flushFlow = flushFlow
         return true
     }
 

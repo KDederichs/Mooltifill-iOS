@@ -99,7 +99,7 @@ class PairingFlow: FlowController {
         }
         debugPrint(message?.dataAsString() ?? "Deserialisation failed")
         self.pairingHandler(true)
-        self.cancel()
+        // self.cancel()
     }
 
     override func disconnected(failure: Bool) {

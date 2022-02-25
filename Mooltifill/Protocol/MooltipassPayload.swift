@@ -5,8 +5,8 @@
 import Foundation
 import CoreBluetooth
 
-let FLIP_BIT_RESET_PACKET = Data([0xFF, 0xFF])
 extension BluetoothService {
+
     func getStatus() {
         let factory = BleMessageFactory()
         self.peripheral?.writeValue(FLIP_BIT_RESET_PACKET, for: writeCharacteristic!, type: .withoutResponse)
@@ -33,7 +33,7 @@ extension BluetoothService {
     public func tryParseLocked(data: Data) -> Bool? {
         let factory = BleMessageFactory()
         let payload = factory.deserialize(data: [data])
-        if (payload!.cmd == MooltipassCommand.MOOLTIPASS_STATUS_BLE && payload!.data != nil && payload!.data!.count == 5) {
+        if (payload != nil && payload!.cmd == MooltipassCommand.MOOLTIPASS_STATUS_BLE && payload!.data != nil && payload!.data!.count == 5) {
             return payload!.data![0] & 0x4 ==  0x0
         }
         return nil
@@ -53,9 +53,19 @@ extension BluetoothService {
         if(login != nil) {
             BleMessageFactory.arrayCopy(bytes: &bytes, data: login!, start: 4 + loginOffset)
         }
-
         self.peripheral?.writeValue(FLIP_BIT_RESET_PACKET, for: writeCharacteristic!, type: .withoutResponse)
-        self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_CREDENTIAL_BLE, rawData: bytes)))
+        flushRead {
+            self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_CREDENTIAL_BLE, rawData: bytes)))
+        }
+    }
+
+    private func flushRead(completion: @escaping () -> ()) {
+        let rootFlow = self.flowController
+        self.flowController = self.flushFlow
+        self.flushFlow?.startFlush {
+            self.flowController = rootFlow
+            completion()
+        }
     }
 
     private func send(packets: [Data]) {
