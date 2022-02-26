@@ -21,20 +21,20 @@ class GetCredentialsFlow: FlowController {
 
         if (message?.data != nil && message!.data!.count > 0) {
             debugPrint(hexEncodedString(message!.data!))
-            debugPrint("Login \(parseCredentialsPart(idx: message!.data!.startIndex, data: message!.data!))")
-            debugPrint("Description \(parseCredentialsPart(idx:(message!.data!.startIndex + 2), data: message!.data!))")
-            debugPrint("Third \(parseCredentialsPart(idx:(message!.data!.startIndex + 4), data: message!.data!))")
-            debugPrint("Password \(parseCredentialsPart(idx:(message!.data!.startIndex + 6), data: message!.data!))")
+            debugPrint("Login \(parseCredentialsPart(idx: 0, data: message!.data!))")
+            debugPrint("Description \(parseCredentialsPart(idx: 2, data: message!.data!))")
+            debugPrint("Third \(parseCredentialsPart(idx: 4, data: message!.data!))")
+            debugPrint("Password \(parseCredentialsPart(idx: 6, data: message!.data!))")
         }
 
     }
 
     private func parseCredentialsPart(idx: Int, data: Data) -> String? {
         print("Idx \(idx)")
-        print("UInt16 \(BleMessageFactory.toUInt16(bytes: data, index: idx))")
-        let offset = BleMessageFactory.toUInt16(bytes: data, index: idx) * 2 + 8
+        print("UInt16 \(BleMessageFactory.toUInt16(bytes: data, index: idx + data.startIndex))")
+        let offset = Int(BleMessageFactory.toUInt16(bytes: data, index: idx + data.startIndex)) * 2 + data.startIndex + 8
         print("Offset \(offset)")
-        let slice = data[Int(offset)..<data.count]
+        let slice = data[Int(offset)..<data.endIndex]
         print("Slice Start Idx \(slice.startIndex)")
         let partLength = BleMessageFactory.strLenUtf16(bytes: slice)
         if (partLength != nil) {

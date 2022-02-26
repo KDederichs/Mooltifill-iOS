@@ -34,7 +34,7 @@ extension BluetoothService {
         let factory = BleMessageFactory()
         let payload = factory.deserialize(data: [data], debug: false)
         if (payload != nil && payload!.cmd == MooltipassCommand.MOOLTIPASS_STATUS_BLE && payload!.data != nil && payload!.data!.count == 5) {
-            return payload!.data![0] & 0x4 ==  0x0
+            return payload!.data![payload!.data!.startIndex] & 0x4 ==  0x0
         }
         return nil
     }

@@ -23,16 +23,7 @@ class BleMessageFactory: MessageFactory {
     }
 
     public static func toUInt16(bytes: Data, index: Int) -> UInt16 {
-        print("=/=/=/=/=/=/=/=")
-        print(UInt8(bytes[index]))
-        print(UInt16(UInt8(bytes[index + 1])))
-        print(UInt16(UInt8(bytes[index + 1])) << 8)
-        print("=/=/=/=/=/=/=/=")
-        return UInt16(UInt16(bytes[index]) | (UInt16(bytes[index + 1]) << 8))
-//        var y: UInt16 = 0
-//        y += UInt16(bytes[index + 1]) << 0o10
-//        y += UInt16(bytes[index]) << 0o00
-//        return y
+       (UInt16(CFSwapInt16LittleToHost(UInt16(bytes[index])) | (CFSwapInt16LittleToHost(UInt16(bytes[index + 1])) << 8)))
     }
 
     public static func strLenUtf16(bytes: Data) -> Int? {
@@ -72,7 +63,7 @@ class BleMessageFactory: MessageFactory {
         }
         let len = BleMessageFactory.toUInt16(bytes: data[0], index: HID_HEADER_SIZE + PACKET_LEN_OFFSET)
         let cmdInt = BleMessageFactory.toUInt16(bytes: data[0], index: HID_HEADER_SIZE + PACKET_CMD_OFFSET)
-        let hidPayload = data.reduce(Data([0])) {
+        let hidPayload = data.reduce(Data()) {
             $0 + $1[2...63]
         }
         if (len > hidPayload.count - PACKET_DATA_OFFSET) {
@@ -83,7 +74,7 @@ class BleMessageFactory: MessageFactory {
 //        print(cmdInt)
         let cmd = MooltipassCommand(rawValue: cmdInt)
         if(cmd != nil) {
-            let d = hidPayload[PACKET_DATA_OFFSET...(Int(len) + PACKET_DATA_OFFSET)]
+            let d = hidPayload[PACKET_DATA_OFFSET..<(Int(len) + PACKET_DATA_OFFSET)]
             return MooltipassMessage(cmd: cmd!, rawData: d)
         }
         return nil

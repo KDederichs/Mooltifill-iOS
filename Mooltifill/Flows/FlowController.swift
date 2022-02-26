@@ -27,6 +27,7 @@ class FlowController {
         let numberOfPackets = (response[1] % 16) + 1
         let id = Int(response[1]) >> 4
         print("Reading package \(id + 1) of \(numberOfPackets) (current ID is \(currentId))")
+        debugPrint(hexEncodedString(response))
 //        for p in response {
 //            print(p)
 //        }
@@ -58,5 +59,10 @@ class FlowController {
     private func resetState() {
         currentId = 0
         readResult = nil
+    }
+
+    private func hexEncodedString(_ data: Data?) -> String {
+        let format = "0x%02hhX "
+        return data?.map { String(format: format, $0) }.joined() ?? ""
     }
 }
