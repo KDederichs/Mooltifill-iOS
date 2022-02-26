@@ -23,11 +23,20 @@ class BleMessageFactory: MessageFactory {
     }
 
     public static func toUInt16(bytes: Data, index: Int) -> UInt16 {
-        UInt16(bytes[index] + (bytes[index + 1] << 8))
+        print("=/=/=/=/=/=/=/=")
+        print(UInt8(bytes[index]))
+        print(UInt16(UInt8(bytes[index + 1])))
+        print(UInt16(UInt8(bytes[index + 1])) << 8)
+        print("=/=/=/=/=/=/=/=")
+        return UInt16(UInt16(bytes[index]) | (UInt16(bytes[index + 1]) << 8))
+//        var y: UInt16 = 0
+//        y += UInt16(bytes[index + 1]) << 0o10
+//        y += UInt16(bytes[index]) << 0o00
+//        return y
     }
 
     public static func strLenUtf16(bytes: Data) -> Int? {
-        for index in stride(from: 0, to: bytes.count, by: 2) {
+        for index in stride(from: bytes.startIndex, to: bytes.endIndex, by: 2) {
             if(toUInt16(bytes: bytes, index: index) == 0) {
                 return index
             }
@@ -52,11 +61,13 @@ class BleMessageFactory: MessageFactory {
         }
     }
 
-    func deserialize(data: [Data]) -> MooltipassMessage? {
+    func deserialize(data: [Data], debug: Bool = true) -> MooltipassMessage? {
         let numberOfPackets = (data[0][1] % 16) + 1
         if (numberOfPackets != data.count) {
-            print("Wrong number of reported packages \(numberOfPackets) expected \(data.count)")
-            print(data)
+            if (debug) {
+                print("Wrong number of reported packages \(numberOfPackets) expected \(data.count)")
+                print(data)
+            }
             return nil
         }
         let len = BleMessageFactory.toUInt16(bytes: data[0], index: HID_HEADER_SIZE + PACKET_LEN_OFFSET)

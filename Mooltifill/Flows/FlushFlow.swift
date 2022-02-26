@@ -15,10 +15,12 @@ class FlushFlow: FlowController {
     override func received(response: Data) {
         if (data == nil) {
             data = response;
+            debugPrint("Flush: Read for nil Data")
             bluetoothService?.startRead()
         } else {
             if (!data!.elementsEqual(response)) {
                 data = response
+                debugPrint("Flush: Read for missmatch")
                 bluetoothService?.startRead()
             } else {
                 debugPrint("Flush complete")

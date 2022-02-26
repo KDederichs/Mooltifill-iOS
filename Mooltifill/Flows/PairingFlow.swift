@@ -45,8 +45,9 @@ class PairingFlow: FlowController {
 
         self.pairing = true
         self.pairingWorkitem = DispatchWorkItem { // 2.
-            print("pairing timed out")
-            self.pairingFailed()
+//            if()
+//            print("pairing timed out")
+//            self.pairingFailed()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + self.timeout, execute: self.pairingWorkitem!) // 2.
 

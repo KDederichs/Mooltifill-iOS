@@ -32,7 +32,7 @@ extension BluetoothService {
 
     public func tryParseLocked(data: Data) -> Bool? {
         let factory = BleMessageFactory()
-        let payload = factory.deserialize(data: [data])
+        let payload = factory.deserialize(data: [data], debug: false)
         if (payload != nil && payload!.cmd == MooltipassCommand.MOOLTIPASS_STATUS_BLE && payload!.data != nil && payload!.data!.count == 5) {
             return payload!.data![0] & 0x4 ==  0x0
         }

@@ -27,21 +27,24 @@ class FlowController {
         let numberOfPackets = (response[1] % 16) + 1
         let id = Int(response[1]) >> 4
         print("Reading package \(id + 1) of \(numberOfPackets) (current ID is \(currentId))")
-        for p in response {
-            print(p)
-        }
-        print("End content")
+//        for p in response {
+//            print(p)
+//        }
+//        print("End content")
 
         if (readResult == nil) {
             readResult = [Data](repeating: Data([0]), count: Int(numberOfPackets))
         }
         if (currentId != id) {
             debugPrint("Received ID \(id) doesn't match with current ID counter \(currentId)")
+            resetState()
             return
         }
         readResult![currentId] = response
         if (currentId == numberOfPackets - 1) {
             self.readComplete(data: readResult!)
+            resetState()
+            return
         } else {
             currentId += 1
             bluetoothService?.startRead()
@@ -51,4 +54,9 @@ class FlowController {
     func writeComplete() { }
     func readComplete(data: [Data]) {}
     func lockedStatus(locked: Bool?) {}
+
+    private func resetState() {
+        currentId = 0
+        readResult = nil
+    }
 }
