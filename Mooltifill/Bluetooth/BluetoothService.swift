@@ -20,8 +20,16 @@ class BluetoothService: NSObject { // 1.
     var bluetoothState: CBManagerState {
         return self.centralManager.state
     }
-    var flowController: FlowController? // 3.
-    var flushFlow: FlushFlow?
+
+    var currentId: Int = 0
+    var readResult: [Data]? = nil
+
+    var flushData: Data? = nil
+    var flushing = false
+
+    var deviceLocked : Bool? = nil
+
+    var flushCompleteHandler: () -> Void = { }
 
     override init() {
         super.init()
@@ -43,13 +51,11 @@ class BluetoothService: NSObject { // 1.
 
 
         self.centralManager.scanForPeripherals(withServices: [commServiceUUID]) // 4.
-        self.flowController?.scanStarted() // 5.
         print("scan started")
     }
 
     func stopScan() {
         self.centralManager.stopScan()
-        self.flowController?.scanStopped() // 5.
         print("scan stopped\n")
     }
 

@@ -25,15 +25,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate.bluetoothService.flowController = appDelegate.pairingFlow
-
     }
 
 
     @IBAction func onButtonPress(_ sender: Any) {
-        print("Button Pressed")
-        appDelegate.bluetoothService.flowController = appDelegate.credentialsFlow
-        appDelegate.bluetoothService.flowController?.bluetoothService?.getCredentials(service: "test.de", login: nil)
+        appDelegate.bluetoothService.getCredentials(service: "test.de", login: nil)
 
         print("Encoded command")
         //mpDevice.communicate(msg: msg)x

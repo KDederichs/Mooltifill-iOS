@@ -30,11 +30,9 @@ extension BluetoothService {
         peripheral?.readValue(for: readCharacteristic!)
     }
 
-    public func tryParseLocked(data: Data) -> Bool? {
-        let factory = BleMessageFactory()
-        let payload = factory.deserialize(data: [data], debug: false)
-        if (payload != nil && payload!.cmd == MooltipassCommand.MOOLTIPASS_STATUS_BLE && payload!.data != nil && payload!.data!.count == 5) {
-            return payload!.data![payload!.data!.startIndex] & 0x4 ==  0x0
+    public func tryParseLocked(message: MooltipassMessage) -> Bool? {
+        if (message.data != nil && message.data!.count == 5) {
+            return message.data![message.data!.startIndex] & 0x4 ==  0x0
         }
         return nil
     }
@@ -59,13 +57,10 @@ extension BluetoothService {
         }
     }
 
-    private func flushRead(completion: @escaping () -> ()) {
-        let rootFlow = self.flowController
-        self.flowController = self.flushFlow
-        self.flushFlow?.startFlush {
-            self.flowController = rootFlow
-            completion()
-        }
+    public func flushRead(completion: @escaping () -> ()) {
+        flushing = true
+        flushCompleteHandler = completion
+        startRead();
     }
 
     private func send(packets: [Data]) {

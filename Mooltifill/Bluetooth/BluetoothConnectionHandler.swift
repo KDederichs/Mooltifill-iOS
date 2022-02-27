@@ -12,15 +12,22 @@ extension BluetoothService: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state != .poweredOn {
             print("bluetooth is OFF (\(central.state.rawValue))")
-            self.stopScan()
-            self.disconnect()
-            self.flowController?.bluetoothOff() // 2.
+            disconnect()
         } else {
             print("bluetooth is ON")
-            if (flowController == nil) {
-                debugPrint("Flow Controller is missing")
+            let possibleConnection = checkForConnected();
+            if (possibleConnection != nil) {
+                debugPrint("Got Peripheral, connecting")
+                guard centralManager.state == .poweredOn else {
+                    print("bluetooth is off")
+                    return
+                }
+                if (nil == peripheral) {
+                    print("No Peripheral")
+                    return
+                }
+                centralManager.connect(peripheral!)
             }
-            self.flowController?.bluetoothOn() // 2.
         }
     }
 
@@ -29,7 +36,6 @@ extension BluetoothService: CBCentralManagerDelegate {
         print("discovered peripheral: \(peripheral.name!)")
 
         self.peripheral = peripheral
-        self.flowController?.discoveredPeripheral()
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -41,20 +47,17 @@ extension BluetoothService: CBCentralManagerDelegate {
 
         peripheral.delegate = self
         peripheral.discoverServices(nil)
-        self.flowController?.connected(peripheral: peripheral) // 2.
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("peripheral disconnected")
         self.readCharacteristic = nil
         self.writeCharacteristic = nil
-        self.flowController?.disconnected(failure: false) // 2.
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("failed to connect: \(error.debugDescription)")
         self.readCharacteristic = nil
         self.writeCharacteristic = nil
-        self.flowController?.disconnected(failure: true) // 2.
     }
 }
