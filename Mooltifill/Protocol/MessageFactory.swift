@@ -4,6 +4,6 @@
 
 import Foundation
 protocol MessageFactory {
-    func deserialize(data: [Data]) -> MooltipassMessage?
+    func deserialize(data: [Data], debug: Bool) -> MooltipassMessage?
     func serialize(msg: MooltipassMessage) -> [Data]
 }

@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		175990E0E94948B5D13A15A0 /* MooltipassPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599CB519905AEF89B7F3BC /* MooltipassPayload.swift */; };
-		175995D31DC979ED91ECEC69 /* MessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599A2CC9599D5DC1670D68 /* MessageFactory.swift */; };
-		175996499474C36DAC8759A4 /* MooltipassMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175999C5843D57748A76501E /* MooltipassMessage.swift */; };
-		17599CA0D7CFA46DF7DCCB6A /* BleMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599B4B5A04B30906238D14 /* BleMessageFactory.swift */; };
-		17599CBC4625652D65F07C69 /* MooltipassDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599D6FB68841314AD41392 /* MooltipassDevice.swift */; };
-		21663A688A169E19AC5F7DA0 /* Pods_Mooltifill_MooltifillUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6EFFFFD201869A684FB1A0 /* Pods_Mooltifill_MooltifillUITests.framework */; };
+		17599205C4E958DBA1B2E1A7 /* MooltipassMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1759976164CF1FDE3595F789 /* MooltipassMessage.swift */; };
+		1759925362CE7D6189493099 /* MooltipassPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599C993846AE57744EBECC /* MooltipassPayload.swift */; };
+		1759964620A3785E89D138ED /* BluetoothConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */; };
+		175997AE21D5DC00643560E6 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599BD74C6563A506876574 /* BluetoothService.swift */; };
+		17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */; };
+		17599C49631C781970742C9D /* MessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175992EB83736051FE6CB017 /* MessageFactory.swift */; };
+		17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */; };
 		39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3327C10332000A7CD5 /* AppDelegate.swift */; };
 		39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3527C10332000A7CD5 /* SceneDelegate.swift */; };
 		39023B3827C10332000A7CD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3727C10332000A7CD5 /* ViewController.swift */; };
@@ -23,9 +24,6 @@
 		39023B5527C10333000A7CD5 /* MooltifillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5427C10333000A7CD5 /* MooltifillUITests.swift */; };
 		39023B5727C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */; };
 		39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B6427C10430000A7CD5 /* MooltipassCommand.swift */; };
-		39023B6727C10818000A7CD5 /* MooltipassPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B6627C10818000A7CD5 /* MooltipassPeripheral.swift */; };
-		A4B54C6190B52F2F18548267 /* Pods_Mooltifill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D1076578763BB7E88353051 /* Pods_Mooltifill.framework */; };
-		A5FF092BFCC1E8E63672395A /* Pods_MooltifillTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592E27790B2109E208DF5BE2 /* Pods_MooltifillTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,13 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		175999C5843D57748A76501E /* MooltipassMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassMessage.swift; sourceTree = "<group>"; };
-		17599A2CC9599D5DC1670D68 /* MessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFactory.swift; sourceTree = "<group>"; };
-		17599B4B5A04B30906238D14 /* BleMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleMessageFactory.swift; sourceTree = "<group>"; };
-		17599CB519905AEF89B7F3BC /* MooltipassPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
-		17599D6FB68841314AD41392 /* MooltipassDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassDevice.swift; sourceTree = "<group>"; };
-		2D1076578763BB7E88353051 /* Pods_Mooltifill.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mooltifill.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F1F06648FD30B2B76DF06D2 /* Pods-Mooltifill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mooltifill.debug.xcconfig"; path = "Target Support Files/Pods-Mooltifill/Pods-Mooltifill.debug.xcconfig"; sourceTree = "<group>"; };
+		175992EB83736051FE6CB017 /* MessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFactory.swift; sourceTree = "<group>"; };
+		175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleMessageFactory.swift; sourceTree = "<group>"; };
+		175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionHandler.swift; sourceTree = "<group>"; };
+		175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothEventsHandler.swift; sourceTree = "<group>"; };
+		1759976164CF1FDE3595F789 /* MooltipassMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassMessage.swift; sourceTree = "<group>"; };
+		17599BD74C6563A506876574 /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		17599C993846AE57744EBECC /* MooltipassPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
 		39023B3027C10332000A7CD5 /* Mooltifill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltifill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B3327C10332000A7CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39023B3527C10332000A7CD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,14 +65,6 @@
 		39023B5427C10333000A7CD5 /* MooltifillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITests.swift; sourceTree = "<group>"; };
 		39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		39023B6427C10430000A7CD5 /* MooltipassCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassCommand.swift; sourceTree = "<group>"; };
-		39023B6627C10818000A7CD5 /* MooltipassPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassPeripheral.swift; sourceTree = "<group>"; };
-		592E27790B2109E208DF5BE2 /* Pods_MooltifillTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MooltifillTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		60B16E0C7C6C8AA6E2A66ED7 /* Pods-Mooltifill-MooltifillUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mooltifill-MooltifillUITests.release.xcconfig"; path = "Target Support Files/Pods-Mooltifill-MooltifillUITests/Pods-Mooltifill-MooltifillUITests.release.xcconfig"; sourceTree = "<group>"; };
-		60FA274D4840D39B8C8CAAE2 /* Pods-MooltifillTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MooltifillTests.release.xcconfig"; path = "Target Support Files/Pods-MooltifillTests/Pods-MooltifillTests.release.xcconfig"; sourceTree = "<group>"; };
-		8B05CFA114E10F54A61D2622 /* Pods-MooltifillTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MooltifillTests.debug.xcconfig"; path = "Target Support Files/Pods-MooltifillTests/Pods-MooltifillTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DD31132896EFC7DEFE53B4EA /* Pods-Mooltifill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mooltifill.release.xcconfig"; path = "Target Support Files/Pods-Mooltifill/Pods-Mooltifill.release.xcconfig"; sourceTree = "<group>"; };
-		DFB7CD6F100EA96A59EE79BA /* Pods-Mooltifill-MooltifillUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mooltifill-MooltifillUITests.debug.xcconfig"; path = "Target Support Files/Pods-Mooltifill-MooltifillUITests/Pods-Mooltifill-MooltifillUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FE6EFFFFD201869A684FB1A0 /* Pods_Mooltifill_MooltifillUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mooltifill_MooltifillUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4B54C6190B52F2F18548267 /* Pods_Mooltifill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5FF092BFCC1E8E63672395A /* Pods_MooltifillTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,27 +86,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21663A688A169E19AC5F7DA0 /* Pods_Mooltifill_MooltifillUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06D2E4C008EB7EF01C71B95B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2F1F06648FD30B2B76DF06D2 /* Pods-Mooltifill.debug.xcconfig */,
-				DD31132896EFC7DEFE53B4EA /* Pods-Mooltifill.release.xcconfig */,
-				DFB7CD6F100EA96A59EE79BA /* Pods-Mooltifill-MooltifillUITests.debug.xcconfig */,
-				60B16E0C7C6C8AA6E2A66ED7 /* Pods-Mooltifill-MooltifillUITests.release.xcconfig */,
-				8B05CFA114E10F54A61D2622 /* Pods-MooltifillTests.debug.xcconfig */,
-				60FA274D4840D39B8C8CAAE2 /* Pods-MooltifillTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		39023B2727C10332000A7CD5 = {
 			isa = PBXGroup;
 			children = (
@@ -126,8 +99,6 @@
 				39023B4927C10333000A7CD5 /* MooltifillTests */,
 				39023B5327C10333000A7CD5 /* MooltifillUITests */,
 				39023B3127C10332000A7CD5 /* Products */,
-				06D2E4C008EB7EF01C71B95B /* Pods */,
-				3A28FA973C50EFB9DA9DC48D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,6 +115,7 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
+				3955D13327C943A000B6FED6 /* Bluetooth */,
 				39023B6327C1040A000A7CD5 /* Protocol */,
 				39023B3327C10332000A7CD5 /* AppDelegate.swift */,
 				39023B3527C10332000A7CD5 /* SceneDelegate.swift */,
@@ -152,11 +124,6 @@
 				39023B3C27C10333000A7CD5 /* Assets.xcassets */,
 				39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */,
 				39023B4127C10333000A7CD5 /* Info.plist */,
-				17599D6FB68841314AD41392 /* MooltipassDevice.swift */,
-				17599CB519905AEF89B7F3BC /* MooltipassPayload.swift */,
-				17599B4B5A04B30906238D14 /* BleMessageFactory.swift */,
-				17599A2CC9599D5DC1670D68 /* MessageFactory.swift */,
-				175999C5843D57748A76501E /* MooltipassMessage.swift */,
 			);
 			path = Mooltifill;
 			sourceTree = "<group>";
@@ -182,19 +149,22 @@
 			isa = PBXGroup;
 			children = (
 				39023B6427C10430000A7CD5 /* MooltipassCommand.swift */,
-				39023B6627C10818000A7CD5 /* MooltipassPeripheral.swift */,
+				175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */,
+				175992EB83736051FE6CB017 /* MessageFactory.swift */,
+				17599C993846AE57744EBECC /* MooltipassPayload.swift */,
+				1759976164CF1FDE3595F789 /* MooltipassMessage.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		3A28FA973C50EFB9DA9DC48D /* Frameworks */ = {
+		3955D13327C943A000B6FED6 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				2D1076578763BB7E88353051 /* Pods_Mooltifill.framework */,
-				FE6EFFFFD201869A684FB1A0 /* Pods_Mooltifill_MooltifillUITests.framework */,
-				592E27790B2109E208DF5BE2 /* Pods_MooltifillTests.framework */,
+				17599BD74C6563A506876574 /* BluetoothService.swift */,
+				175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */,
+				175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */,
 			);
-			name = Frameworks;
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,11 +174,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39023B5A27C10333000A7CD5 /* Build configuration list for PBXNativeTarget "Mooltifill" */;
 			buildPhases = (
-				AD7A05276D3B02365E91D084 /* [CP] Check Pods Manifest.lock */,
 				39023B2C27C10332000A7CD5 /* Sources */,
 				39023B2D27C10332000A7CD5 /* Frameworks */,
 				39023B2E27C10332000A7CD5 /* Resources */,
-				DAD107156D4913F2FD8019D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,7 +191,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39023B5D27C10333000A7CD5 /* Build configuration list for PBXNativeTarget "MooltifillTests" */;
 			buildPhases = (
-				63404D2C1E394DA503140596 /* [CP] Check Pods Manifest.lock */,
 				39023B4227C10333000A7CD5 /* Sources */,
 				39023B4327C10333000A7CD5 /* Frameworks */,
 				39023B4427C10333000A7CD5 /* Resources */,
@@ -242,11 +209,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39023B6027C10333000A7CD5 /* Build configuration list for PBXNativeTarget "MooltifillUITests" */;
 			buildPhases = (
-				06D1336C4327F9FA0BCF1957 /* [CP] Check Pods Manifest.lock */,
 				39023B4C27C10333000A7CD5 /* Sources */,
 				39023B4D27C10333000A7CD5 /* Frameworks */,
 				39023B4E27C10333000A7CD5 /* Resources */,
-				FB0B8FF0BB02C42A9F838750 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -328,109 +293,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		06D1336C4327F9FA0BCF1957 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Mooltifill-MooltifillUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		63404D2C1E394DA503140596 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MooltifillTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AD7A05276D3B02365E91D084 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Mooltifill-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DAD107156D4913F2FD8019D1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mooltifill/Pods-Mooltifill-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mooltifill/Pods-Mooltifill-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mooltifill/Pods-Mooltifill-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB0B8FF0BB02C42A9F838750 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mooltifill-MooltifillUITests/Pods-Mooltifill-MooltifillUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Mooltifill-MooltifillUITests/Pods-Mooltifill-MooltifillUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mooltifill-MooltifillUITests/Pods-Mooltifill-MooltifillUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		39023B2C27C10332000A7CD5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -438,14 +300,15 @@
 			files = (
 				39023B3827C10332000A7CD5 /* ViewController.swift in Sources */,
 				39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */,
-				39023B6727C10818000A7CD5 /* MooltipassPeripheral.swift in Sources */,
 				39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */,
 				39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */,
-				17599CBC4625652D65F07C69 /* MooltipassDevice.swift in Sources */,
-				175990E0E94948B5D13A15A0 /* MooltipassPayload.swift in Sources */,
-				17599CA0D7CFA46DF7DCCB6A /* BleMessageFactory.swift in Sources */,
-				175995D31DC979ED91ECEC69 /* MessageFactory.swift in Sources */,
-				175996499474C36DAC8759A4 /* MooltipassMessage.swift in Sources */,
+				175997AE21D5DC00643560E6 /* BluetoothService.swift in Sources */,
+				17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */,
+				1759964620A3785E89D138ED /* BluetoothConnectionHandler.swift in Sources */,
+				17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */,
+				17599C49631C781970742C9D /* MessageFactory.swift in Sources */,
+				1759925362CE7D6189493099 /* MooltipassPayload.swift in Sources */,
+				17599205C4E958DBA1B2E1A7 /* MooltipassMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +482,6 @@
 		};
 		39023B5B27C10333000A7CD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F1F06648FD30B2B76DF06D2 /* Pods-Mooltifill.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -649,7 +511,6 @@
 		};
 		39023B5C27C10333000A7CD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD31132896EFC7DEFE53B4EA /* Pods-Mooltifill.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -679,7 +540,6 @@
 		};
 		39023B5E27C10333000A7CD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B05CFA114E10F54A61D2622 /* Pods-MooltifillTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -700,7 +560,6 @@
 		};
 		39023B5F27C10333000A7CD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60FA274D4840D39B8C8CAAE2 /* Pods-MooltifillTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -721,7 +580,6 @@
 		};
 		39023B6127C10333000A7CD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFB7CD6F100EA96A59EE79BA /* Pods-Mooltifill-MooltifillUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -740,7 +598,6 @@
 		};
 		39023B6227C10333000A7CD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60B16E0C7C6C8AA6E2A66ED7 /* Pods-Mooltifill-MooltifillUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

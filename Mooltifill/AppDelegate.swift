@@ -6,17 +6,14 @@
 //
 
 import UIKit
-import Bluejay
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let bluejay = Bluejay()
+    let bluetoothService = BluetoothService()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        bluejay.start()
         return true
     }
 
