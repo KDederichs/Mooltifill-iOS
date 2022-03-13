@@ -14,16 +14,13 @@
 		17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */; };
 		17599C49631C781970742C9D /* MessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175992EB83736051FE6CB017 /* MessageFactory.swift */; };
 		17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */; };
-		39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3327C10332000A7CD5 /* AppDelegate.swift */; };
-		39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3527C10332000A7CD5 /* SceneDelegate.swift */; };
-		39023B3827C10332000A7CD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3727C10332000A7CD5 /* ViewController.swift */; };
-		39023B3B27C10332000A7CD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3927C10332000A7CD5 /* Main.storyboard */; };
 		39023B3D27C10333000A7CD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3C27C10333000A7CD5 /* Assets.xcassets */; };
-		39023B4027C10333000A7CD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */; };
 		39023B4B27C10333000A7CD5 /* MooltifillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B4A27C10333000A7CD5 /* MooltifillTests.swift */; };
 		39023B5527C10333000A7CD5 /* MooltifillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5427C10333000A7CD5 /* MooltifillUITests.swift */; };
 		39023B5727C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */; };
 		39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B6427C10430000A7CD5 /* MooltipassCommand.swift */; };
+		394A57CC27DC9F0300DA78CB /* MooltifillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394A57CB27DC9F0300DA78CB /* MooltifillApp.swift */; };
+		394A57CE27DC9FB400DA78CB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394A57CD27DC9FB400DA78CB /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +49,7 @@
 		17599BD74C6563A506876574 /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		17599C993846AE57744EBECC /* MooltipassPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
 		39023B3027C10332000A7CD5 /* Mooltifill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltifill.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		39023B3327C10332000A7CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39023B3527C10332000A7CD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		39023B3727C10332000A7CD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		39023B3A27C10332000A7CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39023B3C27C10333000A7CD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		39023B3F27C10333000A7CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39023B4127C10333000A7CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39023B4627C10333000A7CD5 /* MooltifillTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooltifillTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B4A27C10333000A7CD5 /* MooltifillTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillTests.swift; sourceTree = "<group>"; };
@@ -65,6 +57,8 @@
 		39023B5427C10333000A7CD5 /* MooltifillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITests.swift; sourceTree = "<group>"; };
 		39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		39023B6427C10430000A7CD5 /* MooltipassCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassCommand.swift; sourceTree = "<group>"; };
+		394A57CB27DC9F0300DA78CB /* MooltifillApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillApp.swift; sourceTree = "<group>"; };
+		394A57CD27DC9FB400DA78CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,13 +111,10 @@
 			children = (
 				3955D13327C943A000B6FED6 /* Bluetooth */,
 				39023B6327C1040A000A7CD5 /* Protocol */,
-				39023B3327C10332000A7CD5 /* AppDelegate.swift */,
-				39023B3527C10332000A7CD5 /* SceneDelegate.swift */,
-				39023B3727C10332000A7CD5 /* ViewController.swift */,
-				39023B3927C10332000A7CD5 /* Main.storyboard */,
 				39023B3C27C10333000A7CD5 /* Assets.xcassets */,
-				39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */,
 				39023B4127C10333000A7CD5 /* Info.plist */,
+				394A57CB27DC9F0300DA78CB /* MooltifillApp.swift */,
+				394A57CD27DC9FB400DA78CB /* MainView.swift */,
 			);
 			path = Mooltifill;
 			sourceTree = "<group>";
@@ -271,9 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39023B4027C10333000A7CD5 /* LaunchScreen.storyboard in Resources */,
 				39023B3D27C10333000A7CD5 /* Assets.xcassets in Resources */,
-				39023B3B27C10332000A7CD5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,11 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39023B3827C10332000A7CD5 /* ViewController.swift in Sources */,
-				39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */,
+				394A57CC27DC9F0300DA78CB /* MooltifillApp.swift in Sources */,
 				39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */,
-				39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */,
 				175997AE21D5DC00643560E6 /* BluetoothService.swift in Sources */,
+				394A57CE27DC9FB400DA78CB /* MainView.swift in Sources */,
 				17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */,
 				1759964620A3785E89D138ED /* BluetoothConnectionHandler.swift in Sources */,
 				17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */,
@@ -343,25 +331,6 @@
 			targetProxy = 39023B5127C10333000A7CD5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		39023B3927C10332000A7CD5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39023B3A27C10332000A7CD5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39023B3F27C10333000A7CD5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		39023B5827C10333000A7CD5 /* Debug */ = {
@@ -491,9 +460,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mooltifill needs to access Bluetooth in order to connect to your Mooltipass";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -520,9 +488,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mooltifill needs to access Bluetooth in order to connect to your Mooltipass";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
