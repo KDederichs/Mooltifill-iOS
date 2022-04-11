@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import MooltipassBLE
 
 struct RedView: View {
+    let manager: BleManager = BleManager.shared
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 Button {
-                    
+                    manager.service.getCredentials(service: "github.com", login: nil, callback: {
+                        print($0)
+                        print($1)
+                    })
                 } label: {
                     Image(systemName: "plus")
                 }

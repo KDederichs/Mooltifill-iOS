@@ -7,20 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17599205C4E958DBA1B2E1A7 /* MooltipassMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1759976164CF1FDE3595F789 /* MooltipassMessage.swift */; };
-		1759925362CE7D6189493099 /* MooltipassPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599C993846AE57744EBECC /* MooltipassPayload.swift */; };
-		1759964620A3785E89D138ED /* BluetoothConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */; };
-		175997AE21D5DC00643560E6 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17599BD74C6563A506876574 /* BluetoothService.swift */; };
-		17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */; };
-		17599C49631C781970742C9D /* MessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175992EB83736051FE6CB017 /* MessageFactory.swift */; };
-		17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */; };
 		39023B3D27C10333000A7CD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3C27C10333000A7CD5 /* Assets.xcassets */; };
 		39023B4B27C10333000A7CD5 /* MooltifillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B4A27C10333000A7CD5 /* MooltifillTests.swift */; };
 		39023B5527C10333000A7CD5 /* MooltifillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5427C10333000A7CD5 /* MooltifillUITests.swift */; };
 		39023B5727C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */; };
-		39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B6427C10430000A7CD5 /* MooltipassCommand.swift */; };
+		3902D76D2802E1F90079254F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B0413A28018AA30013A195 /* AuthenticationServices.framework */; };
+		3902D7702802E1F90079254F /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3902D76F2802E1F90079254F /* CredentialProviderViewController.swift */; };
+		3902D7732802E1F90079254F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3902D7712802E1F90079254F /* MainInterface.storyboard */; };
+		3902D7782802E1F90079254F /* MooltifillAuthProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3902D76C2802E1F90079254F /* MooltifillAuthProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3902D7C7280356190079254F /* MooltipassBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3902D7C6280355B80079254F /* MooltipassBLE.framework */; };
+		3902D7C8280356190079254F /* MooltipassBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3902D7C6280355B80079254F /* MooltipassBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3902D7CA280356240079254F /* MooltipassBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3902D7C6280355B80079254F /* MooltipassBLE.framework */; };
+		3902D7CB280356240079254F /* MooltipassBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3902D7C6280355B80079254F /* MooltipassBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		394A57CC27DC9F0300DA78CB /* MooltifillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394A57CB27DC9F0300DA78CB /* MooltifillApp.swift */; };
 		394A57CE27DC9FB400DA78CB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394A57CD27DC9FB400DA78CB /* MainView.swift */; };
+		39807A2128043A950040EDB4 /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39807A2028043A950040EDB4 /* BleManager.swift */; };
+		39EBE6FA28042C85007E654F /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBE6F928042C85007E654F /* BleManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,16 +40,59 @@
 			remoteGlobalIDString = 39023B2F27C10332000A7CD5;
 			remoteInfo = Mooltifill;
 		};
+		3902D7762802E1F90079254F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39023B2827C10332000A7CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3902D76B2802E1F90079254F;
+			remoteInfo = MooltifillAuthProvider;
+		};
+		3902D7C5280355B80079254F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3902D7C1280355B80079254F /* MooltipassBLE.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3902D78728034F240079254F;
+			remoteInfo = MooltipassBLE;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3902D77C2802E1F90079254F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3902D7782802E1F90079254F /* MooltifillAuthProvider.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3902D7C9280356190079254F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3902D7C8280356190079254F /* MooltipassBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3902D7CC280356240079254F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3902D7CB280356240079254F /* MooltipassBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		175992EB83736051FE6CB017 /* MessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFactory.swift; sourceTree = "<group>"; };
-		175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleMessageFactory.swift; sourceTree = "<group>"; };
-		175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionHandler.swift; sourceTree = "<group>"; };
-		175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothEventsHandler.swift; sourceTree = "<group>"; };
-		1759976164CF1FDE3595F789 /* MooltipassMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassMessage.swift; sourceTree = "<group>"; };
-		17599BD74C6563A506876574 /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
-		17599C993846AE57744EBECC /* MooltipassPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
 		39023B3027C10332000A7CD5 /* Mooltifill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltifill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B3C27C10333000A7CD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39023B4127C10333000A7CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,9 +101,18 @@
 		39023B5027C10333000A7CD5 /* MooltifillUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooltifillUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B5427C10333000A7CD5 /* MooltifillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITests.swift; sourceTree = "<group>"; };
 		39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		39023B6427C10430000A7CD5 /* MooltipassCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassCommand.swift; sourceTree = "<group>"; };
+		3902D7672802E14A0079254F /* Mooltifill.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mooltifill.entitlements; sourceTree = "<group>"; };
+		3902D76C2802E1F90079254F /* MooltifillAuthProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MooltifillAuthProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3902D76F2802E1F90079254F /* CredentialProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProviderViewController.swift; sourceTree = "<group>"; };
+		3902D7722802E1F90079254F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3902D7742802E1F90079254F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3902D7752802E1F90079254F /* MooltifillAuthProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillAuthProvider.entitlements; sourceTree = "<group>"; };
+		3902D7C1280355B80079254F /* MooltipassBLE.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MooltipassBLE.xcodeproj; path = ../../MooltipassBLE/MooltipassBLE.xcodeproj; sourceTree = "<group>"; };
 		394A57CB27DC9F0300DA78CB /* MooltifillApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillApp.swift; sourceTree = "<group>"; };
 		394A57CD27DC9FB400DA78CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		39807A2028043A950040EDB4 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
+		39B0413A28018AA30013A195 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		39EBE6F928042C85007E654F /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3902D7C7280356190079254F /* MooltipassBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +138,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3902D7692802E1F90079254F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3902D76D2802E1F90079254F /* AuthenticationServices.framework in Frameworks */,
+				3902D7CA280356240079254F /* MooltipassBLE.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,7 +156,9 @@
 				39023B3227C10332000A7CD5 /* Mooltifill */,
 				39023B4927C10333000A7CD5 /* MooltifillTests */,
 				39023B5327C10333000A7CD5 /* MooltifillUITests */,
+				3902D76E2802E1F90079254F /* MooltifillAuthProvider */,
 				39023B3127C10332000A7CD5 /* Products */,
+				39B0413928018AA20013A195 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +168,7 @@
 				39023B3027C10332000A7CD5 /* Mooltifill.app */,
 				39023B4627C10333000A7CD5 /* MooltifillTests.xctest */,
 				39023B5027C10333000A7CD5 /* MooltifillUITests.xctest */,
+				3902D76C2802E1F90079254F /* MooltifillAuthProvider.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,12 +176,13 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
-				3955D13327C943A000B6FED6 /* Bluetooth */,
-				39023B6327C1040A000A7CD5 /* Protocol */,
+				3902D7C1280355B80079254F /* MooltipassBLE.xcodeproj */,
+				3902D7672802E14A0079254F /* Mooltifill.entitlements */,
 				39023B3C27C10333000A7CD5 /* Assets.xcassets */,
 				39023B4127C10333000A7CD5 /* Info.plist */,
 				394A57CB27DC9F0300DA78CB /* MooltifillApp.swift */,
 				394A57CD27DC9FB400DA78CB /* MainView.swift */,
+				39807A2028043A950040EDB4 /* BleManager.swift */,
 			);
 			path = Mooltifill;
 			sourceTree = "<group>";
@@ -136,26 +204,32 @@
 			path = MooltifillUITests;
 			sourceTree = "<group>";
 		};
-		39023B6327C1040A000A7CD5 /* Protocol */ = {
+		3902D76E2802E1F90079254F /* MooltifillAuthProvider */ = {
 			isa = PBXGroup;
 			children = (
-				39023B6427C10430000A7CD5 /* MooltipassCommand.swift */,
-				175993CF3FB20E0D70475C64 /* BleMessageFactory.swift */,
-				175992EB83736051FE6CB017 /* MessageFactory.swift */,
-				17599C993846AE57744EBECC /* MooltipassPayload.swift */,
-				1759976164CF1FDE3595F789 /* MooltipassMessage.swift */,
+				3902D76F2802E1F90079254F /* CredentialProviderViewController.swift */,
+				3902D7712802E1F90079254F /* MainInterface.storyboard */,
+				3902D7742802E1F90079254F /* Info.plist */,
+				3902D7752802E1F90079254F /* MooltifillAuthProvider.entitlements */,
+				39EBE6F928042C85007E654F /* BleManager.swift */,
 			);
-			path = Protocol;
+			path = MooltifillAuthProvider;
 			sourceTree = "<group>";
 		};
-		3955D13327C943A000B6FED6 /* Bluetooth */ = {
+		3902D7C2280355B80079254F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				17599BD74C6563A506876574 /* BluetoothService.swift */,
-				175996D1B2F0BB4C39370D49 /* BluetoothEventsHandler.swift */,
-				175996A7037C978F79FC8B58 /* BluetoothConnectionHandler.swift */,
+				3902D7C6280355B80079254F /* MooltipassBLE.framework */,
 			);
-			path = Bluetooth;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		39B0413928018AA20013A195 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39B0413A28018AA30013A195 /* AuthenticationServices.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,10 +242,13 @@
 				39023B2C27C10332000A7CD5 /* Sources */,
 				39023B2D27C10332000A7CD5 /* Frameworks */,
 				39023B2E27C10332000A7CD5 /* Resources */,
+				3902D77C2802E1F90079254F /* Embed App Extensions */,
+				3902D7C9280356190079254F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3902D7772802E1F90079254F /* PBXTargetDependency */,
 			);
 			name = Mooltifill;
 			productName = Mooltifill;
@@ -214,6 +291,24 @@
 			productReference = 39023B5027C10333000A7CD5 /* MooltifillUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		3902D76B2802E1F90079254F /* MooltifillAuthProvider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3902D7792802E1F90079254F /* Build configuration list for PBXNativeTarget "MooltifillAuthProvider" */;
+			buildPhases = (
+				3902D7682802E1F90079254F /* Sources */,
+				3902D7692802E1F90079254F /* Frameworks */,
+				3902D76A2802E1F90079254F /* Resources */,
+				3902D7CC280356240079254F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MooltifillAuthProvider;
+			productName = MooltifillAuthProvider;
+			productReference = 3902D76C2802E1F90079254F /* MooltifillAuthProvider.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -221,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					39023B2F27C10332000A7CD5 = {
@@ -234,6 +329,9 @@
 					39023B4F27C10333000A7CD5 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 39023B2F27C10332000A7CD5;
+					};
+					3902D76B2802E1F90079254F = {
+						CreatedOnToolsVersion = 13.3;
 					};
 				};
 			};
@@ -248,14 +346,31 @@
 			mainGroup = 39023B2727C10332000A7CD5;
 			productRefGroup = 39023B3127C10332000A7CD5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3902D7C2280355B80079254F /* Products */;
+					ProjectRef = 3902D7C1280355B80079254F /* MooltipassBLE.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				39023B2F27C10332000A7CD5 /* Mooltifill */,
 				39023B4527C10333000A7CD5 /* MooltifillTests */,
 				39023B4F27C10333000A7CD5 /* MooltifillUITests */,
+				3902D76B2802E1F90079254F /* MooltifillAuthProvider */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3902D7C6280355B80079254F /* MooltipassBLE.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MooltipassBLE.framework;
+			remoteRef = 3902D7C5280355B80079254F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		39023B2E27C10332000A7CD5 /* Resources */ = {
@@ -280,6 +395,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3902D76A2802E1F90079254F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3902D7732802E1F90079254F /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -288,15 +411,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				394A57CC27DC9F0300DA78CB /* MooltifillApp.swift in Sources */,
-				39023B6527C10430000A7CD5 /* MooltipassCommand.swift in Sources */,
-				175997AE21D5DC00643560E6 /* BluetoothService.swift in Sources */,
 				394A57CE27DC9FB400DA78CB /* MainView.swift in Sources */,
-				17599D3BD05BF3F5393430BB /* BluetoothEventsHandler.swift in Sources */,
-				1759964620A3785E89D138ED /* BluetoothConnectionHandler.swift in Sources */,
-				17599A6CF83D8B2E8663F70A /* BleMessageFactory.swift in Sources */,
-				17599C49631C781970742C9D /* MessageFactory.swift in Sources */,
-				1759925362CE7D6189493099 /* MooltipassPayload.swift in Sources */,
-				17599205C4E958DBA1B2E1A7 /* MooltipassMessage.swift in Sources */,
+				39807A2128043A950040EDB4 /* BleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +433,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3902D7682802E1F90079254F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3902D7702802E1F90079254F /* CredentialProviderViewController.swift in Sources */,
+				39EBE6FA28042C85007E654F /* BleManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -330,7 +455,23 @@
 			target = 39023B2F27C10332000A7CD5 /* Mooltifill */;
 			targetProxy = 39023B5127C10333000A7CD5 /* PBXContainerItemProxy */;
 		};
+		3902D7772802E1F90079254F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3902D76B2802E1F90079254F /* MooltifillAuthProvider */;
+			targetProxy = 3902D7762802E1F90079254F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3902D7712802E1F90079254F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3902D7722802E1F90079254F /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		39023B5827C10333000A7CD5 /* Debug */ = {
@@ -384,7 +525,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -439,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -452,8 +593,10 @@
 		39023B5B27C10333000A7CD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mooltifill/Mooltifill.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
@@ -464,6 +607,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,8 +624,10 @@
 		39023B5C27C10333000A7CD5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mooltifill/Mooltifill.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
@@ -492,6 +638,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,6 +728,60 @@
 			};
 			name = Release;
 		};
+		3902D77A2802E1F90079254F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MooltifillAuthProvider/MooltifillAuthProvider.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9MTYZH884P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MooltifillAuthProvider;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themooltipass.Mooltifill.MooltifillAuthProvider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3902D77B2802E1F90079254F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MooltifillAuthProvider/MooltifillAuthProvider.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9MTYZH884P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MooltifillAuthProvider;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themooltipass.Mooltifill.MooltifillAuthProvider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -616,6 +817,15 @@
 			buildConfigurations = (
 				39023B6127C10333000A7CD5 /* Debug */,
 				39023B6227C10333000A7CD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3902D7792802E1F90079254F /* Build configuration list for PBXNativeTarget "MooltifillAuthProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3902D77A2802E1F90079254F /* Debug */,
+				3902D77B2802E1F90079254F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
