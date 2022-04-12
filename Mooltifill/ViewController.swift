@@ -15,11 +15,11 @@ class ViewController: UIViewController, MooltipassBleDelegate {
     }
     
     func onError(errorMessage: String) {
-        
+        print("Mooltipass Error: \(errorMessage)")
     }
     
     func lockedStatus(locked: Bool) {
-        
+        print("Locked \(locked)")
     }
     
     func credentialsReceived(username: String, password: String) {

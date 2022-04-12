@@ -1,5 +1,5 @@
 PODS:
-  - MooltipassBle (0.1.0)
+  - MooltipassBle (0.1.1)
 
 DEPENDENCIES:
   - "MooltipassBle (from `git@github.com:KDederichs/MooltipassBle.git`)"
@@ -10,11 +10,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MooltipassBle:
-    :commit: 3ac7874bba050c6d94ade19a911b3ca9279895aa
+    :commit: adbf8a862e27993ad985d5b3f39064f6e15d8d34
     :git: "git@github.com:KDederichs/MooltipassBle.git"
 
 SPEC CHECKSUMS:
-  MooltipassBle: 1839b44ac1cc7c42e0f66002b414d8da6a67ee45
+  MooltipassBle: 6943817b19dad510b40f4e36f40d8e054593045c
 
 PODFILE CHECKSUM: 1ba465c4cac3cf67f1b934020fe86bcd84706f58
 
