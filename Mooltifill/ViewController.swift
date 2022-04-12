@@ -6,12 +6,36 @@
 //
 
 import UIKit
+import MooltipassBle
+import CoreBluetooth
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MooltipassBleDelegate {
+    func bluetoothChange(state: CBManagerState) {
+        
+    }
+    
+    func onError(errorMessage: String) {
+        
+    }
+    
+    func lockedStatus(locked: Bool) {
+        
+    }
+    
+    func credentialsReceived(username: String, password: String) {
+        print(username)
+        print(password)
+    }
+    
+    func mooltipassConnected() {
+        
+    }
+    
 
     //Test
     //private var mpDevice : MooltipassDevice
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let bleManager = BleManager.shared
 
     
     
@@ -25,11 +49,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bleManager.bleManager.delegate = self
     }
 
 
     @IBAction func onButtonPress(_ sender: Any) {
-        appDelegate.bluetoothService.getCredentials(service: "test.de", login: nil)
+        bleManager.bleManager.getCredentials(service: "test.de", login: nil)
 
         print("Encoded command")
         //mpDevice.communicate(msg: msg)x

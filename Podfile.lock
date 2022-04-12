@@ -1,0 +1,21 @@
+PODS:
+  - MooltipassBle (0.1.0)
+
+DEPENDENCIES:
+  - "MooltipassBle (from `git@github.com:KDederichs/MooltipassBle.git`)"
+
+EXTERNAL SOURCES:
+  MooltipassBle:
+    :git: "git@github.com:KDederichs/MooltipassBle.git"
+
+CHECKOUT OPTIONS:
+  MooltipassBle:
+    :commit: 3ac7874bba050c6d94ade19a911b3ca9279895aa
+    :git: "git@github.com:KDederichs/MooltipassBle.git"
+
+SPEC CHECKSUMS:
+  MooltipassBle: 1839b44ac1cc7c42e0f66002b414d8da6a67ee45
+
+PODFILE CHECKSUM: 1ba465c4cac3cf67f1b934020fe86bcd84706f58
+
+COCOAPODS: 1.11.3
