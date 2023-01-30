@@ -12,14 +12,26 @@ import MooltipassBle
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
     
     let manager: BleManager = BleManager.shared
+    var delegateSet: Bool = false
+    var url: URL? = nil
+    @IBOutlet weak var _statusLabel: UILabel!
     
     func bluetoothChange(state: CBManagerState) {
+        debugPrint(state.rawValue)
     }
     
     func onError(errorMessage: String) {
+        print(errorMessage)
+        _statusLabel.text = "Error: " + errorMessage
     }
     
     func lockedStatus(locked: Bool) {
+        if (locked) {
+            _statusLabel.text = "Device is locked, please unlock."
+            debugPrint("Device Locked")
+        } else {
+            debugPrint("Device Unlocked")
+        }
     }
     
     func credentialsReceived(username: String, password: String) {
@@ -28,11 +40,14 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func mooltipassConnected() {
+        debugPrint("Device Locked")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.bleManager.delegate = self
+        self.delegateSet = true
+        debugPrint("View Loaded")
     }
 
     /*
@@ -41,9 +56,15 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
      prioritize the most relevant credentials in the list.
     */
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
+        debugPrint("Receiving password")
         let service = serviceIdentifiers[0].identifier;
-        let url = URL(string: service)
+        self.url = URL(string: service)
         debugPrint(serviceIdentifiers)
+        debugPrint("Waiting for delegate")
+        while (!delegateSet) {
+            print("Waiting for delegate")
+            usleep(useconds_t(100))
+        }
         
         manager.bleManager.getCredentials(service: url!.host!, login: nil)
 
@@ -80,6 +101,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     */
 
     @IBAction func cancel(_ sender: AnyObject?) {
+        debugPrint("Canceling")
         self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userCanceled.rawValue))
     }
 
