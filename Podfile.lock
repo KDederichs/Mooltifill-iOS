@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MooltipassBle:
-    :commit: adbf8a862e27993ad985d5b3f39064f6e15d8d34
+    :commit: 35f528b6c8117ce0a96b2ca5e83c26b4c6063d9e
     :git: "git@github.com:KDederichs/MooltipassBle.git"
 
 SPEC CHECKSUMS:

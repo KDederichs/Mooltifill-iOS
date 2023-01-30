@@ -201,9 +201,17 @@
 			path = MooltifillUITests;
 			sourceTree = "<group>";
 		};
+		3903493E280C202100B3C801 /* CreateCredential */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CreateCredential;
+			sourceTree = "<group>";
+		};
 		3942D405280583C400EF72F3 /* MooltifillAuthProvider */ = {
 			isa = PBXGroup;
 			children = (
+				3903493E280C202100B3C801 /* CreateCredential */,
 				3942D406280583C400EF72F3 /* CredentialProviderViewController.swift */,
 				3942D408280583C400EF72F3 /* MainInterface.storyboard */,
 				3942D40B280583C400EF72F3 /* Info.plist */,
