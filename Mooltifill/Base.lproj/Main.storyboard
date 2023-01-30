@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,10 +38,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="Get Password" image="binoculars.fill" catalog="system" id="zVT-1G-tNj"/>
-                                    <tabBarItem title="Add Password" image="plus" catalog="system" selectedImage="square.and.arrow.up.circle.fill" id="fIS-ot-ru8"/>
-                                    <tabBarItem title="Settings" image="gear" catalog="system" id="hnE-98-P4V">
-                                        <imageReference key="selectedImage" image="gear" catalog="system" symbolScale="small"/>
-                                    </tabBarItem>
+                                    <tabBarItem title="Add Password" image="plus" catalog="system" selectedImage="plus" id="fIS-ot-ru8"/>
+                                    <tabBarItem title="Settings" image="gear" catalog="system" selectedImage="gear" id="hnE-98-P4V"/>
                                 </items>
                             </tabBar>
                         </subviews>
@@ -63,7 +60,6 @@
         <image name="binoculars.fill" catalog="system" width="128" height="90"/>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
