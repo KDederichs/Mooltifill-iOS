@@ -9,15 +9,13 @@
 /* Begin PBXBuildFile section */
 		049C06D07211BF0CA2F3F1C5 /* Pods_Mooltifill_MooltifillAuthProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D8BB32C78566C46E07C096 /* Pods_Mooltifill_MooltifillAuthProvider.framework */; };
 		346F8982CA3B9478523BC190 /* Pods_Mooltifill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3691B108BE2A60385156BC0B /* Pods_Mooltifill.framework */; };
-		39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3327C10332000A7CD5 /* AppDelegate.swift */; };
-		39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3527C10332000A7CD5 /* SceneDelegate.swift */; };
-		39023B3827C10332000A7CD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3727C10332000A7CD5 /* ViewController.swift */; };
-		39023B3B27C10332000A7CD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3927C10332000A7CD5 /* Main.storyboard */; };
+		39023B3427C10332000A7CD5 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B3327C10332000A7CD5 /* App.swift */; };
 		39023B3D27C10333000A7CD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3C27C10333000A7CD5 /* Assets.xcassets */; };
-		39023B4027C10333000A7CD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */; };
 		39023B4B27C10333000A7CD5 /* MooltifillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B4A27C10333000A7CD5 /* MooltifillTests.swift */; };
 		39023B5527C10333000A7CD5 /* MooltifillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5427C10333000A7CD5 /* MooltifillUITests.swift */; };
 		39023B5727C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */; };
+		392426AE29895CE60082AA7F /* GetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426AD29895CE60082AA7F /* GetPasswordView.swift */; };
+		392426B129895F8A0082AA7F /* GetCredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426B029895F8A0082AA7F /* GetCredentialsModel.swift */; };
 		3942D3FE2805837B00EF72F3 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */; };
 		3942D404280583C400EF72F3 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */; };
 		3942D407280583C400EF72F3 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3942D406280583C400EF72F3 /* CredentialProviderViewController.swift */; };
@@ -74,18 +72,16 @@
 		326F8050B15ABCE273BA5403 /* Pods-Mooltifill-MooltifillUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mooltifill-MooltifillUITests.release.xcconfig"; path = "Target Support Files/Pods-Mooltifill-MooltifillUITests/Pods-Mooltifill-MooltifillUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3691B108BE2A60385156BC0B /* Pods_Mooltifill.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mooltifill.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B3027C10332000A7CD5 /* Mooltifill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltifill.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		39023B3327C10332000A7CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39023B3527C10332000A7CD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		39023B3727C10332000A7CD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		39023B3A27C10332000A7CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		39023B3327C10332000A7CD5 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		39023B3C27C10333000A7CD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		39023B3F27C10333000A7CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39023B4127C10333000A7CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39023B4627C10333000A7CD5 /* MooltifillTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooltifillTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B4A27C10333000A7CD5 /* MooltifillTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillTests.swift; sourceTree = "<group>"; };
 		39023B5027C10333000A7CD5 /* MooltifillUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooltifillUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39023B5427C10333000A7CD5 /* MooltifillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITests.swift; sourceTree = "<group>"; };
 		39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		392426AD29895CE60082AA7F /* GetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPasswordView.swift; sourceTree = "<group>"; };
+		392426B029895F8A0082AA7F /* GetCredentialsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCredentialsModel.swift; sourceTree = "<group>"; };
 		3942D3FC2805837B00EF72F3 /* MooltifillDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillDebug.entitlements; sourceTree = "<group>"; };
 		3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3942D403280583C400EF72F3 /* MooltifillAuthProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MooltifillAuthProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,13 +167,11 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
+				392426AF29895F6D0082AA7F /* Models */,
+				3924268C29894D8A0082AA7F /* Views */,
 				3942D3FC2805837B00EF72F3 /* MooltifillDebug.entitlements */,
-				39023B3327C10332000A7CD5 /* AppDelegate.swift */,
-				39023B3527C10332000A7CD5 /* SceneDelegate.swift */,
-				39023B3727C10332000A7CD5 /* ViewController.swift */,
-				39023B3927C10332000A7CD5 /* Main.storyboard */,
+				39023B3327C10332000A7CD5 /* App.swift */,
 				39023B3C27C10333000A7CD5 /* Assets.xcassets */,
-				39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */,
 				39023B4127C10333000A7CD5 /* Info.plist */,
 				39A75EC528058D6900E65042 /* BleManager.swift */,
 			);
@@ -206,6 +200,22 @@
 			children = (
 			);
 			path = CreateCredential;
+			sourceTree = "<group>";
+		};
+		3924268C29894D8A0082AA7F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				392426AD29895CE60082AA7F /* GetPasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		392426AF29895F6D0082AA7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				392426B029895F8A0082AA7F /* GetCredentialsModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3942D405280583C400EF72F3 /* MooltifillAuthProvider */ = {
@@ -383,9 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39023B4027C10333000A7CD5 /* LaunchScreen.storyboard in Resources */,
 				39023B3D27C10333000A7CD5 /* Assets.xcassets in Resources */,
-				39023B3B27C10332000A7CD5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,10 +551,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39023B3827C10332000A7CD5 /* ViewController.swift in Sources */,
 				39A75EC628058D6900E65042 /* BleManager.swift in Sources */,
-				39023B3427C10332000A7CD5 /* AppDelegate.swift in Sources */,
-				39023B3627C10332000A7CD5 /* SceneDelegate.swift in Sources */,
+				39023B3427C10332000A7CD5 /* App.swift in Sources */,
+				392426B129895F8A0082AA7F /* GetCredentialsModel.swift in Sources */,
+				392426AE29895CE60082AA7F /* GetPasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,22 +605,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		39023B3927C10332000A7CD5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39023B3A27C10332000A7CD5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		39023B3E27C10333000A7CD5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39023B3F27C10333000A7CD5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		3942D408280583C400EF72F3 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -675,7 +667,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -730,7 +722,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -753,13 +745,12 @@
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mooltifill needs to access Bluetooth in order to connect to your Mooltipass";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,6 +758,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.themooltipass.Mooltifill;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -785,13 +779,12 @@
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mooltifill needs to access Bluetooth in order to connect to your Mooltipass";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -799,6 +792,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.themooltipass.Mooltifill;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -897,7 +893,7 @@
 				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MooltifillAuthProvider;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -925,7 +921,7 @@
 				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MooltifillAuthProvider;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

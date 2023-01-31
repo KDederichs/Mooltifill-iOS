@@ -41,8 +41,12 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         }
     }
     
-    func credentialsReceived(username: String, password: String) {
-        let passwordCredential = ASPasswordCredential(user: username, password: password)
+    func credentialsReceived(credential: MooltipassCredential?) {
+        if (credential == nil) {
+            return
+        }
+        
+        let passwordCredential = ASPasswordCredential(user: credential!.username, password: credential!.password)
         self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
     }
     
