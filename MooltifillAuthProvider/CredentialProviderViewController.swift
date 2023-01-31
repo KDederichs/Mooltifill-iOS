@@ -14,6 +14,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     let manager: BleManager = BleManager.shared
     var delegateSet: Bool = false
     var url: URL? = nil
+    var isLocked : Bool = false
     @IBOutlet weak var _statusLabel: UILabel!
     
     func bluetoothChange(state: CBManagerState) {
@@ -28,9 +29,15 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     func lockedStatus(locked: Bool) {
         if (locked) {
             _statusLabel.text = "Device is locked, please unlock."
+            isLocked = true
             debugPrint("Device Locked")
         } else {
             debugPrint("Device Unlocked")
+            _statusLabel.text = "Looking up password"
+            if (isLocked && (url != nil)) {
+                manager.bleManager.getCredentials(service: url!.host!, login: nil)
+            }
+            isLocked = false
         }
     }
     
@@ -58,7 +65,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
         debugPrint("Receiving password")
         let service = serviceIdentifiers[0].identifier;
-        self.url = URL(string: service)
+        url = URL(string: service)
         debugPrint(serviceIdentifiers)
         debugPrint("Waiting for delegate")
         while (!delegateSet) {
