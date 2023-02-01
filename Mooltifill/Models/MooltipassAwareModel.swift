@@ -13,9 +13,9 @@ class MooltipassAwareModel: ObservableObject
     let bleManager = BleManager.shared
     
     
-    @Published var isLocked = true
-    @Published var isConnected = false
-    @Published var bluetoothEnabled = false
+    @Published var isLocked = false
+    @Published var isConnected = true
+    @Published var bluetoothEnabled = true
     
     private var cancellableSet: Set<AnyCancellable> = []
     

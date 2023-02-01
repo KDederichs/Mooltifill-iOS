@@ -15,29 +15,27 @@ struct GetPasswordView: View {
     
     var body: some View {
         MooltipassAwareView {
-            Form {
-                Section {
-                    TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: $model.service)
-                        .padding()
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                }
-                Section {
-                    Button("Get Credentials") {
-                        bleManager.bleManager.getCredentials(service: $model.service.wrappedValue, login: nil)
+            VStack {
+                Form {
+                    Section("Website") {
+                        TextField("URL", text: $model.service)
+                            .padding()
+                            .autocapitalization(.none)
+                            .autocorrectionDisabled()
+                    }
+                    Section {
+                        Button("Get Credentials") {
+                            bleManager.bleManager.getCredentials(service: $model.service.wrappedValue, login: nil)
+                        }
+                    }
+                    if (model.hasCredential) {
+                        Section("Credentials") {
+                            CopieableValueLable(label: "Username", value: model.username)
+                            CopieableValueLable(label: "Password", value: model.password)
+                        }
                     }
                 }
-            }
-            
-            VStack {
-                HStack {
-                    Text("Username:").bold()
-                    Text(model.username)
-                }
-                HStack {
-                    Text("Password:").bold()
-                    Text(model.password)
-                }
+               
             }
         }
     }

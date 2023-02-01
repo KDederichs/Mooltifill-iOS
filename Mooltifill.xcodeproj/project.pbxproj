@@ -25,6 +25,7 @@
 		392426C4298A9B1C0082AA7F /* CheckAgainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426C3298A9B1C0082AA7F /* CheckAgainButton.swift */; };
 		392426C6298A9D130082AA7F /* DeviceLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426C5298A9D130082AA7F /* DeviceLockedView.swift */; };
 		392426C8298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426C7298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift */; };
+		392426CA298AA7450082AA7F /* CopieableValueLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426C9298AA7450082AA7F /* CopieableValueLable.swift */; };
 		3942D3FE2805837B00EF72F3 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */; };
 		3942D404280583C400EF72F3 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */; };
 		3942D407280583C400EF72F3 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3942D406280583C400EF72F3 /* CredentialProviderViewController.swift */; };
@@ -100,6 +101,7 @@
 		392426C3298A9B1C0082AA7F /* CheckAgainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAgainButton.swift; sourceTree = "<group>"; };
 		392426C5298A9D130082AA7F /* DeviceLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockedView.swift; sourceTree = "<group>"; };
 		392426C7298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenBluetoothSettingsButton.swift; sourceTree = "<group>"; };
+		392426C9298AA7450082AA7F /* CopieableValueLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopieableValueLable.swift; sourceTree = "<group>"; };
 		3942D3FC2805837B00EF72F3 /* MooltifillDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillDebug.entitlements; sourceTree = "<group>"; };
 		3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3942D403280583C400EF72F3 /* MooltifillAuthProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MooltifillAuthProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +267,7 @@
 			children = (
 				392426C3298A9B1C0082AA7F /* CheckAgainButton.swift */,
 				392426C7298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift */,
+				392426C9298AA7450082AA7F /* CopieableValueLable.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				39A75EC628058D6900E65042 /* BleManager.swift in Sources */,
 				39023B3427C10332000A7CD5 /* App.swift in Sources */,
 				392426C8298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift in Sources */,
+				392426CA298AA7450082AA7F /* CopieableValueLable.swift in Sources */,
 				392426C6298A9D130082AA7F /* DeviceLockedView.swift in Sources */,
 				392426C1298A9A360082AA7F /* DeviceNotConnectedView.swift in Sources */,
 				392426C4298A9B1C0082AA7F /* CheckAgainButton.swift in Sources */,
@@ -810,7 +814,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -844,7 +848,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
