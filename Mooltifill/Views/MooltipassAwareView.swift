@@ -15,10 +15,11 @@ struct MooltipassAwareView<Content: View>: ContainerView {
     
     var body: some View {
         if (model.isLocked) {
-            VStack {
-                Image("Lock")
-                Text("Mooltipass is locked, please unlock")
-            }
+            DeviceLockedView()
+        } else if (!model.isConnected) {
+            DeviceNotConnectedView()
+        } else if (!model.bluetoothEnabled) {
+            BluetoothDisabledView()
         } else {
             content()
         }

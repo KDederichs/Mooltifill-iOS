@@ -13,8 +13,9 @@ class MooltipassAwareModel: ObservableObject
     let bleManager = BleManager.shared
     
     
-    @Published var isLocked = false
+    @Published var isLocked = true
     @Published var isConnected = false
+    @Published var bluetoothEnabled = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -29,6 +30,12 @@ class MooltipassAwareModel: ObservableObject
             .isMooltipassConnected
             .receive(on: RunLoop.main)
             .assign(to: \.isConnected, on: self)
+            .store(in: &cancellableSet)
+        
+        bleManager
+            .bluetoothEnabled
+            .receive(on: RunLoop.main)
+            .assign(to: \.bluetoothEnabled, on: self)
             .store(in: &cancellableSet)
     }
 }

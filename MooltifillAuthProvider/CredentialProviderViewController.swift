@@ -10,6 +10,14 @@ import CoreBluetooth
 import MooltipassBle
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
+    func mooltipassConnected(connected: Bool) {
+     
+    }
+    
+    func mooltipassReady() {
+
+    }
+    
     
     let manager: BleManager = BleManager.shared
     var delegateSet: Bool = false
@@ -48,10 +56,6 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         
         let passwordCredential = ASPasswordCredential(user: credential!.username, password: credential!.password)
         self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
-    }
-    
-    func mooltipassConnected() {
-        debugPrint("Device Locked")
     }
     
     override func viewDidLoad() {

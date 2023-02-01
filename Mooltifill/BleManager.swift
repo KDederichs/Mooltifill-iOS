@@ -4,6 +4,16 @@ import Combine
 import CoreBluetooth
 
 internal class BleManager: NSObject, MooltipassBleDelegate{
+    func mooltipassConnected(connected: Bool) {
+        debugPrint("[BleManager] Device is connected:", connected)
+        mooltipassConnectedSubject.send(connected)
+    }
+    
+    func mooltipassReady() {
+        debugPrint("[BleManager] Device is ready")
+        mooltipassReadySubject.send(true)
+    }
+    
     func bluetoothChange(state: CBManagerState) {
         let bluetoothEnabled = (state.rawValue != 0)
         debugPrint("[BleManager] Bluetooth enabled:", bluetoothEnabled)
@@ -33,11 +43,6 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassCredentialSubject.send(cred)
     }
     
-    func mooltipassConnected() {
-        debugPrint("[BleManager] Device is connected")
-        mooltipassConnectedSubject.send(true)
-    }
-    
     public static var shared = BleManager()
     public var bleManager: MooltipassBleManager
     
@@ -61,9 +66,14 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassCredentialSubject.eraseToAnyPublisher()
     }
     
+    public var ready: AnyPublisher<Bool, Never> {
+        mooltipassReadySubject.eraseToAnyPublisher()
+    }
+    
     private let lockedSubject = PassthroughSubject<Bool, Never>()
     private let bluetoothEnabledSubject = PassthroughSubject<Bool, Never>()
     private let mooltipassConnectedSubject = PassthroughSubject<Bool, Never>()
+    private let mooltipassReadySubject = PassthroughSubject<Bool, Never>()
     private let mooltiPassErrorSubject = PassthroughSubject<String, Never>()
     private let mooltipassCredentialSubject = PassthroughSubject<MooltipassCredential, Never>()
     
@@ -82,5 +92,6 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassConnectedSubject.send(completion: .finished)
         mooltiPassErrorSubject.send(completion: .finished)
         mooltipassCredentialSubject.send(completion: .finished)
+        mooltipassReadySubject.send(completion: .finished)
     }
 }
