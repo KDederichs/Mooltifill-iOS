@@ -16,6 +16,10 @@
 		39023B5727C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */; };
 		392426AE29895CE60082AA7F /* GetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426AD29895CE60082AA7F /* GetPasswordView.swift */; };
 		392426B129895F8A0082AA7F /* GetCredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426B029895F8A0082AA7F /* GetCredentialsModel.swift */; };
+		392426B3298A82480082AA7F /* MooltipassAwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426B2298A82480082AA7F /* MooltipassAwareView.swift */; };
+		392426B5298A827A0082AA7F /* MooltipassAwareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426B4298A827A0082AA7F /* MooltipassAwareModel.swift */; };
+		392426BB298A85260082AA7F /* ContainerViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426BA298A85260082AA7F /* ContainerViewExtension.swift */; };
+		392426BD298A860F0082AA7F /* ContainerViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392426BC298A860F0082AA7F /* ContainerViewProtocol.swift */; };
 		3942D3FE2805837B00EF72F3 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */; };
 		3942D404280583C400EF72F3 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */; };
 		3942D407280583C400EF72F3 /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3942D406280583C400EF72F3 /* CredentialProviderViewController.swift */; };
@@ -82,6 +86,10 @@
 		39023B5627C10333000A7CD5 /* MooltifillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltifillUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		392426AD29895CE60082AA7F /* GetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPasswordView.swift; sourceTree = "<group>"; };
 		392426B029895F8A0082AA7F /* GetCredentialsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCredentialsModel.swift; sourceTree = "<group>"; };
+		392426B2298A82480082AA7F /* MooltipassAwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassAwareView.swift; sourceTree = "<group>"; };
+		392426B4298A827A0082AA7F /* MooltipassAwareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassAwareModel.swift; sourceTree = "<group>"; };
+		392426BA298A85260082AA7F /* ContainerViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewExtension.swift; sourceTree = "<group>"; };
+		392426BC298A860F0082AA7F /* ContainerViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewProtocol.swift; sourceTree = "<group>"; };
 		3942D3FC2805837B00EF72F3 /* MooltifillDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillDebug.entitlements; sourceTree = "<group>"; };
 		3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3942D403280583C400EF72F3 /* MooltifillAuthProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MooltifillAuthProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +175,8 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
+				392426B9298A85100082AA7F /* Extensions */,
+				392426B6298A84BB0082AA7F /* Protocols */,
 				392426AF29895F6D0082AA7F /* Models */,
 				3924268C29894D8A0082AA7F /* Views */,
 				3942D3FC2805837B00EF72F3 /* MooltifillDebug.entitlements */,
@@ -206,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				392426AD29895CE60082AA7F /* GetPasswordView.swift */,
+				392426B2298A82480082AA7F /* MooltipassAwareView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,8 +225,25 @@
 			isa = PBXGroup;
 			children = (
 				392426B029895F8A0082AA7F /* GetCredentialsModel.swift */,
+				392426B4298A827A0082AA7F /* MooltipassAwareModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		392426B6298A84BB0082AA7F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				392426BC298A860F0082AA7F /* ContainerViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		392426B9298A85100082AA7F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				392426BA298A85260082AA7F /* ContainerViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3942D405280583C400EF72F3 /* MooltifillAuthProvider */ = {
@@ -553,8 +581,12 @@
 			files = (
 				39A75EC628058D6900E65042 /* BleManager.swift in Sources */,
 				39023B3427C10332000A7CD5 /* App.swift in Sources */,
+				392426B3298A82480082AA7F /* MooltipassAwareView.swift in Sources */,
 				392426B129895F8A0082AA7F /* GetCredentialsModel.swift in Sources */,
+				392426BB298A85260082AA7F /* ContainerViewExtension.swift in Sources */,
 				392426AE29895CE60082AA7F /* GetPasswordView.swift in Sources */,
+				392426BD298A860F0082AA7F /* ContainerViewProtocol.swift in Sources */,
+				392426B5298A827A0082AA7F /* MooltipassAwareModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,16 +14,32 @@ struct GetPasswordView: View {
     @ObservedObject private var model = GetCredentialsModel()
     
     var body: some View {
-        VStack {
-            TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: $model.service)
-                .padding()
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
-            Button("Get Credentials") {
-                bleManager.bleManager.getCredentials(service: $model.service.wrappedValue, login: nil)
+        MooltipassAwareView {
+            Form {
+                Section {
+                    TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: $model.service)
+                        .padding()
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
+                }
+                Section {
+                    Button("Get Credentials") {
+                        bleManager.bleManager.getCredentials(service: $model.service.wrappedValue, login: nil)
+                    }
+                }
             }
-
-        }.padding()
+            
+            VStack {
+                HStack {
+                    Text("Username:").bold()
+                    Text(model.username)
+                }
+                HStack {
+                    Text("Password:").bold()
+                    Text(model.password)
+                }
+            }
+        }
     }
 }
 
