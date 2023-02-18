@@ -7,3 +7,6 @@ xcuserdata/
 *.xccheckout
 Pods/*
 *.xcworkspace
+
+Carthage/
+Cartfile.resolved

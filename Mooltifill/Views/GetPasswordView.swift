@@ -25,7 +25,7 @@ struct GetPasswordView: View {
                     }
                     Section {
                         Button("Get Credentials") {
-                            bleManager.bleManager.getCredentials(service: $model.service.wrappedValue, login: nil)
+                            bleManager.fetchCredential(service: $model.service.wrappedValue, login: nil)
                         }
                     }
                     if (model.hasCredential) {

@@ -2,8 +2,32 @@ import Foundation
 import MooltipassBle
 import Combine
 import CoreBluetooth
+import DomainParser
 
 internal class BleManager: NSObject, MooltipassBleDelegate{
+    
+    var service : String? = nil
+    
+    func credentialNotFound() {
+        debugPrint("[BleManager] Credential was not found.")
+        if (service != nil) {
+            debugPrint("[BleManager] Current Service: ", service!)
+            do {
+                let domainParse = try DomainParser()
+                debugPrint("[BleManager] Domain Parser Initialisation success.")
+                let domain = domainParse.parse(host: service!)?.domain
+                
+                if (domain != nil) {
+                    debugPrint("[BleManager] Trying root domain: ", domain!)
+                    bleManager.getCredentials(service: domain!, login: nil)
+                }
+            } catch {
+                debugPrint("[BleManager] Error initialising domain parser: \(error)")
+            }
+            service = nil
+        }
+    }
+    
     func mooltipassConnected(connected: Bool) {
         debugPrint("[BleManager] Device is connected:", connected)
         mooltipassConnectedSubject.send(connected)
@@ -41,6 +65,11 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
           }
         debugPrint("[BleManager] Publishing Credential")
         mooltipassCredentialSubject.send(cred)
+    }
+    
+    func fetchCredential(service: String, login: String?) {
+        self.service = service
+        bleManager.getCredentials(service: service, login: login)
     }
     
     public static var shared = BleManager()

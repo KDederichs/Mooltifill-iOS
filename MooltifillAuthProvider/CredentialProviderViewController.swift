@@ -8,8 +8,34 @@
 import AuthenticationServices
 import CoreBluetooth
 import MooltipassBle
+import DomainParser
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
+    func credentialNotFound() {
+        
+        if (triedRootDomain) {
+            _statusLabel.text = "Password not found."
+        }
+        
+        if (url != nil) {
+            debugPrint("[BleManager] Current Service: ", url!.host!)
+            do {
+                let domainParse = try DomainParser()
+                debugPrint("[BleManager] Domain Parser Initialisation success.")
+                let domain = domainParse.parse(host: url!.host!)?.domain
+                
+                if (domain != nil) {
+                    debugPrint("[BleManager] Trying root domain: ", domain!)
+                    manager.bleManager.getCredentials(service: domain!, login: nil)
+                }
+            } catch {
+                debugPrint("[BleManager] Error initialising domain parser: \(error)")
+            }
+            url = nil
+            triedRootDomain = true
+        }
+    }
+    
     func mooltipassConnected(connected: Bool) {
      
     }
@@ -23,6 +49,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     var delegateSet: Bool = false
     var url: URL? = nil
     var isLocked : Bool = false
+    var triedRootDomain = false
     @IBOutlet weak var _statusLabel: UILabel!
     
     func bluetoothChange(state: CBManagerState) {

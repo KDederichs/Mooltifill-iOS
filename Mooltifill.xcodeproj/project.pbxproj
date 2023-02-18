@@ -32,6 +32,10 @@
 		3942D40A280583C400EF72F3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3942D408280583C400EF72F3 /* MainInterface.storyboard */; };
 		3942D40F280583C400EF72F3 /* MooltifillAuthProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3942D403280583C400EF72F3 /* MooltifillAuthProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3942D4152805843400EF72F3 /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3942D4142805843400EF72F3 /* BleManager.swift */; };
+		39639E8A29A0DDB5009B9B47 /* DomainParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; };
+		39639E8B29A0DDB5009B9B47 /* DomainParser.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		39639E8D29A0DDBE009B9B47 /* DomainParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; };
+		39639E8E29A0DDBE009B9B47 /* DomainParser.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39A75EC628058D6900E65042 /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A75EC528058D6900E65042 /* BleManager.swift */; };
 		5097B614E4A2B9DC689D2888 /* Pods_Mooltifill_MooltifillUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2562AA066BFED8DECAA76EC7 /* Pods_Mooltifill_MooltifillUITests.framework */; };
 		9F3DC3CB5939CDB9DA2E09DD /* Pods_MooltifillTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D098927E5C9966BAC0ADDB2 /* Pods_MooltifillTests.framework */; };
@@ -73,6 +77,28 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		39639E8C29A0DDB5009B9B47 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				39639E8B29A0DDB5009B9B47 /* DomainParser.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39639E8F29A0DDBE009B9B47 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				39639E8E29A0DDBE009B9B47 /* DomainParser.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +137,7 @@
 		3942D40C280583C400EF72F3 /* MooltifillAuthProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillAuthProvider.entitlements; sourceTree = "<group>"; };
 		3942D4142805843400EF72F3 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		3942D41D280584D800EF72F3 /* MooltipassBle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MooltipassBle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DomainParser.xcframework; path = Carthage/Build/DomainParser.xcframework; sourceTree = "<group>"; };
 		399D11E528058C8B002CDCC7 /* MooltipassBle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MooltipassBle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A75EC528058D6900E65042 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		4D098927E5C9966BAC0ADDB2 /* Pods_MooltifillTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MooltifillTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3942D3FE2805837B00EF72F3 /* AuthenticationServices.framework in Frameworks */,
+				39639E8A29A0DDB5009B9B47 /* DomainParser.xcframework in Frameworks */,
 				346F8982CA3B9478523BC190 /* Pods_Mooltifill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3942D404280583C400EF72F3 /* AuthenticationServices.framework in Frameworks */,
+				39639E8D29A0DDBE009B9B47 /* DomainParser.xcframework in Frameworks */,
 				049C06D07211BF0CA2F3F1C5 /* Pods_Mooltifill_MooltifillAuthProvider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +317,7 @@
 		3FB801A5CB5A8AA89E9D7D77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */,
 				399D11E528058C8B002CDCC7 /* MooltipassBle.framework */,
 				3942D41D280584D800EF72F3 /* MooltipassBle.framework */,
 				3942D3FD2805837B00EF72F3 /* AuthenticationServices.framework */,
@@ -327,6 +357,7 @@
 				39023B2E27C10332000A7CD5 /* Resources */,
 				3942D413280583C400EF72F3 /* Embed App Extensions */,
 				39E7C38FF380CC3CEB8774B4 /* [CP] Embed Pods Frameworks */,
+				39639E8C29A0DDB5009B9B47 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -385,6 +416,7 @@
 				3942D3FF280583C400EF72F3 /* Sources */,
 				3942D400280583C400EF72F3 /* Frameworks */,
 				3942D401280583C400EF72F3 /* Resources */,
+				39639E8F29A0DDBE009B9B47 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
