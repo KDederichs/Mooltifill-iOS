@@ -12,24 +12,23 @@ import DomainParser
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
     func credentialNotFound() {
-        
         if (triedRootDomain) {
             _statusLabel.text = "Password not found."
         }
         
         if (url != nil) {
-            debugPrint("[BleManager] Current Service: ", url!.host!)
+            debugPrint("[CredentialsProvider] Current Service: ", url!.host!)
             do {
                 let domainParse = try DomainParser()
-                debugPrint("[BleManager] Domain Parser Initialisation success.")
+                debugPrint("[CredentialsProvider] Domain Parser Initialisation success.")
                 let domain = domainParse.parse(host: url!.host!)?.domain
                 
                 if (domain != nil) {
-                    debugPrint("[BleManager] Trying root domain: ", domain!)
+                    debugPrint("[CredentialsProvider] Trying root domain: ", domain!)
                     manager.bleManager.getCredentials(service: domain!, login: nil)
                 }
             } catch {
-                debugPrint("[BleManager] Error initialising domain parser: \(error)")
+                debugPrint("[CredentialsProvider] Error initialising domain parser: \(error)")
             }
             url = nil
             triedRootDomain = true
@@ -37,7 +36,11 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func mooltipassConnected(connected: Bool) {
-     
+        if (connected) {
+            _statusLabel.text = "Device is connected, checking device status."
+        } else {
+            _statusLabel.text = "Device is not connected, please pair device."
+        }
     }
     
     func mooltipassReady() {
@@ -46,14 +49,19 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     
     
     let manager: BleManager = BleManager.shared
-    var delegateSet: Bool = false
     var url: URL? = nil
-    var isLocked : Bool = false
     var triedRootDomain = false
+    var alreadyConnected = false
     @IBOutlet weak var _statusLabel: UILabel!
     
     func bluetoothChange(state: CBManagerState) {
-        debugPrint(state.rawValue)
+        let bluetoothEnabled = (state.rawValue != 0)
+        debugPrint("[CredentialsProvider] Bluetooth enabled:", bluetoothEnabled)
+        if (bluetoothEnabled) {
+            _statusLabel.text = "Bluetooth is enabled, checking device connection."
+        } else {
+            _statusLabel.text = "Bluetooth is disabled, please enable Bluetooth."
+        }
     }
     
     func onError(errorMessage: String) {
@@ -64,15 +72,16 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     func lockedStatus(locked: Bool) {
         if (locked) {
             _statusLabel.text = "Device is locked, please unlock."
-            isLocked = true
             debugPrint("Device Locked")
         } else {
             debugPrint("Device Unlocked")
-            _statusLabel.text = "Looking up password"
-            if (isLocked && (url != nil)) {
+            _statusLabel.text = "Device is unlocked, looking up password."
+            if (url != nil) {
+                usleep(useconds_t(200))
                 manager.bleManager.getCredentials(service: url!.host!, login: nil)
+            } else {
+                _statusLabel.text = "Error: No service set."
             }
-            isLocked = false
         }
     }
     
@@ -80,7 +89,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         if (credential == nil) {
             return
         }
-        
+        _statusLabel.text = "Password found."
         let passwordCredential = ASPasswordCredential(user: credential!.username, password: credential!.password)
         self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
     }
@@ -88,8 +97,6 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.bleManager.delegate = self
-        self.delegateSet = true
-        debugPrint("View Loaded")
     }
 
     /*
@@ -100,17 +107,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
         debugPrint("Receiving password")
         let service = serviceIdentifiers[0].identifier;
-        url = URL(string: service)
-        debugPrint(serviceIdentifiers)
-        debugPrint("Waiting for delegate")
-        while (!delegateSet) {
-            print("Waiting for delegate")
-            usleep(useconds_t(100))
-        }
         
-        manager.bleManager.getCredentials(service: url!.host!, login: nil)
-
-        debugPrint(serviceIdentifiers)
+        // just set URL, password will be fetched through callback chain.
+        url = URL(string: service)
+        manager.bleManager.getStatus()
     }
 
     /*
