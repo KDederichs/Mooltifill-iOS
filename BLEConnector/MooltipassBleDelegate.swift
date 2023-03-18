@@ -9,7 +9,7 @@ import Foundation
 import CoreBluetooth
 
 public protocol MooltipassBleDelegate : AnyObject {
-    func bluetoothChange(state: CBManagerState)-> Void
+    func bluetoothChange(enabled: Bool)-> Void
     func onError(errorMessage: String) -> Void
     func lockedStatus(locked: Bool) -> Void
     func credentialNotFound() -> Void

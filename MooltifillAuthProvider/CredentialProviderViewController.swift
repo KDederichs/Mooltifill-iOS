@@ -6,7 +6,6 @@
 //
 
 import AuthenticationServices
-import CoreBluetooth
 import DomainParser
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
@@ -53,11 +52,11 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     var alreadyConnected = false
     @IBOutlet weak var _statusLabel: UILabel!
     
-    func bluetoothChange(state: CBManagerState) {
-        let bluetoothEnabled = (state.rawValue != 0)
-        debugPrint("[CredentialsProvider] Bluetooth enabled:", bluetoothEnabled)
-        if (bluetoothEnabled) {
+    func bluetoothChange(enabled: Bool) {
+        debugPrint("[CredentialsProvider] Bluetooth enabled:", enabled)
+        if (enabled) {
             _statusLabel.text = "Bluetooth is enabled, checking device connection."
+            manager.bleManager.getStatus()
         } else {
             _statusLabel.text = "Bluetooth is disabled, please enable Bluetooth."
         }

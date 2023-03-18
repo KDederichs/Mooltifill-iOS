@@ -10,7 +10,7 @@ extension MooltipassBleManager: CBCentralManagerDelegate {
     var expectedNamePrefix: String { return "Mooltipass BLE" } // 1.
 
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        self.delegate?.bluetoothChange(state: central.state)
+        self.delegate?.bluetoothChange(enabled: (central.state.rawValue != 0))
         if central.state != .poweredOn {
             print("bluetooth is OFF (\(central.state.rawValue))")
             bluetoothAvailable = false

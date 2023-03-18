@@ -1,6 +1,5 @@
 import Foundation
 import Combine
-import CoreBluetooth
 import DomainParser
 
 internal class BleManager: NSObject, MooltipassBleDelegate{
@@ -37,12 +36,11 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassReadySubject.send(true)
     }
     
-    func bluetoothChange(state: CBManagerState) {
-        let bluetoothEnabled = (state.rawValue != 0)
-        debugPrint("[BleManager] Bluetooth enabled:", bluetoothEnabled)
-        bluetoothEnabledSubject.send(bluetoothEnabled)
+    func bluetoothChange(enabled: Bool) {
+        debugPrint("[BleManager] Bluetooth enabled:", enabled)
+        bluetoothEnabledSubject.send(enabled)
         
-        if (bluetoothEnabled) {
+        if (enabled) {
             bleManager.getStatus()
         }
     }
