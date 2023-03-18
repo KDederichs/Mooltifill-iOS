@@ -1,5 +1,4 @@
 import Foundation
-import MooltipassBle
 import Combine
 import CoreBluetooth
 import DomainParser
@@ -57,7 +56,7 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         lockedSubject.send(locked)
     }
     
-    func credentialsReceived(credential: MooltipassBle.MooltipassCredential?) {
+    func credentialsReceived(credential: MooltipassCredential?) {
         debugPrint("[BleManager] Received Credential")
         guard let cred = credential else {
             debugPrint("[BleManager] It's empty :(")

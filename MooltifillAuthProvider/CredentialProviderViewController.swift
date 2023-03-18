@@ -7,7 +7,6 @@
 
 import AuthenticationServices
 import CoreBluetooth
-import MooltipassBle
 import DomainParser
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
