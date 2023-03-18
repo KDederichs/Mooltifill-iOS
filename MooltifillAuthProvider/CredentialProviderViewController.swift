@@ -107,7 +107,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
         debugPrint("Receiving password")
         let service = serviceIdentifiers[0].identifier;
-        
+        triedRootDomain = false
         // just set URL, password will be fetched through callback chain.
         url = URL(string: service)
         manager.bleManager.getStatus()
