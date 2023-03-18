@@ -29,7 +29,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Looking up password" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4U-nL-rQH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Device is connected, checking device status." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4U-nL-rQH">
                                 <rect key="frame" x="16" y="272" width="343" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -39,6 +39,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1qs-Ct-pFm">
+                                <rect key="frame" x="170" y="360" width="34" height="35"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ky8-vK-JVj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
