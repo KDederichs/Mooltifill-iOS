@@ -69,7 +69,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             } else {
                 let numberOfPackets = (data[1] % 16) + 1
                 let id = Int(data[1]) >> 4
-                print("Package \(id) of \(numberOfPackets):")
+                print("Package \(id+1) of \(numberOfPackets):")
                 debugPrint(hexEncodedString(data))
                 if (currentId == id) {
                     if (readResult == nil) {
@@ -86,7 +86,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                         resetState()
                     }
                 } else {
-                    print("CurrentId \(currentId) doesn't match \(id), skipping")
+                    print("CurrentId \(currentId) doesn't match \(id+1), skipping")
                 }
             }
         } else {
@@ -99,7 +99,6 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             print("error while writing value to \(characteristic.uuid.uuidString): \(error.debugDescription)")
         } else {
             print("didWriteValueFor \(characteristic.uuid.uuidString)")
-            startRead()
         }
     }
 
