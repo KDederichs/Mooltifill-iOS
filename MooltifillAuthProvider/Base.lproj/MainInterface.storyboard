@@ -29,26 +29,34 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Device is connected, checking device status." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4U-nL-rQH">
-                                <rect key="frame" x="16" y="272" width="343" height="123"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device is connected, checking device status." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4U-nL-rQH">
+                                <rect key="frame" x="0.0" y="311" width="375" height="46"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Eky-BL-sCY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1qs-Ct-pFm">
-                                <rect key="frame" x="170" y="360" width="34" height="35"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1qs-Ct-pFm">
+                                <rect key="frame" x="177" y="364" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ky8-vK-JVj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ky8-vK-JVj" firstAttribute="top" secondItem="3wq-kG-lGu" secondAttribute="top" id="BIN-jb-uNd"/>
+                            <constraint firstItem="1qs-Ct-pFm" firstAttribute="top" secondItem="d4U-nL-rQH" secondAttribute="bottom" constant="7" id="ErE-Ae-A7r"/>
+                            <constraint firstItem="d4U-nL-rQH" firstAttribute="trailing" secondItem="3wq-kG-lGu" secondAttribute="trailing" id="Gjt-h1-NMF"/>
+                            <constraint firstItem="d4U-nL-rQH" firstAttribute="leading" secondItem="3wq-kG-lGu" secondAttribute="leading" id="JIW-k9-JhV"/>
+                            <constraint firstItem="d4U-nL-rQH" firstAttribute="centerY" secondItem="BuU-Ak-iZz" secondAttribute="centerY" id="LKc-EQ-Mje"/>
+                            <constraint firstItem="1qs-Ct-pFm" firstAttribute="leading" secondItem="Ky8-vK-JVj" secondAttribute="leading" constant="177" id="SfW-yu-8Zh"/>
                             <constraint firstItem="3wq-kG-lGu" firstAttribute="width" secondItem="BuU-Ak-iZz" secondAttribute="width" id="UkD-v4-BcH"/>
+                            <constraint firstItem="1qs-Ct-pFm" firstAttribute="centerX" secondItem="d4U-nL-rQH" secondAttribute="centerX" id="aXp-eW-AYU"/>
+                            <constraint firstItem="Ky8-vK-JVj" firstAttribute="bottom" secondItem="1qs-Ct-pFm" secondAttribute="bottom" constant="283" id="d2w-2V-RDV"/>
                             <constraint firstItem="3wq-kG-lGu" firstAttribute="centerX" secondItem="BuU-Ak-iZz" secondAttribute="centerX" id="rtV-5c-0bl"/>
                         </constraints>
                     </view>
