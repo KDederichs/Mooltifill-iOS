@@ -33,7 +33,6 @@
 		39639E8A29A0DDB5009B9B47 /* DomainParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; };
 		39639E8B29A0DDB5009B9B47 /* DomainParser.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39639E8D29A0DDBE009B9B47 /* DomainParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; };
-		39639E8E29A0DDBE009B9B47 /* DomainParser.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		397556F129C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */; };
 		397556F229C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */; };
 		397556F329C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */; };
@@ -130,7 +129,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				39639E8E29A0DDBE009B9B47 /* DomainParser.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +177,8 @@
 		3975571A29C5CF0600B5B279 /* MooltipassMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassMessage.swift; sourceTree = "<group>"; };
 		3975571F29C5CF1900B5B279 /* MooltipassPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassPayload.swift; sourceTree = "<group>"; };
 		39A75EC528058D6900E65042 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
+		39AF94BF29C8854E00549ED4 /* MooltifillRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillRelease.entitlements; sourceTree = "<group>"; };
+		39AF94C029C8881700549ED4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +220,7 @@
 		39023B2727C10332000A7CD5 = {
 			isa = PBXGroup;
 			children = (
+				39AF94C029C8881700549ED4 /* LICENSE */,
 				397556EE29C5CDBE00B5B279 /* BLEConnector */,
 				39023B3227C10332000A7CD5 /* Mooltifill */,
 				39023B4927C10333000A7CD5 /* MooltifillTests */,
@@ -244,6 +245,7 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
+				39AF94BF29C8854E00549ED4 /* MooltifillRelease.entitlements */,
 				392426C2298A9B0A0082AA7F /* Components */,
 				392426B9298A85100082AA7F /* Extensions */,
 				392426B6298A84BB0082AA7F /* Protocols */,
@@ -825,6 +827,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mooltifill/MooltifillRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
