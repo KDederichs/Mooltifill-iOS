@@ -16,4 +16,5 @@ public protocol MooltipassBleDelegate : AnyObject {
     func credentialsReceived(credential: MooltipassCredential?) -> Void
     func mooltipassConnected(connected: Bool) -> Void
     func mooltipassReady() -> Void
+    func debugMessage(message: String) -> Void
 }

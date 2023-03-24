@@ -4,6 +4,11 @@ import DomainParser
 
 internal class BleManager: NSObject, MooltipassBleDelegate{
     
+    func debugMessage(message: String) {
+        debugPrint(message)
+    }
+    
+    
     var service : String? = nil
     
     func credentialNotFound() {

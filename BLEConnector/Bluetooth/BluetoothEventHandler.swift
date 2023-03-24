@@ -9,11 +9,10 @@ extension MooltipassBleManager: CBPeripheralDelegate {
 
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
-
-        print("services discovered")
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Services discovered")
         for service in services {
             let serviceUuid = service.uuid.uuidString
-            print("discovered service: \(serviceUuid)")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Discovered service \(serviceUuid)")
 
             if serviceUuid == self.commServiceUUID.uuidString {
                 peripheral.discoverCharacteristics(nil, for: service)
@@ -24,10 +23,10 @@ extension MooltipassBleManager: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else { return }
 
-        print("characteristics discovered")
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Characteristics discovered")
         for characteristic in characteristics {
             let characteristicUuid = characteristic.uuid.uuidString
-            print("discovered characteristic: \(characteristicUuid) | read=\(characteristic.properties.contains(.read)) | write=\(characteristic.properties.contains(.write))")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] discovered characteristic: \(characteristicUuid) | read=\(characteristic.properties.contains(.read)) | write=\(characteristic.properties.contains(.write))")
             if characteristicUuid == self.charWriteUUID.uuidString {
                 peripheral.setNotifyValue(true, for: characteristic)
 
@@ -54,14 +53,15 @@ extension MooltipassBleManager: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let data = characteristic.value {
             if (flushing) {
-                print("Flushing Data:")
-                print(hexEncodedString(data))
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Flushing Data start")
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Flush value: \(hexEncodedString(data))")
                 if (flushData == nil || !data.elementsEqual(flushData!))
                 {
+                    self.delegate?.debugMessage(message: "[MooltipassBleManager] Flushing continues")
                     flushData = data
                     self.startRead()
                 } else {
-                    print("Flushing: Complete")
+                    self.delegate?.debugMessage(message: "[MooltipassBleManager] Flushing complete")
                     flushing = false
                     flushData = nil
                     self.flushCompleteHandler()
@@ -69,8 +69,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             } else {
                 let numberOfPackets = (data[1] % 16) + 1
                 let id = Int(data[1]) >> 4
-                print("Package \(id+1) of \(numberOfPackets):")
-                debugPrint(hexEncodedString(data))
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Package \(id+1) of \(numberOfPackets): \(hexEncodedString(data))")
                 if (currentId == id) {
                     if (readResult == nil) {
                         readResult = [Data](repeating: Data([0]), count: Int(numberOfPackets))
@@ -78,27 +77,27 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                     readResult![currentId] = data
                     currentId += 1
                     if (id != numberOfPackets - 1) {
-                        print("ReadMore")
+                        self.delegate?.debugMessage(message: "[MooltipassBleManager] Package is not end package, should read more. (\(currentId) of \(id+1))")
                         //startRead()
                     } else {
-                        print("Finished Reading")
+                        self.delegate?.debugMessage(message: "[MooltipassBleManager] Read complete, parsing result")
                         handleResult()
                         resetState()
                     }
                 } else {
-                    print("CurrentId \(currentId) doesn't match \(id+1), skipping")
+                    self.delegate?.debugMessage(message: "[MooltipassBleManager] Current Id \(currentId) doesn't match \(id+1), skipping")
                 }
             }
         } else {
-            print("didUpdateValueFor \(characteristic.uuid.uuidString) with no data")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Read on \(characteristic.uuid.uuidString) returned no data.")
         }
     }
 
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if error != nil {
-            print("error while writing value to \(characteristic.uuid.uuidString): \(error.debugDescription)")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Error while writing value to \(characteristic.uuid.uuidString): \(error.debugDescription)")
         } else {
-            print("didWriteValueFor \(characteristic.uuid.uuidString)")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Wrote value to \(characteristic.uuid.uuidString)")
         }
     }
 
@@ -111,7 +110,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
         let factory = BleMessageFactory()
         let message = factory.deserialize(data: readResult!)
         if (message == nil) {
-            debugPrint("Result could not be parsed!")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Result could not be parsed!")
             resetState()
             return
         }
@@ -124,11 +123,6 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             break
         case .GET_CREDENTIAL_BLE:
             if (message?.data != nil && message!.data!.count > 0) {
-                //debugPrint(hexEncodedString(message!.data!))
-                //debugPrint("Login \(parseCredentialsPart(idx: 0, data: message!.data!))")
-//                debugPrint("Description \(parseCredentialsPart(idx: 2, data: message!.data!))")
-//                debugPrint("Third \(parseCredentialsPart(idx: 4, data: message!.data!))")
-                //debugPrint("Password \(parseCredentialsPart(idx: 6, data: message!.data!))")
                 let username = parseCredentialsPart(idx: 0, data: message!.data!)
                 let password = parseCredentialsPart(idx: 6, data: message!.data!)
                 if (username != nil && password != nil) {
@@ -143,6 +137,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             break
         case .PLEASE_RETRY_BLE:
             if (retryCount < 10) {
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Retrying operation")
                 debugPrint("Retrying operation")
                 retryCount += 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -153,6 +148,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 }
             } else {
                 resetState()
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Retry limit exceeded, abort.")
                 self.delegate?.onError(errorMessage: "Could not read from Mooltipass")
             }
             break
@@ -163,15 +159,10 @@ extension MooltipassBleManager: CBPeripheralDelegate {
     }
 
     private func parseCredentialsPart(idx: Int, data: Data) -> String? {
-        print("Idx \(idx)")
-        print("UInt16 \(BleMessageFactory.toUInt16(bytes: data, index: idx + data.startIndex))")
         let offset = Int(BleMessageFactory.toUInt16(bytes: data, index: idx + data.startIndex)) * 2 + data.startIndex + 8
-        print("Offset \(offset)")
         let slice = data[Int(offset)..<data.endIndex]
-        print("Slice Start Idx \(slice.startIndex)")
         let partLength = BleMessageFactory.strLenUtf16(bytes: slice)
         if (partLength != nil) {
-            print("Part Length \(partLength!)")
             return String(bytes: slice[slice.startIndex..<Int(partLength!)], encoding: String.Encoding.utf16LittleEndian)
         }
         return nil

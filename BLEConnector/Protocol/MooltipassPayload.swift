@@ -16,7 +16,9 @@ extension MooltipassBleManager {
     }
 
     public func getCredentials(service: String, login: String?) {
-        let serviceData = _stringToUInt8LEData(input: service.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: ""))
+        let cleanedService = service.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")
+        let serviceData = _stringToUInt8LEData(input: cleanedService)
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] looking up service: \(cleanedService)")
         var loginData : Data? = nil
         if (login != nil) {
             loginData = _stringToUInt8LEData(input: login!)

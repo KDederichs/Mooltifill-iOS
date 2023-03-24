@@ -12,28 +12,26 @@ extension MooltipassBleManager: CBCentralManagerDelegate {
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         self.delegate?.bluetoothChange(enabled: (central.state.rawValue != 0))
         if central.state != .poweredOn {
-            print("bluetooth is OFF (\(central.state.rawValue))")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Bluetooth is off")
             bluetoothAvailable = false
             disconnect()
         } else {
-            print("bluetooth is ON")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Bluetooth is on")
             bluetoothAvailable = true
-
         }
     }
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         guard peripheral.name != nil && peripheral.name?.starts(with: self.expectedNamePrefix) ?? false else { return } // 1.
-        print("discovered peripheral: \(peripheral.name!)")
-
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] discovered peripheral: \(peripheral.name!)")
         self.peripheral = peripheral
     }
 
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if let periperalName = peripheral.name {
-            print("connected to: \(periperalName)")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] connected to: \(periperalName)")
         } else {
-            print("connected to peripheral")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] connected to: peripheral")
         }
 
         peripheral.delegate = self
@@ -41,13 +39,13 @@ extension MooltipassBleManager: CBCentralManagerDelegate {
     }
 
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("peripheral disconnected")
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] peripheral disconnected")
         self.readCharacteristic = nil
         self.writeCharacteristic = nil
     }
 
     public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("failed to connect: \(error.debugDescription)")
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] failed to connect: \(error.debugDescription)")
         self.readCharacteristic = nil
         self.writeCharacteristic = nil
         self.delegate?.onError(errorMessage: "Faild to connect to Mooltipass")

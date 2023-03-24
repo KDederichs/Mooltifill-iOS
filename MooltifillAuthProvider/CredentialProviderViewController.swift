@@ -9,6 +9,12 @@ import AuthenticationServices
 import DomainParser
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
+    
+    
+    func debugMessage(message: String) {
+        updateDebugLabel(message: message)
+    }
+    
     func credentialNotFound() {
         if (triedRootDomain) {
             _statusLabel.text = "Password not found."
@@ -51,6 +57,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     var triedRootDomain = false
     var alreadyConnected = false
     @IBOutlet weak var _statusLabel: UILabel!
+    @IBOutlet weak var _debugLabel: UILabel!
     
     func bluetoothChange(enabled: Bool) {
         debugPrint("[CredentialsProvider] Bluetooth enabled:", enabled)
@@ -70,9 +77,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     func lockedStatus(locked: Bool) {
         if (locked) {
             _statusLabel.text = "Device is locked, please unlock."
-            debugPrint("Device Locked")
         } else {
-            debugPrint("Device Unlocked")
             _statusLabel.text = "Device is unlocked, looking up password."
             if (url != nil) {
                 usleep(useconds_t(200))
@@ -103,9 +108,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
      prioritize the most relevant credentials in the list.
     */
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-        debugPrint("Receiving password")
+        updateDebugLabel(message: "Start Password receival")
         let service = serviceIdentifiers[0].identifier;
         triedRootDomain = false
+        updateDebugLabel(message: "for for service: \(service)")
         // just set URL, password will be fetched through callback chain.
         url = URL(string: service)
         manager.bleManager.getStatus()
@@ -147,6 +153,12 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
 
     @IBAction func passwordSelected(_ sender: AnyObject?) {
         manager.bleManager.getCredentials(service: "github.com", login: nil)
+    }
+    
+    func updateDebugLabel(message: String) {
+        #if DEBUG
+        _debugLabel.text! += message + "\n"
+        #endif
     }
 
 }

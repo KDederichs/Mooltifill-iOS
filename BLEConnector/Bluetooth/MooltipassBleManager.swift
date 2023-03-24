@@ -52,15 +52,15 @@ public class MooltipassBleManager: NSObject { // 1.
     }
 
     func checkForConnected() -> CBPeripheral? {
-        print("Checking for Connected Device:")
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Checking for connected device:")
         let alreadyConnected = centralManager.retrieveConnectedPeripherals(withServices: [commServiceUUID])
         if (alreadyConnected.count > 0) {
-            print("Found")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Device found")
             self.peripheral = alreadyConnected[0]
             self.delegate?.mooltipassConnected(connected: true)
             return self.peripheral
         }
-        print("Not Found")
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Device not found")
         self.delegate?.mooltipassConnected(connected: false)
         return nil
     }
@@ -71,12 +71,10 @@ public class MooltipassBleManager: NSObject { // 1.
 
 
         self.centralManager.scanForPeripherals(withServices: [commServiceUUID]) // 4.
-        print("scan started")
     }
 
     func stopScan() {
         self.centralManager.stopScan()
-        print("scan stopped\n")
     }
 
     func connect() {
@@ -101,7 +99,7 @@ public class MooltipassBleManager: NSObject { // 1.
         }
         let possibleConnection = checkForConnected();
         if (possibleConnection != nil) {
-            debugPrint("Got Peripheral, connecting")
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Got Peripheral, connecting")
             self.connect()
         }
     }
