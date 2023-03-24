@@ -81,6 +81,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
             _statusLabel.text = "Device is unlocked, looking up password."
             if (url != nil) {
                 usleep(useconds_t(200))
+                updateDebugLabel(message: "Should look up \(url!.host!)")
                 manager.bleManager.getCredentials(service: url!.host!, login: nil)
             } else {
                 _statusLabel.text = "Error: No service set."
@@ -156,9 +157,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func updateDebugLabel(message: String) {
-        #if DEBUG
-        _debugLabel.text! += message + "\n"
-        #endif
+        _debugLabel.text! = message + "\n"
     }
 
 }
