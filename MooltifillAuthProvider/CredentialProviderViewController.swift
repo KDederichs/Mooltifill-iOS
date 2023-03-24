@@ -16,25 +16,23 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func credentialNotFound() {
-        if (triedRootDomain) {
+        if (triedRootDomain || !self.isUrlService) {
             _statusLabel.text = "Password not found."
         }
         
-        if (url != nil) {
-            debugPrint("[CredentialsProvider] Current Service: ", url!.host!)
-            do {
-                let domainParse = try DomainParser()
-                debugPrint("[CredentialsProvider] Domain Parser Initialisation success.")
-                let domain = domainParse.parse(host: url!.host!)?.domain
-                
-                if (domain != nil) {
-                    debugPrint("[CredentialsProvider] Trying root domain: ", domain!)
-                    manager.bleManager.getCredentials(service: domain!, login: nil)
-                }
-            } catch {
-                debugPrint("[CredentialsProvider] Error initialising domain parser: \(error)")
+        if (service != nil && self.isUrlService) {
+            debugPrint("[CredentialsProvider] Current Service: ", service!)
+            var toCheck = service!
+            let url = URL(string: toCheck)
+            if (url?.host != nil) {
+                toCheck = url!.host!
             }
-            url = nil
+            let domain = self.domainParser?.parse(host: toCheck)?.domain
+            if (domain != nil) {
+                debugPrint("[CredentialsProvider] Trying root domain: ", domain!)
+                manager.bleManager.getCredentials(service: domain!, login: nil)
+            }
+            service = nil
             triedRootDomain = true
         }
     }
@@ -53,9 +51,12 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     
     
     let manager: BleManager = BleManager.shared
-    var url: URL? = nil
     var triedRootDomain = false
     var alreadyConnected = false
+    var service: String? = nil
+    var isUrlService = true
+    var domainParser: DomainParser? = nil
+    
     @IBOutlet weak var _statusLabel: UILabel!
     @IBOutlet weak var _debugLabel: UILabel!
     
@@ -79,10 +80,16 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
             _statusLabel.text = "Device is locked, please unlock."
         } else {
             _statusLabel.text = "Device is unlocked, looking up password."
-            if (url != nil) {
+            if (self.service != nil) {
                 usleep(useconds_t(200))
-                updateDebugLabel(message: "Should look up \(url!.host!)")
-                manager.bleManager.getCredentials(service: url!.host!, login: nil)
+                var toCheck = self.service
+                if (isUrlService) {
+                    let url = URL(string: toCheck!)
+                    if (url?.host != nil) {
+                        toCheck = url!.host
+                    }
+                }
+                manager.bleManager.getCredentials(service: toCheck!, login: nil)
             } else {
                 _statusLabel.text = "Error: No service set."
             }
@@ -101,6 +108,11 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.bleManager.delegate = self
+        do {
+            self.domainParser = try DomainParser()
+        } catch {
+            debugPrint("[CredentialsProvider] Error initialising domain parser: \(error)")
+        }
     }
 
     /*
@@ -109,12 +121,21 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
      prioritize the most relevant credentials in the list.
     */
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-        updateDebugLabel(message: "Start Password receival")
-        let service = serviceIdentifiers[0].identifier;
+        debugPrint("Receiving password")
+        self.service = serviceIdentifiers[0].identifier;
         triedRootDomain = false
-        updateDebugLabel(message: "for for service: \(service)")
+        
+        let parsedHost = self.domainParser?.parse(host: service!)
+        if (parsedHost != nil) {
+            if (!self.service!.starts(with: "https://")) {
+                self.service = "https://\(service!)"
+            }
+            isUrlService = true
+        } else {
+            debugPrint("[CredentialsProvider] Error parsing domain, it does not seem to be an URL")
+            isUrlService = false
+        }
         // just set URL, password will be fetched through callback chain.
-        url = URL(string: service)
         manager.bleManager.getStatus()
     }
 
