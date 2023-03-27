@@ -27,6 +27,9 @@ struct GetPasswordView: View {
                         Button("Get Credentials") {
                             bleManager.fetchCredential(service: $model.service.wrappedValue, login: nil)
                         }
+                        .disabled(
+                            $model.service.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                        )
                     }
                     if (model.hasCredential) {
                         Section("Credentials") {

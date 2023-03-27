@@ -17,6 +17,7 @@ class GetCredentialsModel: ObservableObject
     @Published var username: String = ""
     @Published var password: String = ""
     @Published var hasCredential = false
+    @Published var getPasswordButtonEnabled = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     

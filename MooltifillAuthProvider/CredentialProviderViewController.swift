@@ -16,21 +16,19 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func credentialNotFound() {
-        if (triedRootDomain || !self.isUrlService) {
+        if (triedRootDomain) {
             _statusLabel.text = "Password not found."
         }
         
-        if (service != nil && self.isUrlService) {
+        if (service != nil) {
             debugPrint("[CredentialsProvider] Current Service: ", service!)
-            var toCheck = service!
-            let url = URL(string: toCheck)
-            if (url?.host != nil) {
-                toCheck = url!.host!
-            }
-            let domain = self.domainParser?.parse(host: toCheck)?.domain
-            if (domain != nil) {
-                debugPrint("[CredentialsProvider] Trying root domain: ", domain!)
-                manager.bleManager.getCredentials(service: domain!, login: nil)
+            let host = getHostPart(service: self.service!)
+            if (host != nil) {
+                let domain = self.domainParser?.parse(host: host!)?.domain
+                if (domain != nil) {
+                    debugPrint("[CredentialsProvider] Trying root domain: ", domain!)
+                    manager.bleManager.getCredentials(service: domain!, login: nil)
+                }
             }
             service = nil
             triedRootDomain = true
@@ -54,11 +52,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     var triedRootDomain = false
     var alreadyConnected = false
     var service: String? = nil
-    var isUrlService = true
     var domainParser: DomainParser? = nil
     
     @IBOutlet weak var _statusLabel: UILabel!
-    @IBOutlet weak var _debugLabel: UILabel!
     
     func bluetoothChange(enabled: Bool) {
         debugPrint("[CredentialsProvider] Bluetooth enabled:", enabled)
@@ -71,7 +67,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func onError(errorMessage: String) {
-        print(errorMessage)
+        debugPrint(errorMessage)
         _statusLabel.text = "Error: " + errorMessage
     }
     
@@ -82,14 +78,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
             _statusLabel.text = "Device is unlocked, looking up password."
             if (self.service != nil) {
                 usleep(useconds_t(200))
-                var toCheck = self.service
-                if (isUrlService) {
-                    let url = URL(string: toCheck!)
-                    if (url?.host != nil) {
-                        toCheck = url!.host
-                    }
-                }
-                manager.bleManager.getCredentials(service: toCheck!, login: nil)
+                let host = getHostPart(service: self.service!)
+                //_statusLabel.text =  host!
+                manager.bleManager.getCredentials(service: host != nil ? host! : self.service!, login: nil)
             } else {
                 _statusLabel.text = "Error: No service set."
             }
@@ -124,17 +115,6 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         debugPrint("Receiving password")
         self.service = serviceIdentifiers[0].identifier;
         triedRootDomain = false
-        
-        let parsedHost = self.domainParser?.parse(host: service!)
-        if (parsedHost != nil) {
-            if (!self.service!.starts(with: "https://")) {
-                self.service = "https://\(service!)"
-            }
-            isUrlService = true
-        } else {
-            debugPrint("[CredentialsProvider] Error parsing domain, it does not seem to be an URL")
-            isUrlService = false
-        }
         // just set URL, password will be fetched through callback chain.
         manager.bleManager.getStatus()
     }
@@ -178,7 +158,18 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func updateDebugLabel(message: String) {
-        _debugLabel.text! = message + "\n"
+        //debugPrint(message)
     }
 
+    func getHostPart(service: String) -> String?
+    {
+        var toCheck = service
+        if (!toCheck.starts(with: "http://") && !toCheck.starts(with: "https://")) {
+            toCheck = "https://" + service
+        }
+        
+        let url = URL(string: toCheck)
+        return url?.host
+    }
+    
 }
