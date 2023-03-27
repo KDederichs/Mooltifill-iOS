@@ -4,12 +4,12 @@
 <dict>
 	<key>NSExtension</key>
 	<dict>
-		<key>RequestsOpenAccess</key>
-		<true/>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.authentication-services-credential-provider-ui</string>
+		<key>RequestsOpenAccess</key>
+		<true/>
 	</dict>
 </dict>
 </plist>
