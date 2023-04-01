@@ -815,7 +815,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mooltifill/MooltifillDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
@@ -849,7 +849,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mooltifill/MooltifillRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
@@ -956,7 +956,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MooltifillAuthProvider/MooltifillAuthProvider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
@@ -983,7 +983,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MooltifillAuthProvider/MooltifillAuthProvider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
