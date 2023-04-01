@@ -37,14 +37,13 @@ public class MooltipassBleManager: NSObject { // 1.
     var flushing = false
 
     var deviceLocked : Bool? = nil
-
-    var flushCompleteHandler: () -> Void = { }
     
     var readConnected = false
     var writeConnected = false
     
     var bluetoothAvailable = false
     var connectedCallback: (() -> Void)?
+    var commandQueue: Queue<() -> ()> = Queue()
     
     public override init() {
         super.init()
@@ -94,6 +93,7 @@ public class MooltipassBleManager: NSObject { // 1.
             if (connectedCallback != nil) {
                 connectedCallback!()
                 connectedCallback = nil
+                startFlush()
             }
             return
         }

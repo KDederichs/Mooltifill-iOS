@@ -45,6 +45,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 if (connectedCallback != nil) {
                     connectedCallback!()
                     connectedCallback = nil
+                    self.startFlush()
                 }
             }
         }
@@ -64,7 +65,11 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                     self.delegate?.debugMessage(message: "[MooltipassBleManager] Flushing complete")
                     flushing = false
                     flushData = nil
-                    self.flushCompleteHandler()
+                    if !self.commandQueue.isEmpty {
+                        commandQueue.peek!()
+                    } else {
+                        self.delegate?.debugMessage(message: "[MooltipassBleManager] Queue is empty, nothing to execute.")
+                    }
                 }
             } else {
                 let numberOfPackets = (data[1] % 16) + 1
@@ -82,7 +87,6 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                     } else {
                         self.delegate?.debugMessage(message: "[MooltipassBleManager] Read complete, parsing result")
                         handleResult()
-                        resetState()
                     }
                 } else {
                     self.delegate?.debugMessage(message: "[MooltipassBleManager] Current Id \(currentId) doesn't match \(id+1), skipping")
@@ -141,16 +145,18 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 debugPrint("Retrying operation")
                 retryCount += 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self.resetState()
-                    self.prepareRead(completion: self.flushCompleteHandler)
-                    //self.flushCompleteHandler()
-                    //self.startRead()
+                    self.resetState(clearRetryCount: false)
+                    self.commandQueue.peek!()
                 }
             } else {
                 resetState()
                 self.delegate?.debugMessage(message: "[MooltipassBleManager] Retry limit exceeded, abort.")
                 self.delegate?.onError(errorMessage: "Could not read from Mooltipass")
             }
+            break
+        case .SET_DATE_BLE:
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Set Time Result: " + hexEncodedString(message!.data))
+            resetState()
             break
         default:
             resetState()
@@ -174,5 +180,14 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             retryCount = 0
         }
         readResult = nil
+        
+        if (clearRetryCount) {
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Removing command from queue.")
+            self.commandQueue.dequeue()
+            if !self.commandQueue.isEmpty {
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Running next command in queue")
+                self.startFlush()
+            }
+        }
     }
 }
