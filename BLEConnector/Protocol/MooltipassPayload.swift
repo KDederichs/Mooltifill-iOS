@@ -9,6 +9,36 @@ extension MooltipassBleManager {
 
     public func getStatus() {
         connectToMooltipass {
+            self.queueSyncDate()
+            self.queueGetStatus()
+        }
+    }
+    
+    public func queueSyncDate() {
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Queing Time Sync")
+        self.commandQueue.enqueue {
+            let date = Date()
+            var calendar = Calendar.current
+            calendar.timeZone = TimeZone(identifier: "UTC")!
+            
+            var bytes = Data(count: 12)
+            
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 0, value: UInt16(calendar.component(.year, from: date)))
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 2, value: UInt16(calendar.component(.month, from: date)))
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 4, value: UInt16(calendar.component(.day, from: date)))
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 6, value: UInt16(calendar.component(.hour, from: date)))
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 8, value: UInt16(calendar.component(.minute, from: date)))
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 10, value: UInt16(calendar.component(.second, from: date)))
+            
+            let factory = BleMessageFactory()
+            self.peripheral?.writeValue(self.FLIP_BIT_RESET_PACKET, for: self.writeCharacteristic!, type: .withoutResponse)
+            self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.SET_DATE_BLE, rawData: bytes)))
+        }
+    }
+    
+    public func queueGetStatus() {
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Queing Status check")
+        self.commandQueue.enqueue {
             let factory = BleMessageFactory()
             self.peripheral?.writeValue(self.FLIP_BIT_RESET_PACKET, for: self.writeCharacteristic!, type: .withoutResponse)
             self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.MOOLTIPASS_STATUS_BLE)))
@@ -24,6 +54,7 @@ extension MooltipassBleManager {
             loginData = _stringToUInt8LEData(input: login!)
         }
         connectToMooltipass {
+            self.queueSyncDate()
             self._getCredentials(service: serviceData, login: loginData)
         }
     }
@@ -51,7 +82,8 @@ extension MooltipassBleManager {
     // Low Level device communication
 
     private func _getCredentials(service: Data, login: Data?) {
-        prepareRead {
+        self.delegate?.debugMessage(message: "[MooltipassBleManager] Queing Get Credentials")
+        self.commandQueue.enqueue {
             let factory = BleMessageFactory()
 
             let loginOffset = service.count
@@ -68,14 +100,7 @@ extension MooltipassBleManager {
         }
     }
 
-    public func prepareRead(completion: @escaping () -> ()) {
-        flushCompleteHandler = completion
-        retryCount = 0
-        startFlush()
-        //completion()
-    }
-
-    private func send(packets: [Data]) {
+    public func send(packets: [Data]) {
         for (idx, paket) in packets.enumerated() {
             send(packet: paket, readAfter: idx == packets.endIndex - 1)
         }
