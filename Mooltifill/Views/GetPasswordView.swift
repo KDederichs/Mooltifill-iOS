@@ -9,11 +9,10 @@ import SwiftUI
 import Combine
 
 struct GetPasswordView: View {
-    let bleManager = BleManager.shared
     
-    @ObservedObject private var model = GetCredentialsModel()
-    
+    @StateObject private var model = GetCredentialsModel()
     var body: some View {
+        NavigationView {
             VStack {
                 Form {
                     Section("Website") {
@@ -24,7 +23,7 @@ struct GetPasswordView: View {
                     }
                     Section {
                         Button("Get Credentials") {
-                            bleManager.fetchCredential(service: $model.service.wrappedValue, login: nil)
+                            model.fetchCredentials(service: $model.service.wrappedValue)
                         }
                         .disabled(
                             $model.service.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || $model.isLoading.wrappedValue
@@ -41,6 +40,7 @@ struct GetPasswordView: View {
                         }
                     }
                 }
+            }.navigationTitle("Get Password")
         }
     }
 }

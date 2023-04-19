@@ -11,7 +11,7 @@ import Combine
 struct MooltipassAwareView<Content: View>: ContainerView {
     
     var content: () -> Content
-    @ObservedObject private var model = MooltipassAwareModel()
+    @StateObject private var model = MooltipassAwareModel()
     
     var body: some View {
         if (model.isLocked) {

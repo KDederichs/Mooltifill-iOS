@@ -53,4 +53,9 @@ class GetCredentialsModel: ObservableObject
             .store(in: &cancellableSet)
     }
     
+    func fetchCredentials(service: String)
+    {
+        bleManager.fetchCredential(service: service, login: nil)
+    }
+    
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct NoteListView: View {
-    @ObservedObject private var model = NoteListModel()
+    @StateObject private var model = NoteListModel()
     
     var body: some View {
         NavigationView {
