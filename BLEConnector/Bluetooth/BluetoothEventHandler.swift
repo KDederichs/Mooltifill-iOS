@@ -158,10 +158,34 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             self.delegate?.debugMessage(message: "[MooltipassBleManager] Set Time Result: " + hexEncodedString(message!.data))
             resetState()
             break
+        case .GET_NOTE_NODE:
+            resetState()
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Data: " + hexEncodedString(message!.data))
+            let noteName = _uInt8LEDataToString(data: message!.data!.dropFirst(2).dropLast(2))
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Data: " + noteName)
+            self.delegate?.noteListReceived(notes: Array(noteNames))
+            if (BleMessageFactory.toUInt16(bytes: message!.data!, index: message!.data!.startIndex) > 0) {
+                noteNames.insert(noteName)
+                self._getNoteNode(address: BleMessageFactory.toUInt16(bytes: message!.data!, index: message!.data!.startIndex))
+                self.commandQueue.peek!()
+            }
+            break
         default:
             resetState()
             break
         }
+    }
+    
+    func hexStringtoAscii(_ hexString : String) -> String {
+
+        let pattern = "(0x)?([0-9a-f]{2})"
+        let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let nsString = hexString as NSString
+        let matches = regex.matches(in: hexString, options: [], range: NSMakeRange(0, nsString.length))
+        let characters = matches.map {
+            Character(UnicodeScalar(UInt32(nsString.substring(with: $0.range(at: 2)), radix: 16)!)!)
+        }
+        return String(characters)
     }
 
     private func parseCredentialsPart(idx: Int, data: Data) -> String? {

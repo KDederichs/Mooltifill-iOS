@@ -78,6 +78,23 @@ extension MooltipassBleManager {
         flushing = true
         startRead()
     }
+    
+    public func getNoteList() {
+        connectToMooltipass {
+            self.queueSyncDate()
+            self._getNoteNode(address: 0)
+        }
+    }
+    
+    public func _getNoteNode(address: UInt16) {
+        self.commandQueue.enqueue {
+            let factory = BleMessageFactory()
+            var bytes = Data(count: 2)
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: 0, value: address)
+            self.peripheral?.writeValue(self.FLIP_BIT_RESET_PACKET, for: self.writeCharacteristic!, type: .withoutResponse)
+            self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_NOTE_NODE, rawData: bytes)))
+        }
+    }
 
     // Low Level device communication
 
@@ -123,10 +140,10 @@ extension MooltipassBleManager {
         return data
     }
 
-    private func _uInt8LEDataToString(data: Data) -> String {
+    public func _uInt8LEDataToString(data: Data) -> String {
         var uInt16Data = [UInt16](repeating: 0, count: data.count/2)
-        for i in 0..<data.count {
-            uInt16Data[i] = BleMessageFactory.toUInt16(bytes: data, index: i*2)
+        for i in stride(from: 0, to: data.count, by: 2) {
+            uInt16Data[i/2] = BleMessageFactory.toUInt16(bytes: data, index: i+data.startIndex)
         }
         return String(decoding: uInt16Data, as: UTF16.self)
     }

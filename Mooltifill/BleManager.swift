@@ -69,9 +69,18 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassCredentialSubject.send(cred)
     }
     
+    func noteListReceived(notes: [String]) {
+        debugPrint("[BleManager] Received NoteList")
+        mooltipassNotesSubject.send(notes)
+    }
+    
     func fetchCredential(service: String, login: String?) {
         self.service = service
         bleManager.getCredentials(service: service, login: login)
+    }
+    
+    func getNoteList() {
+        bleManager.getNoteList()
     }
     
     public static var shared = BleManager()
@@ -97,6 +106,10 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassCredentialSubject.eraseToAnyPublisher()
     }
     
+    public var notes: AnyPublisher<[String], Never> {
+        mooltipassNotesSubject.eraseToAnyPublisher()
+    }
+    
     public var ready: AnyPublisher<Bool, Never> {
         mooltipassReadySubject.eraseToAnyPublisher()
     }
@@ -107,6 +120,7 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
     private let mooltipassReadySubject = PassthroughSubject<Bool, Never>()
     private let mooltiPassErrorSubject = PassthroughSubject<String, Never>()
     private let mooltipassCredentialSubject = PassthroughSubject<MooltipassCredential, Never>()
+    private let mooltipassNotesSubject = PassthroughSubject<[String], Never>()
     
     override init() {
     
@@ -124,5 +138,6 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltiPassErrorSubject.send(completion: .finished)
         mooltipassCredentialSubject.send(completion: .finished)
         mooltipassReadySubject.send(completion: .finished)
+        mooltipassNotesSubject.send(completion: .finished)
     }
 }

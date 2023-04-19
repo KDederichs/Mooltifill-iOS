@@ -44,6 +44,7 @@ public class MooltipassBleManager: NSObject { // 1.
     var bluetoothAvailable = false
     var connectedCallback: (() -> Void)?
     var commandQueue: Queue<() -> ()> = Queue()
+    var noteNames: Set<String> = []
     
     public override init() {
         super.init()

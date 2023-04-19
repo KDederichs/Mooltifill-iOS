@@ -11,7 +11,16 @@ import SwiftUI
 struct AppDelegate: App {
     var body: some Scene {
         WindowGroup {
-            GetPasswordView()
+            TabView {
+                GetPasswordView()
+                    .tabItem {
+                        Label("Get Password", systemImage: "lock")
+                    }
+                NoteListView()
+                    .tabItem {
+                        Label("Notes", systemImage: "note.text")
+                    }
+            }
         }
     }
 }
