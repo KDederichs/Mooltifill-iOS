@@ -9,6 +9,10 @@ import AuthenticationServices
 import DomainParser
 
 class CredentialProviderViewController: ASCredentialProviderViewController, MooltipassBleDelegate {
+    func noteContentReceived(content: String) {
+        
+    }
+    
     func noteListReceived(notes: [String]) {
 
     }

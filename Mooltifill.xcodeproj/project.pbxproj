@@ -35,6 +35,7 @@
 		39639E8A29A0DDB5009B9B47 /* DomainParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; };
 		39639E8B29A0DDB5009B9B47 /* DomainParser.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39639E8D29A0DDBE009B9B47 /* DomainParser.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */; };
+		3965607A29F02A5000082D5B /* NoteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3965607929F02A5000082D5B /* NoteContentView.swift */; };
 		397556F129C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */; };
 		397556F229C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */; };
 		397556F329C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */; };
@@ -178,6 +179,7 @@
 		3942D40C280583C400EF72F3 /* MooltifillAuthProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillAuthProvider.entitlements; sourceTree = "<group>"; };
 		3942D4142805843400EF72F3 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		39639E8929A0DDB4009B9B47 /* DomainParser.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DomainParser.xcframework; path = Carthage/Build/DomainParser.xcframework; sourceTree = "<group>"; };
+		3965607929F02A5000082D5B /* NoteContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteContentView.swift; sourceTree = "<group>"; };
 		397556F029C5CE0B00B5B279 /* BluetoothConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnection.swift; sourceTree = "<group>"; };
 		397556F529C5CE2500B5B279 /* BluetoothEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothEventHandler.swift; sourceTree = "<group>"; };
 		397556FA29C5CE4200B5B279 /* MooltipassBleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooltipassBleManager.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				392426C0298A9A360082AA7F /* DeviceNotConnectedView.swift */,
 				392426C5298A9D130082AA7F /* DeviceLockedView.swift */,
 				39356EA229EFF3D6002B8F83 /* NoteListView.swift */,
+				3965607929F02A5000082D5B /* NoteContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				3975570129C5CE6E00B5B279 /* MooltipassCredential.swift in Sources */,
 				392426C8298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift in Sources */,
 				392426CA298AA7450082AA7F /* CopieableValueLable.swift in Sources */,
+				3965607A29F02A5000082D5B /* NoteContentView.swift in Sources */,
 				392426C6298A9D130082AA7F /* DeviceLockedView.swift in Sources */,
 				392426C1298A9A360082AA7F /* DeviceNotConnectedView.swift in Sources */,
 				3975570629C5CE9100B5B279 /* MooltipassBleDelegate.swift in Sources */,

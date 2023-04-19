@@ -105,7 +105,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
         }
     }
 
-    private func hexEncodedString(_ data: Data?) -> String {
+    public func hexEncodedString(_ data: Data?) -> String {
         let format = "0x%02hhX "
         return data?.map { String(format: format, $0) }.joined() ?? ""
     }
@@ -169,6 +169,12 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 self._getNoteNode(address: BleMessageFactory.toUInt16(bytes: message!.data!, index: message!.data!.startIndex))
                 self.commandQueue.peek!()
             }
+            break
+        case .GET_NOTE_CONTENT:
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data: " + hexEncodedString(message!.data))
+            let content = hexStringtoAscii(hexEncodedString(message!.data!.dropFirst(4)))
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data Decoded: " + content)
+            resetState()
             break
         default:
             resetState()

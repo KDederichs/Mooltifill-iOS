@@ -101,6 +101,7 @@ public enum MooltipassCommand: UInt16 {
     case LOCK_DEVICE_BLE = 0x0010
     case GET_SERIAL = 0xDA
     case GET_NOTE_NODE = 0x0036
+    case GET_NOTE_CONTENT = 0x0033
 
     //Mini BLE
     case DEBUG_BLE = 0x8000

@@ -16,11 +16,17 @@ struct NoteListView: View {
     var body: some View {
         MooltipassAwareView {
             VStack {
-                List(model.notes) {
-                    Text($0.name)
+                List {
+                    ForEach(model.notes) { note in
+                        Text(note.name)
+                        .onTapGesture {
+                            bleManager.getNoteData(noteName: note.name)
+                        }
+                    }
                 }.refreshable {
                     bleManager.getNoteList()
                 }
+                
             }
         }
     }

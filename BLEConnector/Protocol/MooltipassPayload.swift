@@ -86,6 +86,13 @@ extension MooltipassBleManager {
         }
     }
     
+    public func getNoteContent(noteName: String) {
+        connectToMooltipass {
+            self._getNoteContent(data: self._stringToUInt8LEData(input: noteName))
+        }
+    }
+
+    // Low Level device communication
     public func _getNoteNode(address: UInt16) {
         self.commandQueue.enqueue {
             let factory = BleMessageFactory()
@@ -95,8 +102,17 @@ extension MooltipassBleManager {
             self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_NOTE_NODE, rawData: bytes)))
         }
     }
-
-    // Low Level device communication
+    
+    private func _getNoteContent(data: Data) {
+        self.commandQueue.enqueue {
+            let factory = BleMessageFactory()
+            var bytes = Data(count: data.count + 2)
+            BleMessageFactory.arrayCopy(bytes: &bytes, data: data, start: 0)
+            BleMessageFactory.toUInt8LE(bytes: &bytes, index: data.count, value: 0)
+            self.peripheral?.writeValue(self.FLIP_BIT_RESET_PACKET, for: self.writeCharacteristic!, type: .withoutResponse)
+            self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_NOTE_CONTENT, rawData: bytes)))
+        }
+    }
 
     private func _getCredentials(service: Data, login: Data?) {
         self.delegate?.debugMessage(message: "[MooltipassBleManager] Queing Get Credentials")
@@ -119,6 +135,7 @@ extension MooltipassBleManager {
 
     public func send(packets: [Data]) {
         for (idx, paket) in packets.enumerated() {
+            debugPrint("Sending Packet content: " + hexEncodedString(paket))
             send(packet: paket, readAfter: idx == packets.endIndex - 1)
         }
     }
