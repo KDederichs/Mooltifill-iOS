@@ -146,7 +146,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 retryCount += 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.resetState(clearRetryCount: false)
-                    self.commandQueue.peek!()
+                    self.commandQueue.peek?()
                 }
             } else {
                 resetState()
@@ -172,10 +172,20 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             break
         case .GET_NOTE_CONTENT:
             self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data: " + hexEncodedString(message!.data))
-            let content = hexStringtoAscii(hexEncodedString(message!.data!.dropFirst(4)))
-            self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data Decoded: " + content)
-            self.delegate?.noteContentReceived(content: content)
-            resetState()
+            let textPayload = message!.data!.dropFirst(4)
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Text Payload Length: \(textPayload.count)")
+            self.noteContent += hexStringtoAscii(hexEncodedString(message!.data!.dropFirst(4)))
+            self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data Decoded: " + self.noteContent)
+            if (textPayload.count < 512) {
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Note is done")
+                self.delegate?.noteContentReceived(content: self.noteContent)
+                resetState()
+            } else {
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Note is still ongoing, fetching more")
+                self._getMoreNoteContent()
+                resetState()
+            }
+
             break
         default:
             resetState()
@@ -205,8 +215,10 @@ extension MooltipassBleManager: CBPeripheralDelegate {
         return nil
     }
 
-    private func resetState(clearRetryCount: Bool = true) {
-        currentId = 0
+    private func resetState(clearRetryCount: Bool = true, keepId: Bool = false) {
+        if (!keepId) {
+            currentId = 0
+        }
         if (clearRetryCount) {
             retryCount = 0
         }
@@ -218,8 +230,9 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             if !self.commandQueue.isEmpty {
                 self.delegate?.isLoading(loading: true)
                 self.delegate?.debugMessage(message: "[MooltipassBleManager] Running next command in queue")
-                self.startFlush()
+                commandQueue.peek!()
             } else {
+                self.noteContent = ""
                 self.delegate?.isLoading(loading: false)
             }
         }

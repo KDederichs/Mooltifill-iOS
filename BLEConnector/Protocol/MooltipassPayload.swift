@@ -6,7 +6,7 @@ import Foundation
 import CoreBluetooth
 
 extension MooltipassBleManager {
-
+    
     public func getStatus() {
         connectToMooltipass {
             self.queueSyncDate()
@@ -44,7 +44,7 @@ extension MooltipassBleManager {
             self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.MOOLTIPASS_STATUS_BLE)))
         }
     }
-
+    
     public func getCredentials(service: String, login: String?) {
         let cleanedService = service.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")
         let serviceData = _stringToUInt8LEData(input: cleanedService)
@@ -58,7 +58,7 @@ extension MooltipassBleManager {
             self._getCredentials(service: serviceData, login: loginData)
         }
     }
-
+    
     public func startRead() {
         if (self.readCharacteristic == nil) {
             debugPrint("Attempted to read to device while not connected, aborting")
@@ -66,7 +66,7 @@ extension MooltipassBleManager {
         }
         peripheral?.readValue(for: readCharacteristic!)
     }
-
+    
     public func tryParseLocked(message: MooltipassMessage) -> Bool? {
         if (message.data != nil && message.data!.count == 5) {
             return message.data![message.data!.startIndex] & 0x4 ==  0x0
@@ -91,7 +91,7 @@ extension MooltipassBleManager {
             self._getNoteContent(data: self._stringToUInt8LEData(input: noteName))
         }
     }
-
+    
     // Low Level device communication
     public func _getNoteNode(address: UInt16) {
         self.commandQueue.enqueue {
@@ -100,6 +100,14 @@ extension MooltipassBleManager {
             BleMessageFactory.toUInt8LE(bytes: &bytes, index: 0, value: address)
             self.peripheral?.writeValue(self.FLIP_BIT_RESET_PACKET, for: self.writeCharacteristic!, type: .withoutResponse)
             self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_NOTE_NODE, rawData: bytes)))
+        }
+    }
+    
+    public func _getMoreNoteContent() {
+        self.commandQueue.enqueue {
+            let factory = BleMessageFactory()
+            self.peripheral?.writeValue(self.FLIP_BIT_RESET_PACKET, for: self.writeCharacteristic!, type: .withoutResponse)
+            self.send(packets: factory.serialize(msg: MooltipassMessage(cmd: MooltipassCommand.GET_NOTE_CONTENT)))
         }
     }
     

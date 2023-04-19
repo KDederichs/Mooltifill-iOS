@@ -17,17 +17,19 @@ struct NoteContentView: View {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                 } else {
-                    Text(model.content)
-                        .textSelection(.enabled)
-                    if (!$model.content.wrappedValue.isEmpty) {
-                        Button(action:{
-                            UIPasteboard.general.string = $model.content.wrappedValue
-                        }) {
-                            HStack {
-                                Text("Copy")
-                                Image(systemName: "doc.on.doc")
-                            }
-                        }.padding(.top)
+                    ScrollView {
+                        Text(model.content)
+                            .textSelection(.enabled)
+                        if (!$model.content.wrappedValue.isEmpty) {
+                            Button(action:{
+                                UIPasteboard.general.string = $model.content.wrappedValue
+                            }) {
+                                HStack {
+                                    Text("Copy")
+                                    Image(systemName: "doc.on.doc")
+                                }
+                            }.padding(.top)
+                        }
                     }
                 }
             }

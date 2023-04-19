@@ -45,6 +45,7 @@ public class MooltipassBleManager: NSObject { // 1.
     var connectedCallback: (() -> Void)?
     var commandQueue: Queue<() -> ()> = Queue()
     var noteNames: Set<String> = []
+    var noteContent: String = ""
     
     public override init() {
         super.init()
