@@ -33,7 +33,7 @@ struct NoteContentView: View {
             }
             .navigationTitle(noteName)
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
+            .onFirstAppear {
                 model.fetchNote(noteName: noteName)
             }
         }

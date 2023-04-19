@@ -79,6 +79,7 @@
 		39A75EC628058D6900E65042 /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A75EC528058D6900E65042 /* BleManager.swift */; };
 		39D4364829F0425A0030AEEA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4364729F0425A0030AEEA /* LoadingView.swift */; };
 		39D4364A29F04DC60030AEEA /* NodeContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4364929F04DC60030AEEA /* NodeContentModel.swift */; };
+		39D4364D29F05A290030AEEA /* FirstAppearExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4364C29F05A290030AEEA /* FirstAppearExtension.swift */; };
 		39F1EA2629D8415D006A8232 /* QueueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1EA2529D8415D006A8232 /* QueueNode.swift */; };
 		39F1EA2729D8415D006A8232 /* QueueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1EA2529D8415D006A8232 /* QueueNode.swift */; };
 		39F1EA2829D8415D006A8232 /* QueueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1EA2529D8415D006A8232 /* QueueNode.swift */; };
@@ -197,6 +198,7 @@
 		39AF94C029C8881700549ED4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		39D4364729F0425A0030AEEA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		39D4364929F04DC60030AEEA /* NodeContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeContentModel.swift; sourceTree = "<group>"; };
+		39D4364C29F05A290030AEEA /* FirstAppearExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAppearExtension.swift; sourceTree = "<group>"; };
 		39F1EA2529D8415D006A8232 /* QueueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueNode.swift; sourceTree = "<group>"; };
 		39F1EA2A29D8423A006A8232 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -265,6 +267,7 @@
 		39023B3227C10332000A7CD5 /* Mooltifill */ = {
 			isa = PBXGroup;
 			children = (
+				39D4364B29F05A100030AEEA /* Util */,
 				39AF94BF29C8854E00549ED4 /* MooltifillRelease.entitlements */,
 				392426C2298A9B0A0082AA7F /* Components */,
 				392426B9298A85100082AA7F /* Extensions */,
@@ -410,6 +413,14 @@
 				3975571F29C5CF1900B5B279 /* MooltipassPayload.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		39D4364B29F05A100030AEEA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				39D4364C29F05A290030AEEA /* FirstAppearExtension.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		3FB801A5CB5A8AA89E9D7D77 /* Frameworks */ = {
@@ -602,6 +613,7 @@
 				392426BF298A9A1B0082AA7F /* BluetoothDisabledView.swift in Sources */,
 				392426B3298A82480082AA7F /* MooltipassAwareView.swift in Sources */,
 				392426B129895F8A0082AA7F /* GetCredentialsModel.swift in Sources */,
+				39D4364D29F05A290030AEEA /* FirstAppearExtension.swift in Sources */,
 				3975571629C5CEE100B5B279 /* MooltipassCommand.swift in Sources */,
 				39F1EA2B29D8423A006A8232 /* Queue.swift in Sources */,
 				397556F129C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */,

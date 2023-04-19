@@ -36,7 +36,7 @@ struct NoteListView: View {
             }
             .navigationTitle("Notes")
             .navigationBarTitleDisplayMode(.automatic)
-            .onAppear {
+            .onFirstAppear {
                 model.getNoteList()
             }
         }
