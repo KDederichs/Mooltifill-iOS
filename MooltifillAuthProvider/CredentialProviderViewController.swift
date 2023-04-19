@@ -13,6 +13,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         
     }
     
+    func isLoading(loading: Bool) {
+        
+    }
+    
     func noteListReceived(notes: [String]) {
 
     }

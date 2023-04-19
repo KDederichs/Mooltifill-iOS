@@ -18,4 +18,5 @@ public protocol MooltipassBleDelegate : AnyObject {
     func mooltipassConnected(connected: Bool) -> Void
     func mooltipassReady() -> Void
     func debugMessage(message: String) -> Void
+    func isLoading(loading: Bool) -> Void
 }

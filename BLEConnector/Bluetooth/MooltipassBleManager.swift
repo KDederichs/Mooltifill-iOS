@@ -92,6 +92,7 @@ public class MooltipassBleManager: NSObject { // 1.
         connectedCallback = callback
         if (writeConnected && readConnected) {
             if (connectedCallback != nil) {
+                self.delegate?.isLoading(loading: true)
                 connectedCallback!()
                 connectedCallback = nil
                 startFlush()

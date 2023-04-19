@@ -8,16 +8,40 @@
 import SwiftUI
 
 struct NoteContentView: View {
+    @StateObject private var model = NoteContentModel()
+    var noteName: String
     var body: some View {
-        VStack {
-            Text("Title")
-            CopieableValueLable(label: "Note Content", value: "Test")
+        NavigationView {
+            VStack {
+                if(model.isLoading) {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                } else {
+                    Text(model.content)
+                        .textSelection(.enabled)
+                    if (!$model.content.wrappedValue.isEmpty) {
+                        Button(action:{
+                            UIPasteboard.general.string = $model.content.wrappedValue
+                        }) {
+                            HStack {
+                                Text("Copy")
+                                Image(systemName: "doc.on.doc")
+                            }
+                        }.padding(.top)
+                    }
+                }
+            }
+            .navigationTitle(noteName)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                model.fetchNote(noteName: noteName)
+            }
         }
     }
 }
 
 struct NoteContentView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteContentView()
+        NoteContentView(noteName: "Test")
     }
 }

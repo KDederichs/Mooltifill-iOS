@@ -9,24 +9,35 @@ import SwiftUI
 import Combine
 
 struct NoteListView: View {
-    let bleManager = BleManager.shared
-    
     @ObservedObject private var model = NoteListModel()
     
     var body: some View {
-        MooltipassAwareView {
+        NavigationView {
             VStack {
                 List {
                     ForEach(model.notes) { note in
-                        Text(note.name)
-                        .onTapGesture {
-                            bleManager.getNoteData(noteName: note.name)
+                        NavigationLink(destination: NoteContentView(noteName: note.name)) {
+                            Text(note.name)
                         }
                     }
                 }.refreshable {
-                    bleManager.getNoteList()
+                    model.getNoteList()
+                }.overlay {
+                    Group {
+                        if (model.isLoading) {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                        } else if ($model.notes.wrappedValue.isEmpty) {
+                            Text("Looks like you have no notes or they are not yet loaded :)")
+                                .multilineTextAlignment(.center)
+                        }
+                    }
                 }
-                
+            }
+            .navigationTitle("Notes")
+            .navigationBarTitleDisplayMode(.automatic)
+            .onAppear {
+                model.getNoteList()
             }
         }
     }

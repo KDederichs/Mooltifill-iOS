@@ -174,6 +174,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data: " + hexEncodedString(message!.data))
             let content = hexStringtoAscii(hexEncodedString(message!.data!.dropFirst(4)))
             self.delegate?.debugMessage(message: "[MooltipassBleManager] Note Node Content Data Decoded: " + content)
+            self.delegate?.noteContentReceived(content: content)
             resetState()
             break
         default:
@@ -215,8 +216,11 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             self.delegate?.debugMessage(message: "[MooltipassBleManager] Removing command from queue.")
             self.commandQueue.dequeue()
             if !self.commandQueue.isEmpty {
+                self.delegate?.isLoading(loading: true)
                 self.delegate?.debugMessage(message: "[MooltipassBleManager] Running next command in queue")
                 self.startFlush()
+            } else {
+                self.delegate?.isLoading(loading: false)
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  NoteListModel.swift
+//  NodeContentModel.swift
 //  Mooltifill
 //
 //  Created by Kai Dederichs on 19.04.23.
@@ -8,17 +8,11 @@
 import Foundation
 import Combine
 
-struct ListNode: Identifiable, Hashable
-{
-    let name: String
-    let id = UUID()
-}
-
-class NoteListModel: ObservableObject
+class NoteContentModel: ObservableObject
 {
     let bleManager = BleManager.shared
     
-    @Published var notes: [ListNode] = []
+    @Published var content: String = ""
     @Published var isLoading = true
     
     private var cancellableSet: Set<AnyCancellable> = []
@@ -26,10 +20,9 @@ class NoteListModel: ObservableObject
     init()
     {
         bleManager
-            .notes
-            .map{ noteNames in return noteNames.map{noteName in ListNode(name: noteName)}}
+            .noteContent
             .receive(on: RunLoop.main)
-            .assign(to: \.notes, on: self)
+            .assign(to: \.content, on: self)
             .store(in: &cancellableSet)
         
         bleManager
@@ -39,8 +32,7 @@ class NoteListModel: ObservableObject
             .store(in: &cancellableSet)
     }
     
-    func getNoteList()
-    {
-        bleManager.getNoteList()
+    func fetchNote(noteName: String) {
+        bleManager.getNoteData(noteName: noteName)
     }
 }

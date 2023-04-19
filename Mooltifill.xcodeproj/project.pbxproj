@@ -77,6 +77,8 @@
 		3975572229C5CF1900B5B279 /* MooltipassPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975571F29C5CF1900B5B279 /* MooltipassPayload.swift */; };
 		3975572329C5CF1900B5B279 /* MooltipassPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975571F29C5CF1900B5B279 /* MooltipassPayload.swift */; };
 		39A75EC628058D6900E65042 /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A75EC528058D6900E65042 /* BleManager.swift */; };
+		39D4364829F0425A0030AEEA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4364729F0425A0030AEEA /* LoadingView.swift */; };
+		39D4364A29F04DC60030AEEA /* NodeContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4364929F04DC60030AEEA /* NodeContentModel.swift */; };
 		39F1EA2629D8415D006A8232 /* QueueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1EA2529D8415D006A8232 /* QueueNode.swift */; };
 		39F1EA2729D8415D006A8232 /* QueueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1EA2529D8415D006A8232 /* QueueNode.swift */; };
 		39F1EA2829D8415D006A8232 /* QueueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1EA2529D8415D006A8232 /* QueueNode.swift */; };
@@ -193,6 +195,8 @@
 		39A75EC528058D6900E65042 /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		39AF94BF29C8854E00549ED4 /* MooltifillRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooltifillRelease.entitlements; sourceTree = "<group>"; };
 		39AF94C029C8881700549ED4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		39D4364729F0425A0030AEEA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		39D4364929F04DC60030AEEA /* NodeContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeContentModel.swift; sourceTree = "<group>"; };
 		39F1EA2529D8415D006A8232 /* QueueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueNode.swift; sourceTree = "<group>"; };
 		39F1EA2A29D8423A006A8232 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -310,6 +314,7 @@
 				392426C5298A9D130082AA7F /* DeviceLockedView.swift */,
 				39356EA229EFF3D6002B8F83 /* NoteListView.swift */,
 				3965607929F02A5000082D5B /* NoteContentView.swift */,
+				39D4364729F0425A0030AEEA /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				392426B029895F8A0082AA7F /* GetCredentialsModel.swift */,
 				392426B4298A827A0082AA7F /* MooltipassAwareModel.swift */,
 				39356EA429EFF407002B8F83 /* NoteListModel.swift */,
+				39D4364929F04DC60030AEEA /* NodeContentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 				3975571129C5CECA00B5B279 /* MessageFactory.swift in Sources */,
 				39F1EA2629D8415D006A8232 /* QueueNode.swift in Sources */,
 				3975570129C5CE6E00B5B279 /* MooltipassCredential.swift in Sources */,
+				39D4364A29F04DC60030AEEA /* NodeContentModel.swift in Sources */,
 				392426C8298A9E3D0082AA7F /* OpenBluetoothSettingsButton.swift in Sources */,
 				392426CA298AA7450082AA7F /* CopieableValueLable.swift in Sources */,
 				3965607A29F02A5000082D5B /* NoteContentView.swift in Sources */,
@@ -600,6 +607,7 @@
 				397556F129C5CE0B00B5B279 /* BluetoothConnection.swift in Sources */,
 				397556F629C5CE2500B5B279 /* BluetoothEventHandler.swift in Sources */,
 				39356EA529EFF407002B8F83 /* NoteListModel.swift in Sources */,
+				39D4364829F0425A0030AEEA /* LoadingView.swift in Sources */,
 				392426BB298A85260082AA7F /* ContainerViewExtension.swift in Sources */,
 				392426AE29895CE60082AA7F /* GetPasswordView.swift in Sources */,
 				397556FB29C5CE4200B5B279 /* MooltipassBleManager.swift in Sources */,

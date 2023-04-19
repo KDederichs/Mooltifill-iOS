@@ -14,7 +14,6 @@ struct GetPasswordView: View {
     @ObservedObject private var model = GetCredentialsModel()
     
     var body: some View {
-        MooltipassAwareView {
             VStack {
                 Form {
                     Section("Website") {
@@ -28,8 +27,12 @@ struct GetPasswordView: View {
                             bleManager.fetchCredential(service: $model.service.wrappedValue, login: nil)
                         }
                         .disabled(
-                            $model.service.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                            $model.service.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || $model.isLoading.wrappedValue
                         )
+                    }
+                    if (model.isLoading) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
                     }
                     if (model.hasCredential) {
                         Section("Credentials") {
@@ -38,8 +41,6 @@ struct GetPasswordView: View {
                         }
                     }
                 }
-               
-            }
         }
     }
 }

@@ -18,6 +18,7 @@ class GetCredentialsModel: ObservableObject
     @Published var password: String = ""
     @Published var hasCredential = false
     @Published var getPasswordButtonEnabled = false
+    @Published var isLoading = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -42,6 +43,13 @@ class GetCredentialsModel: ObservableObject
             .map{ credential in return true}
             .receive(on: RunLoop.main)
             .assign(to: \.hasCredential, on: self)
+            .store(in: &cancellableSet)
+        
+        
+        bleManager
+            .isLoading
+            .receive(on: RunLoop.main)
+            .assign(to: \.isLoading, on: self)
             .store(in: &cancellableSet)
     }
     

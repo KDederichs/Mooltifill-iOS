@@ -2,12 +2,11 @@ import Foundation
 import Combine
 import DomainParser
 
-internal class BleManager: NSObject, MooltipassBleDelegate{
+internal class BleManager: NSObject, MooltipassBleDelegate {
     
     func debugMessage(message: String) {
         debugPrint(message)
     }
-    
     
     var service : String? = nil
     
@@ -50,6 +49,10 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         }
     }
     
+    func isLoading(loading: Bool) {
+        mooltipassLoadingSubject.send(loading)
+    }
+    
     func onError(errorMessage: String) {
         mooltiPassErrorSubject.send(errorMessage)
     }
@@ -75,6 +78,7 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
     }
     
     func noteContentReceived(content: String) {
+        debugPrint("[BleManager] Received Note Content: " + content)
         mooltipassNotesContentSubject.send(content)
     }
     
@@ -126,6 +130,10 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassReadySubject.eraseToAnyPublisher()
     }
     
+    public var isLoading: AnyPublisher<Bool, Never> {
+        mooltipassLoadingSubject.eraseToAnyPublisher()
+    }
+    
     private let lockedSubject = PassthroughSubject<Bool, Never>()
     private let bluetoothEnabledSubject = PassthroughSubject<Bool, Never>()
     private let mooltipassConnectedSubject = PassthroughSubject<Bool, Never>()
@@ -134,6 +142,7 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
     private let mooltipassCredentialSubject = PassthroughSubject<MooltipassCredential, Never>()
     private let mooltipassNotesSubject = PassthroughSubject<[String], Never>()
     private let mooltipassNotesContentSubject = PassthroughSubject<String, Never>()
+    private let mooltipassLoadingSubject = PassthroughSubject<Bool, Never>()
     
     override init() {
     
@@ -153,5 +162,6 @@ internal class BleManager: NSObject, MooltipassBleDelegate{
         mooltipassReadySubject.send(completion: .finished)
         mooltipassNotesSubject.send(completion: .finished)
         mooltipassNotesContentSubject.send(completion: .finished)
+        mooltipassLoadingSubject.send(completion: .finished)
     }
 }
