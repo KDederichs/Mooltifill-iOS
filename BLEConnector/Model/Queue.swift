@@ -38,6 +38,7 @@ extension Queue {
     }
     
     mutating func enqueue(_ value:T) {
+        debugPrint("[QUEUE] Something was queued")
         if isEmpty {
             self.push(value)
             return

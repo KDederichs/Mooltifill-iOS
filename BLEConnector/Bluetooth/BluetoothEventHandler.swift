@@ -68,6 +68,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                     flushing = false
                     flushData = nil
                     if !self.commandQueue.isEmpty {
+                        self.delegate?.debugMessage(message: "[MooltipassBleManager] Peeking from Flush")
                         commandQueue.peek!()
                     } else {
                         self.delegate?.debugMessage(message: "[MooltipassBleManager] Queue is empty, nothing to execute.")
@@ -128,6 +129,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             resetState()
             break
         case .GET_CREDENTIAL_BLE:
+            resetState()
             if (message?.data != nil && message!.data!.count > 0) {
                 let username = parseCredentialsPart(idx: 0, data: message!.data!)
                 let password = parseCredentialsPart(idx: 6, data: message!.data!)
@@ -139,7 +141,6 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             } else if(message?.data != nil && message!.data!.count == 0) {
                 self.delegate?.credentialNotFound()
             }
-            resetState()
             break
         case .PLEASE_RETRY_BLE:
             if (retryCount < 10) {
@@ -147,6 +148,7 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 debugPrint("Retrying operation")
                 retryCount += 1
                 self.resetState(clearRetryCount: false)
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] Peeking from Retry")
                 self.commandQueue.peek?()
             } else {
                 resetState()

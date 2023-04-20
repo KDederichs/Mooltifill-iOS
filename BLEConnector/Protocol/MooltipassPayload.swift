@@ -120,7 +120,6 @@ extension MooltipassBleManager {
     private func _getCredentials(service: Data, login: Data?) {
         self.delegate?.debugMessage(message: "[MooltipassBleManager] Queing Get Credentials")
         self.commandQueue.enqueue {
-
             let loginOffset = service.count
             let len = loginOffset + (login?.count ?? 0) + 4
             var bytes = Data(count: len)
