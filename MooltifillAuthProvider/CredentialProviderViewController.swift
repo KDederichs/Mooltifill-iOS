@@ -14,7 +14,8 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func isLoading(loading: Bool) {
-        
+        self.isLoading = loading
+        self._loadingSpinner.isHidden = loading
     }
     
     func noteListReceived(notes: [String]) {
@@ -25,6 +26,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     }
     
     func credentialNotFound() {
+        
         if (triedRootDomain) {
             _statusLabel.text = "Password not found."
         }
@@ -36,6 +38,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
                 let domain = self.domainParser?.parse(host: host!)?.domain
                 if (domain != nil) {
                     debugPrint("[CredentialsProvider] Trying root domain: ", domain!)
+                    _statusLabel.text = "Password for \(getHostPart(service: self.service!) ?? "-unknown-") was not found, trying \(domain!)"
                     manager.bleManager.getCredentials(service: domain!, login: nil)
                 }
             }
@@ -59,11 +62,12 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
     
     let manager: BleManager = BleManager.shared
     var triedRootDomain = false
-    var alreadyConnected = false
     var service: String? = nil
     var domainParser: DomainParser? = nil
+    var isLoading: Bool = true
     
     @IBOutlet weak var _statusLabel: UILabel!
+    @IBOutlet weak var _loadingSpinner: UIActivityIndicatorView!
     
     func bluetoothChange(enabled: Bool) {
         debugPrint("[CredentialsProvider] Bluetooth enabled:", enabled)
@@ -84,10 +88,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         if (locked) {
             _statusLabel.text = "Device is locked, please unlock."
         } else {
-            _statusLabel.text = "Device is unlocked, looking up password."
             if (self.service != nil) {
-                usleep(useconds_t(200))
                 let host = getHostPart(service: self.service!)
+                _statusLabel.text = "Device is unlocked, looking up password for \(host ?? "-unknown-")"
+                //usleep(useconds_t(200))
                 //_statusLabel.text =  host!
                 manager.bleManager.getCredentials(service: host != nil ? host! : self.service!, login: nil)
             } else {
@@ -102,7 +106,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         }
         _statusLabel.text = "Password found."
         let passwordCredential = ASPasswordCredential(user: credential!.username, password: credential!.password)
-        self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
+        
+        self.extensionContext.completeRequest(withSelectedCredential: passwordCredential) { _ in
+            self.manager.bleManager.disconnect()
+        }
     }
     
     override func viewDidLoad() {
@@ -124,6 +131,8 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
         debugPrint("Receiving password")
         self.service = serviceIdentifiers[0].identifier;
         triedRootDomain = false
+        _loadingSpinner.isHidden = false
+        isLoading = true
         // just set URL, password will be fetched through callback chain.
         manager.bleManager.getStatus()
     }
@@ -159,6 +168,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, Mool
 
     @IBAction func cancel(_ sender: AnyObject?) {
         debugPrint("Canceling")
+        manager.bleManager.disconnect()
         self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userCanceled.rawValue))
     }
 

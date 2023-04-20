@@ -96,8 +96,29 @@ internal class BleManager: NSObject, MooltipassBleDelegate {
     }
 
     
-    public static var shared = BleManager()
+    struct Static
+    {
+        public static var instance: BleManager?
+    }
+    
+    class var shared: BleManager
+     {
+         if Static.instance == nil
+         {
+             Static.instance = BleManager()
+         }
+
+         return Static.instance!
+     }
+    
     public var bleManager: MooltipassBleManager
+    
+    public func dispose()
+    {
+        Static.instance?.bleManager.disconnect()
+        Static.instance = nil
+        print("[BleManager] Disposed Singleton instance")
+    }
     
     public var locked: AnyPublisher<Bool, Never> {
         lockedSubject.eraseToAnyPublisher()
@@ -163,5 +184,6 @@ internal class BleManager: NSObject, MooltipassBleDelegate {
         mooltipassNotesSubject.send(completion: .finished)
         mooltipassNotesContentSubject.send(completion: .finished)
         mooltipassLoadingSubject.send(completion: .finished)
+        bleManager.delegate = nil
     }
 }

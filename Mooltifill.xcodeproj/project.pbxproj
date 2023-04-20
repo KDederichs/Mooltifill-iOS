@@ -300,13 +300,6 @@
 			path = MooltifillUITests;
 			sourceTree = "<group>";
 		};
-		3903493E280C202100B3C801 /* CreateCredential */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CreateCredential;
-			sourceTree = "<group>";
-		};
 		3924268C29894D8A0082AA7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,7 +355,6 @@
 		3942D405280583C400EF72F3 /* MooltifillAuthProvider */ = {
 			isa = PBXGroup;
 			children = (
-				3903493E280C202100B3C801 /* CreateCredential */,
 				3942D406280583C400EF72F3 /* CredentialProviderViewController.swift */,
 				3942D408280583C400EF72F3 /* MainInterface.storyboard */,
 				3942D40B280583C400EF72F3 /* Info.plist */,
@@ -847,7 +839,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mooltifill/MooltifillDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
@@ -881,7 +873,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mooltifill/MooltifillRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mooltifill/Info.plist;
@@ -988,7 +980,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MooltifillAuthProvider/MooltifillAuthProvider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;
@@ -1015,7 +1007,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MooltifillAuthProvider/MooltifillAuthProvider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9MTYZH884P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MooltifillAuthProvider/Info.plist;

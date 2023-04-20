@@ -46,6 +46,7 @@ public class MooltipassBleManager: NSObject { // 1.
     var commandQueue: Queue<() -> ()> = Queue()
     var noteNames: Set<String> = []
     var noteContent: String = ""
+    let factory = BleMessageFactory()
     
     public override init() {
         super.init()
@@ -96,6 +97,7 @@ public class MooltipassBleManager: NSObject { // 1.
                 self.delegate?.isLoading(loading: true)
                 connectedCallback!()
                 connectedCallback = nil
+                self.delegate?.debugMessage(message: "[MooltipassBleManager] CALLING START FLUSH FROM connectToMooltipass")
                 startFlush()
             }
             return

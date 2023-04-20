@@ -105,4 +105,9 @@ public class BleMessageFactory: MessageFactory {
 
         return ret
     }
+    
+    func resetFlipBit()
+    {
+        flip = false
+    }
 }

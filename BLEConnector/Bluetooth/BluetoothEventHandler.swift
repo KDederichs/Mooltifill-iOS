@@ -42,9 +42,11 @@ extension MooltipassBleManager: CBPeripheralDelegate {
             }
             if (readConnected && writeConnected) {
                 self.delegate?.mooltipassReady()
+                self.resetFlipBit()
                 if (connectedCallback != nil) {
                     connectedCallback!()
                     connectedCallback = nil
+                    self.delegate?.debugMessage(message: "[MooltipassBleManager] CALLING START FLUSH FROM peripheral")
                     self.startFlush()
                 }
             }
@@ -144,10 +146,8 @@ extension MooltipassBleManager: CBPeripheralDelegate {
                 self.delegate?.debugMessage(message: "[MooltipassBleManager] Retrying operation")
                 debugPrint("Retrying operation")
                 retryCount += 1
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self.resetState(clearRetryCount: false)
-                    self.commandQueue.peek?()
-                }
+                self.resetState(clearRetryCount: false)
+                self.commandQueue.peek?()
             } else {
                 resetState()
                 self.delegate?.debugMessage(message: "[MooltipassBleManager] Retry limit exceeded, abort.")
